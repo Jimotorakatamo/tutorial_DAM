@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Python Moderno</title>
+
+    <!-- SCRIPT ANTI-PARPADEO -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body data-page="python">
+    <div class="layout">
+        <nav class="sidebar">
+            <header class="sidebar-header">
+                <i class="fa-brands fa-python logo-icon"></i>
+                <span class="logo-text">Python</span>
+            </header>
+            <button class="toggle-btn sidebar-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-left"></i>
+                <span>Contraer</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+                <li><a href="html.html" data-topic="html"><i class="fa-brands fa-html5"></i><span>HTML</span></a></li>
+                <li><a href="css.html" data-topic="css"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></a></li>
+                <li><a href="javascript.html" data-topic="javascript"><i class="fa-brands fa-js"></i><span>JavaScript</span></a></li>
+                <li><a href="xml.html" data-topic="xml"><i class="fa-solid fa-file-code"></i><span>XML</span></a></li>
+                <li><a href="java.html" data-topic="java"><i class="fa-solid fa-mug-hot"></i><span>Java</span></a></li>
+                <li><a href="python.html" class="active" data-topic="python"><i class="fa-brands fa-python"></i><span>Python</span></a></li>
+            </ul>
+            <div class="theme-switcher">
+                <i class="fa-solid fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fa-solid fa-moon"></i>
+            </div>
+    </nav>
+
+    <main class="content">
+            <section class="intro">
+                <h1><i class="fa-brands fa-python icon-header"></i> Aprende Python Moderno</h1>
+                <p>Python es un lenguaje de programación versátil y fácil de aprender. En este tutorial, descubrirás los conceptos básicos, sintaxis, estructuras de control, funciones, manejo de archivos y mucho más.</p>
+                <div class="ejemplo-group">
+                    <h2><i class="fa-solid fa-rocket icon-header"></i> Primeros pasos con Python</h2>
+                    <p>Python es único por su simplicidad y poder. Veamos algunos ejemplos básicos que demuestran su elegancia:</p>
+                    
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># El clásico "Hola, mundo"
+print("¡Hola, mundo!")
+
+# Interacción con el usuario
+nombre = input("¿Cómo te llamas? ")
+print(f"¡Bienvenido/a a Python, {nombre}!")
+
+# Una pequeña calculadora
+numero1 = float(input("Introduce el primer número: "))
+numero2 = float(input("Introduce el segundo número: "))
+
+print(f"""
+Operaciones básicas con {numero1} y {numero2}:
+Suma: {numero1 + numero2}
+Resta: {numero1 - numero2}
+Multiplicación: {numero1 * numero2}
+División: {numero1 / numero2}
+""")</code></pre>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <h3>Simple y Legible</h3>
+                            <p>Sintaxis clara que parece pseudocódigo</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h3>Productivo</h3>
+                            <p>Haz más con menos código</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-brain"></i>
+                            <h3>Versátil</h3>
+                            <p>Web, IA, datos, juegos y más</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="como-programar">
+                <h2><i class="fa-solid fa-terminal icon-header"></i> ¿Cómo programar en Python?</h2>
+                <p>Comenzar con Python es un proceso sencillo. Te guiaremos paso a paso para configurar tu entorno de desarrollo perfecto:</p>
+                
+                <div class="setup-steps">
+                    <div class="step">
+                        <h3><i class="fa-solid fa-download"></i> 1. Instala Python</h3>
+                        <ul>
+                            <li>Descarga Python desde <a href="https://www.python.org/downloads/" target="_blank">python.org</a></li>
+                            <li>Marca la opción "Add Python to PATH" durante la instalación</li>
+                            <li>Verifica la instalación en la terminal:</li>
+                        </ul>
+                        <div class="code-container">
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                            <pre><code class="language-bash">python --version
+pip --version</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3><i class="fa-solid fa-code"></i> 2. Elige tu IDE</h3>
+                        <p>Recomendamos estas excelentes opciones:</p>
+                        <ul>
+                            <li><strong>Visual Studio Code</strong> + Python Extension
+                                <ul>
+                                    <li>Ligero y personalizable</li>
+                                    <li>Gran soporte para debugging</li>
+                                    <li>Integración con Git</li>
+                                </ul>
+                            </li>
+                            <li><strong>PyCharm</strong>
+                                <ul>
+                                    <li>IDE completo para Python</li>
+                                    <li>Potentes herramientas de refactorización</li>
+                                    <li>Ideal para proyectos grandes</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="step">
+                        <h3><i class="fa-solid fa-play"></i> 3. Tu primer proyecto</h3>
+                        <ol>
+                            <li>Crea una carpeta para tu proyecto</li>
+                            <li>Abre tu editor favorito</li>
+                            <li>Crea un archivo <code>mi_programa.py</code></li>
+                            <li>Escribe tu código:</li>
+                        </ol>
+                        <div class="code-container">
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                            <pre><code class="language-python"># mi_programa.py
+def calcular_edad_en_dias(edad):
+    return edad * 365
+
+mi_edad = int(input("¿Cuál es tu edad? "))
+dias = calcular_edad_en_dias(mi_edad)
+print(f"¡Has vivido aproximadamente {dias:,} días!")</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h3><i class="fa-solid fa-graduation-cap"></i> 4. Mejores prácticas</h3>
+                        <ul>
+                            <li>Usa entornos virtuales para cada proyecto:
+                                <div class="code-container">
+                                    <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                                    <pre><code class="language-bash">python -m venv mi_entorno
+mi_entorno\Scripts\activate  # Windows
+pip install nombre_paquete</code></pre>
+                                </div>
+                            </li>
+                            <li>Sigue la guía de estilo <a href="https://pep8.org/" target="_blank">PEP 8</a></li>
+                            <li>Escribe pruebas unitarias desde el principio</li>
+                            <li>Usa control de versiones (Git)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sintaxis-basica">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-code icon-header"></i> Sintaxis básica</h2>
+                    <p>Python destaca por su sintaxis limpia y legible. No necesitas punto y coma ni llaves - la indentación define los bloques de código.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-indent"></i>
+                            <h3>Indentación</h3>
+                            <p>Define bloques de código con espacios</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-comment-dots"></i>
+                            <h3>Comentarios</h3>
+                            <p>Usa # para comentar código</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrows-up-down"></i>
+                            <h3>Líneas</h3>
+                            <p>Una instrucción por línea</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de sintaxis básica
+def calcular_descuento(precio, porcentaje):
+    """Esta función calcula el descuento de un precio"""
+    descuento = precio * (porcentaje / 100)
+    precio_final = precio - descuento
+    return precio_final
+
+# Uso de la función con valores
+precio_original = 100
+descuento = 20
+precio_con_descuento = calcular_descuento(precio_original, descuento)
+print(f"Precio final con {descuento}% de descuento: ${precio_con_descuento}")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="variables-tipos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cube icon-header"></i> Variables y tipos de datos</h2>
+                    <p>Python utiliza tipado dinámico, lo que significa que las variables pueden cambiar de tipo y no necesitas declararlas explícitamente.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-hashtag"></i>
+                            <h3>Números</h3>
+                            <p>int, float, complex</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-font"></i>
+                            <h3>Texto</h3>
+                            <p>str (cadenas)</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-toggle-on"></i>
+                            <h3>Booleanos</h3>
+                            <p>True o False</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-list-check"></i>
+                            <h3>Colecciones</h3>
+                            <p>list, tuple, dict, set</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de tipos de datos
+# Números
+edad = 25              # int (entero)
+altura = 1.75          # float (decimal)
+complejo = 3 + 4j      # complex (número complejo)
+
+# Texto
+nombre = "Ana"         # str (cadena)
+mensaje = '''Texto
+multilínea'''         # str multilínea
+
+# Booleanos
+activo = True         # bool
+aprobado = False      # bool
+
+# Colecciones
+lista = [1, 2, 3]     # list (lista mutable)
+tupla = (1, 2, 3)     # tuple (tupla inmutable)
+conjunto = {1, 2, 3}  # set (conjunto)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estructuras-control">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-code-branch icon-header"></i> Estructuras de control</h2>
+                    <p>Las estructuras de control determinan el flujo de ejecución de tu programa. Python ofrece una sintaxis clara y concisa para cada tipo de control.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <h3>if/elif/else</h3>
+                            <p>Decisiones condicionales</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-rotate"></i>
+                            <h3>while</h3>
+                            <p>Bucles con condición</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-repeat"></i>
+                            <h3>for</h3>
+                            <p>Iteración sobre secuencias</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de estructuras de control
+
+# if/elif/else
+def calificar_nota(nota):
+    if nota >= 90:
+        return "Sobresaliente"
+    elif nota >= 70:
+        return "Notable"
+    elif nota >= 60:
+        return "Aprobado"
+    else:
+        return "Necesita mejorar"
+
+# Bucle for con range y enumerate
+print("Tabla de multiplicar del 5:")
+for i in range(1, 11):
+    print(f"5 x {i} = {5 * i}")
+
+# Bucle while con break y continue
+numero = 0
+while True:
+    numero += 1
+    if numero == 3:
+        continue  # Salta esta iteración
+    if numero > 5:
+        break    # Sale del bucle
+    print(numero)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="funciones">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-function icon-header"></i> Funciones</h2>
+                    <p>Las funciones son bloques de código reutilizables que pueden tomar argumentos y devolver resultados.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            <h3>Argumentos</h3>
+                            <p>Parámetros de entrada</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-share"></i>
+                            <h3>Return</h3>
+                            <p>Valor de retorno</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-star"></i>
+                            <h3>Args/Kwargs</h3>
+                            <p>Argumentos variables</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de funciones
+
+# Función con argumentos por defecto
+def saludar(nombre, saludo="¡Hola"):
+    return f"{saludo}, {nombre}!"
+
+# Función con argumentos variables
+def sumar(*args, **kwargs):
+    """
+    args: tupla de argumentos posicionales
+    kwargs: diccionario de argumentos nombrados
+    """
+    total = sum(args)  # suma los argumentos posicionales
+    if 'extra' in kwargs:
+        total += kwargs['extra']
+    return total
+
+# Ejemplos de uso
+print(saludar("Ana"))  # ¡Hola, Ana!
+print(saludar("Juan", "Buenos días"))  # Buenos días, Juan!
+
+# Usando args y kwargs
+print(sumar(1, 2, 3))  # 6
+print(sumar(1, 2, extra=3))  # 6</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="manejo-archivos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-file-lines icon-header"></i> Manejo de archivos</h2>
+                    <p>Python proporciona una forma sencilla y segura de trabajar con archivos usando el contexto 'with'.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-pen"></i>
+                            <h3>Escritura</h3>
+                            <p>Modo 'w' para escribir</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <h3>Lectura</h3>
+                            <p>Modo 'r' para leer</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            <h3>Append</h3>
+                            <p>Modo 'a' para añadir</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de manejo de archivos
+
+# Escribir en un archivo
+def guardar_notas(archivo, notas):
+    with open(archivo, 'w', encoding='utf-8') as f:
+        for estudiante, nota in notas.items():
+            f.write(f"{estudiante}: {nota}\n")
+
+# Leer de un archivo
+def leer_notas(archivo):
+    notas = {}
+    with open(archivo, 'r', encoding='utf-8') as f:
+        for linea in f:
+            estudiante, nota = linea.strip().split(': ')
+            notas[estudiante] = float(nota)
+    return notas
+
+# Ejemplo de uso
+notas_estudiantes = {
+    'Ana': 9.5,
+    'Juan': 8.7,
+    'María': 9.2
+}
+
+# Guardar notas
+guardar_notas('notas.txt', notas_estudiantes)
+
+# Leer notas
+notas_leidas = leer_notas('notas.txt')
+print("Notas leídas:", notas_leidas)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="listas-diccionarios">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-list icon-header"></i> Listas y Diccionarios</h2>
+                    <p>Las listas y diccionarios son estructuras de datos versátiles y fundamentales en Python.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-list-ul"></i>
+                            <h3>Listas</h3>
+                            <p>Colecciones ordenadas</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-book"></i>
+                            <h3>Diccionarios</h3>
+                            <p>Pares clave-valor</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <h3>Métodos</h3>
+                            <p>Operaciones útiles</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Ejemplos de listas y diccionarios
+
+# Operaciones con listas
+frutas = ['manzana', 'plátano', 'naranja']
+frutas.append('pera')              # Añadir al final
+frutas.insert(1, 'uva')           # Insertar en posición
+frutas.remove('plátano')          # Eliminar elemento
+ultima_fruta = frutas.pop()       # Extraer último elemento
+
+# List comprehension
+numeros = [1, 2, 3, 4, 5]
+cuadrados = [n ** 2 for n in numeros]  # [1, 4, 9, 16, 25]
+
+# Operaciones con diccionarios
+persona = {
+    'nombre': 'Ana',
+    'edad': 25,
+    'ciudad': 'Madrid'
+}
+
+# Acceder y modificar
+print(persona.get('nombre', 'No encontrado'))
+persona['profesion'] = 'Ingeniera'
+
+# Dict comprehension
+cuadrados_dict = {n: n**2 for n in range(5)}  # {0:0, 1:1, 2:4, 3:9, 4:16}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clases-objetos">
+                <h2><i class="fa-solid fa-cubes icon-header"></i> Clases y Objetos</h2>
+                <p>Python es un lenguaje orientado a objetos. Aquí un ejemplo de cómo crear y usar clases:</p>
+                <div class="code-container">
+                    <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                    <pre><code class="language-python">class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    
+    def saludar(self):
+        return f"¡Hola! Soy {self.nombre}"
+
+# Crear y usar un objeto
+ana = Persona("Ana", 25)
+print(ana.saludar())</code></pre>
+                </div>
+            </section>
+
+            <section id="excepciones">
+                <h2><i class="fa-solid fa-triangle-exclamation icon-header"></i> Manejo de Excepciones</h2>
+                <p>Python proporciona un sistema robusto para manejar errores:</p>
+                <div class="code-container">
+                    <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                    <pre><code class="language-python">try:
+    numero = int(input("Introduce un número: "))
+    resultado = 10 / numero
+except ValueError:
+    print("Error: Debes introducir un número")
+except ZeroDivisionError:
+    print("Error: No se puede dividir por cero")
+else:
+    print(f"Resultado: {resultado}")
+finally:
+    print("Proceso completado")</code></pre>
+                </div>
+            </section>
+
+            <section id="funciones-avanzadas">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-star icon-header"></i> Funciones Avanzadas y Programación Funcional</h2>
+                    <p>Python soporta paradigmas de programación funcional que hacen el código más declarativo y conciso.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h4>Funciones Lambda</h4>
+                            <p>Pequeñas funciones anónimas definidas con la palabra clave <code>lambda</code>.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-filter"></i>
+                            <h4>Map, Filter, Reduce</h4>
+                            <p>Funciones de orden superior para operar sobre listas y otros iterables.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-hat-wizard"></i>
+                            <h4>Decoradores</h4>
+                            <p>Funciones que modifican o envuelven a otras funciones para extender su comportamiento.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Función Lambda para sumar
+suma = lambda x, y: x + y
+print(suma(3, 5))  # Salida: 8
+
+# Uso de map y filter
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(map(lambda x: x**2, numeros))  # [1, 4, 9, 16, 25]
+pares = list(filter(lambda x: x % 2 == 0, numeros))  # [2, 4]
+
+# Decorador simple para medir tiempo de ejecución
+import time
+
+def cronometro(func):
+    def wrapper(*args, **kwargs):
+        inicio = time.time()
+        resultado = func(*args, **kwargs)
+        fin = time.time()
+        print(f"'{func.__name__}' tardó {fin - inicio:.4f} segundos.")
+        return resultado
+    return wrapper
+
+@cronometro
+def proceso_largo():
+    time.sleep(1)
+    print("Proceso finalizado.")
+
+proceso_largo()</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="poo">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cubes icon-header"></i> Programación Orientada a Objetos (POO)</h2>
+                    <p>La POO en Python permite modelar problemas complejos mediante clases y objetos, fomentando la reutilización y organización del código.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python">class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+        self.arrancado = False
+
+    def arrancar(self):
+        self.arrancado = True
+        print(f"El {self.marca} {self.modelo} ha arrancado.")
+
+    def describir(self):
+        return f"Vehículo: {self.marca} {self.modelo}"
+
+class Coche(Vehiculo):  # Herencia de Vehiculo
+    def __init__(self, marca, modelo, num_puertas):
+        super().__init__(marca, modelo)
+        self.num_puertas = num_puertas
+
+    def describir(self):  # Polimorfismo (sobrescritura de método)
+        return f"Coche de {self.num_puertas} puertas: {self.marca} {self.modelo}"
+
+# Creación de objetos
+mi_coche = Coche("Tesla", "Model 3", 4)
+mi_coche.arrancar()
+print(mi_coche.describir())</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modulos-paquetes">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-puzzle-piece icon-header"></i> Módulos y Paquetes</h2>
+                    <p>Python utiliza módulos (archivos <code>.py</code>) y paquetes (directorios con un <code>__init__.py</code>) para organizar el código en proyectos grandes.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python"># Importar un módulo de la librería estándar
+import math
+print(f"La raíz cuadrada de 16 es {math.sqrt(16)}")
+
+# Importar un objeto específico de un módulo
+from datetime import datetime
+print(f"Fecha y hora actual: {datetime.now()}")
+
+# Importar un paquete de terceros (previamente instalado con 'pip install requests')
+import requests
+response = requests.get("https://api.github.com")
+print(f"Respuesta de GitHub: {response.status_code}")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ecosistema">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-globe icon-header"></i> Ecosistema y Librerías Populares</h2>
+                    <p>La verdadera fortaleza de Python reside en su vasto ecosistema de librerías para casi cualquier propósito.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-flask"></i>
+                            <h4>Desarrollo Web</h4>
+                            <p><strong>Django:</strong> Framework robusto "con todo incluido".<br><strong>Flask:</strong> Microframework ligero y flexible.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-robot"></i>
+                            <h4>Ciencia de Datos e IA</h4>
+                            <p><strong>NumPy:</strong> Computación numérica.<br><strong>Pandas:</strong> Manipulación de datos.<br><strong>TensorFlow/PyTorch:</strong> Machine Learning.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-tasks"></i>
+                            <h4>Automatización</h4>
+                            <p><strong>Selenium:</strong> Automatización de navegadores.<br><strong>Beautiful Soup:</strong> Web scraping.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="page-nav">
+            <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-right"></i>
+                <span>Índice</span>
+            </button>
+        <h4>EN ESTA PÁGINA</h4>
+        <ul>
+            <li><a href="#como-programar">¿Cómo programar?</a></li>
+            <li><a href="#sintaxis-basica">Sintaxis básica</a></li>
+            <li><a href="#variables-tipos">Variables y tipos</a></li>
+            <li><a href="#estructuras-control">Estructuras de control</a></li>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#manejo-archivos">Manejo de archivos</a></li>
+            <li><a href="#listas-diccionarios">Listas y Diccionarios</a></li>
+            <li><a href="#clases-objetos">Clases y Objetos</a></li>
+            <li><a href="#excepciones">Excepciones</a></li>
+            <li><a href="#funciones-avanzadas">Funciones Avanzadas</a></li>
+            <li><a href="#poo">POO</a></li>
+            <li><a href="#modulos-paquetes">Módulos y Paquetes</a></li>
+            <li><a href="#ecosistema">Ecosistema</a></li>
+        </ul>
+        </aside>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
