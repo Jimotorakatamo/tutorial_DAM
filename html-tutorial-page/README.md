@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # HTML Tutorial Page
 
 ## Overview
@@ -39,6 +38,3 @@ Contributions are welcome! If you would like to contribute to this project, plea
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
-=======
-# tutorial_DAM
->>>>>>> 4bce3b0abe55b680251c9bf475390c765a8ad913
