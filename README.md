@@ -1,44 +1,35 @@
-<<<<<<< HEAD
-# HTML Tutorial Page
+# tutorial_DAM
+
+**Current version:** `v1.1.1`
 
 ## Overview
-This project is a comprehensive tutorial on how to program in HTML. It provides users with an introduction to HTML, basic tags, forms, multimedia elements, and interactive examples to enhance learning.
+Este proyecto recopila tutoriales modernos e interactivos sobre las principales tecnologías de desarrollo web: HTML, CSS, JavaScript, XML, Java y Python. Cada página combina contenido educativo, ejemplos de código y componentes UI estilizados con gradientes animados.
 
-## Project Structure
+## Estructura del proyecto
 ```
-html-tutorial-page
-├── index.html        # Main HTML document
-├── css
-│   └── style.css     # Styles for the webpage
-├── js
-│   └── script.js     # JavaScript for interactivity
-└── README.md         # Project documentation
+html-tutorial-page/
+├── index.html                # Landing page con tarjetas de acceso a cada tutorial
+├── css/
+│   └── style.css             # Hoja de estilos global con temas y gradientes animados
+├── js/
+│   └── script.js             # Interactividad (tema oscuro, copiado, scrollspy, toggles)
+├── *.html                    # Tutoriales individuales por tecnología
+├── README.md                 # Este documento
+├── changelog.html            # Historial de cambios con diseño web
+└── VERSION                   # Versión global del sitio
 ```
 
-## Getting Started
+## Uso
+1. Abre `index.html` en tu navegador preferido.
+2. Navega usando la barra lateral o las tarjetas del índice para acceder a cada tutorial.
+3. Prueba los ejemplos, copia fragmentos de código con los botones integrados y alterna entre modo claro/oscuro.
 
-### Prerequisites
-- A web browser (e.g., Chrome, Firefox)
-- A code editor (e.g., Visual Studio Code, Sublime Text)
+## Contribuir
+Las contribuciones son bienvenidas. Antes de abrir un PR:
+1. Crea una rama descriptiva desde `main`.
+2. Aplica tus cambios asegurando consistencia visual y accesibilidad.
+3. Actualiza `changelog.html` y el archivo `VERSION` conforme al versionado semántico.
+4. Envía el PR describiendo claramente el alcance.
 
-### Installation
-1. Clone the repository or download the project files.
-2. Open the `index.html` file in your web browser to view the tutorial.
-
-### Usage
-- Navigate through the sections to learn about HTML.
-- Interact with the examples provided to see how HTML works in practice.
-
-## Contributing
-Contributions are welcome! If you would like to contribute to this project, please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push your changes to your forked repository.
-5. Submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-=======
-# tutorial_DAM
->>>>>>> 4bce3b0abe55b680251c9bf475390c765a8ad913
+## Licencia
+MIT License. Consulta el archivo `LICENSE` para más detalles.

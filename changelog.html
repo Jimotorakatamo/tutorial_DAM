@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog · tutorial DAM</title>
+    <!-- SCRIPT ANTI-PARPADEO -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="changelog-body">
+
+    <div class="changelog-container">
+        <header class="changelog-header">
+            <a class="back-home" href="index.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Volver al inicio</span>
+            </a>
+            <div class="changelog-preamble">
+                <span class="release-tagline">Historial de cambios</span>
+                <h1>La evolución del proyecto</h1>
+                <p>Transparencia total sobre lo que cambia en cada versión: mejoras visuales, accesibilidad y nuevas funciones documentadas con mimo.</p>
+            </div>
+            <div class="changelog-meta">
+                <span class="meta-label">Versión actual</span>
+                <span class="meta-version" data-version></span>
+                <span class="meta-updated">
+                    <i class="fa-regular fa-calendar"></i>
+                    Actualizado el 12 de octubre de 2025
+                </span>
+            </div>
+        </header>
+
+        <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.1.1</span>
+                    <span class="release-date">12 · octubre · 2025</span>
+                    <span class="release-focus">Modo claro vibrante y changelog web</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                    <ul>
+                        <li>Elevamos la intensidad de los gradientes animados en modo claro para cada tema, asegurando movimiento visible sin perder equilibrio cromático.</li>
+                        <li>El changelog recibe un layout dedicado con tarjetas, badges y CTA coherentes con el resto de la web.</li>
+                        <li>Reordenamos el pie de página del changelog para que todo quede centrado y pulido en cualquier tamaño de pantalla.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-code-branch"></i> Versionado transparente</h3>
+                    <ul>
+                        <li>El historial de versiones vive ahora en <code>changelog.html</code>, enlazado desde todos los pies de página.</li>
+                        <li><code>README.md</code> y la guía de contribución apuntan al nuevo flujo de documentación.</li>
+                        <li>El antiguo <code>CHANGELOG.md</code> queda como aviso ligero para quienes naveguen el repositorio.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Explorar tutoriales
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.1.0</span>
+                    <span class="release-date">12 · octubre · 2025</span>
+                    <span class="release-focus">Flujo de gradientes y metadatos visibles</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                    <ul>
+                        <li>Animated every gradient background across el sitio: barras laterales, tarjetas, botones y badges vibran en sincronía.</li>
+                        <li>Los estados de los botones "Copiar" ahora detienen la animación momentáneamente para dar feedback inmediato.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-eye"></i> Accesibilidad y legibilidad</h3>
+                    <ul>
+                        <li>Sombras estratégicas en textos gradientes y navegación para mantener contraste incluso con fondos animados.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-code-branch"></i> Versionado transparente</h3>
+                    <ul>
+                        <li>Creación del archivo <code>VERSION</code> y este changelog para seguir la historia del proyecto.</li>
+                        <li>Inyección dinámica de la versión actual en cada pie de página, alimentada directamente desde <code>VERSION</code>.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Explorar tutoriales
+                    </a>
+                </footer>
+            </article>
+        </main>
+
+        <footer class="global-footer">
+            <p>Desarrollado por <strong>Gonzalo Ramos + IA</strong></p>
+            <div class="footer-badge">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Técnico Superior en DAM</span>
+            </div>
+            <div class="site-version" role="contentinfo">
+                <span class="version-label">Versión</span>
+                <span class="version-number" data-version></span>
+                <a class="changelog-link" href="changelog.html" aria-current="page">Estás en el changelog</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="theme-switcher-corner">
+        <i class="fa-solid fa-sun"></i>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

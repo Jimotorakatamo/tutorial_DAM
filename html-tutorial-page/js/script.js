@@ -2,6 +2,26 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const versionTargets = document.querySelectorAll('[data-version]');
+    if (versionTargets.length) {
+        const tryPaths = ['VERSION', '../VERSION', '../../VERSION'];
+        const loadVersion = (paths) => {
+            if (!paths.length) {
+                versionTargets.forEach(node => node.textContent = 'v?.?.?');
+                return;
+            }
+            const [current, ...rest] = paths;
+            fetch(current)
+                .then(resp => resp.ok ? resp.text() : Promise.reject())
+                .then(text => {
+                    const version = text.trim();
+                    versionTargets.forEach(node => node.textContent = version);
+                })
+                .catch(() => loadVersion(rest));
+        };
+        loadVersion(tryPaths);
+    }
+
     // Aplicar la animación de entrada al cuerpo de la página
     document.body.classList.add('fade-in');
 
