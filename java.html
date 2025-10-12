@@ -1,0 +1,741 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Java Moderno</title>
+
+    <!-- SCRIPT ANTI-PARPADEO -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body data-page="java">
+    <div class="layout">
+        <nav class="sidebar">
+            <header class="sidebar-header">
+                <i class="fa-solid fa-mug-hot logo-icon"></i>
+                <span class="logo-text">Java</span>
+            </header>
+            <button class="toggle-btn sidebar-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-left"></i>
+                <span>Contraer</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+                <li><a href="html.html" data-topic="html"><i class="fa-brands fa-html5"></i><span>HTML</span></a></li>
+                <li><a href="css.html" data-topic="css"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></a></li>
+                <li><a href="javascript.html" data-topic="javascript"><i class="fa-brands fa-js"></i><span>JavaScript</span></a></li>
+                <li><a href="xml.html" data-topic="xml"><i class="fa-solid fa-file-code"></i><span>XML</span></a></li>
+                <li><a href="java.html" class="active" data-topic="java"><i class="fa-solid fa-mug-hot"></i><span>Java</span></a></li>
+                <li><a href="python.html" data-topic="python"><i class="fa-brands fa-python"></i><span>Python</span></a></li>
+            </ul>
+            <div class="theme-switcher">
+                <i class="fa-solid fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fa-solid fa-moon"></i>
+            </div>
+    </nav>
+
+    <main class="content">
+            <section class="intro">
+                <div class="tutorial-card">
+                    <h1><i class="fa-solid fa-mug-hot icon-header"></i> Aprende Java Moderno</h1>
+                    <p>Java es un lenguaje de programación robusto, orientado a objetos y de alto rendimiento. En este tutorial, exploraremos desde los fundamentos hasta las características más modernas que lo mantienen relevante en el desarrollo de software a gran escala.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-object-group"></i>
+                            <h3>Orientado a Objetos</h3>
+                            <p>Modelo de programación basado en clases y objetos</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <h3>Multiplataforma</h3>
+                            <p>Escribe una vez, ejecuta en cualquier lugar (WORA)</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-shield-alt"></i>
+                            <h3>Seguro y Robusto</h3>
+                            <p>Gestión de memoria automática y manejo de excepciones</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="intro-java">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-mug-hot"></i> Introducción a Java</h2>
+                    <p>Java es un lenguaje de programación de alto nivel, orientado a objetos, y una plataforma informática que fue lanzada por primera vez por Sun Microsystems en 1995. Es conocido por su filosofía "Write Once, Run Anywhere" (WORA), lo que significa que el código compilado de Java puede ejecutarse en todas las plataformas que soporten Java sin necesidad de recompilación.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-java">public class HolaMundo {
+    public static void main(String[] args) {
+        System.out.println("¡Hola, Mundo desde Java!");
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Instala un JDK (Java Development Kit) si no lo tienes. Crea un archivo <code>HolaMundo.java</code>, copia el código de ejemplo, compílalo (<code>javac HolaMundo.java</code>) y ejecútalo (<code>java HolaMundo</code>) desde tu terminal.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sintaxis-variables">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-code icon-header"></i> Sintaxis Básica</h2>
+                    <p>Java tiene una sintaxis estructurada y fuertemente tipada, similar a C++. Cada aplicación tiene al menos una clase y un método main.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>HolaMundo.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">// Toda aplicación Java necesita una clase
+public class HolaMundo {
+    // El punto de entrada de la aplicación
+    public static void main(String[] args) {
+        // Imprime un mensaje en la consola
+        System.out.println("¡Hola, Java!");
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Declara una variable para tu edad (<code>int</code>) y otra para tu nombre (<code>String</code>). Luego, imprímelas en la consola usando <code>System.out.println()</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="variables-tipos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cube icon-header"></i> Variables y Tipos de Datos</h2>
+                    <p>En Java, debes declarar el tipo de cada variable antes de usarla. Existen tipos primitivos para datos simples y clases para objetos complejos.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-hashtag"></i>
+                            <h3>Primitivos</h3>
+                            <p>int, double, boolean, char...</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-font"></i>
+                            <h3>De Referencia</h3>
+                            <p>String, Arrays, Clases...</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>TiposDeDatos.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">// Tipos de datos primitivos
+int edad = 30;
+double salario = 50000.75;
+boolean esActivo = true;
+char inicial = 'J';
+
+// Tipos de datos de referencia
+String nombre = "Ana García";
+int[] numeros = {1, 2, 3, 4, 5};
+
+// Declaración y asignación
+int anio; // Declaración
+anio = 2025; // Asignación
+
+final double PI = 3.14159; // Declaración de una constante
+</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Declara una variable para tu edad (<code>int</code>) y otra para tu nombre (<code>String</code>). Luego, imprímelas en la consola usando <code>System.out.println()</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estructuras-control">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-code-branch icon-header"></i> Estructuras de Control</h2>
+                    <p>Las estructuras de control dirigen el flujo de tu programa, permitiendo tomar decisiones y repetir acciones.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ControlDeFlujo.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">int puntuacion = 85;
+
+// Estructura if-else if-else
+if (puntuacion >= 90) {
+    System.out.println("Sobresaliente");
+} else if (puntuacion >= 70) {
+    System.out.println("Notable");
+} else {
+    System.out.println("Aprobado");
+}
+
+// Bucle for
+for (int i = 1; i <= 5; i++) {
+    System.out.println("Iteración número: " + i);
+}
+
+// Bucle while
+int contador = 0;
+while (contador < 3) {
+    System.out.println("Contador: " + contador);
+    contador++;
+}
+
+// Switch (a partir de Java 14 con sintaxis mejorada)
+String dia = "Lunes";
+String tipoDia = switch (dia) {
+    case "Lunes", "Martes", "Miércoles", "Jueves", "Viernes" -> "Día laborable";
+    case "Sábado", "Domingo" -> "Fin de semana";
+    default -> "Día inválido";
+};
+System.out.println(dia + " es un " + tipoDia);
+</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Escribe un bucle <code>for</code> que cuente de 10 a 1. Dentro del bucle, usa un <code>if</code> para imprimir "¡Despegue!" solo cuando el contador llegue a 1.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clases-objetos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cubes icon-header"></i> Clases y Objetos</h2>
+                    <p>La Programación Orientada a Objetos (POO) es el núcleo de Java. Las clases son plantillas para crear objetos.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Coche.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">public class Coche {
+    // Atributos (estado)
+    String marca;
+    String modelo;
+    int anio;
+
+    // Constructor para inicializar objetos
+    public Coche(String marca, String modelo, int anio) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+    }
+
+    // Métodos (comportamiento)
+    public void acelerar() {
+        System.out.println("El coche " + marca + " está acelerando.");
+    }
+
+    public String getInfo() {
+        return "Coche: " + anio + " " + marca + " " + modelo;
+    }
+    
+    public static void main(String[] args) {
+        // Creación de un objeto (instancia) de la clase Coche
+        Coche miCoche = new Coche("Toyota", "Corolla", 2022);
+        
+        // Llamada a sus métodos
+        System.out.println(miCoche.getInfo());
+        miCoche.acelerar();
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea una clase <code>Perro</code> con una propiedad <code>nombre</code> y un método <code>ladrar()</code> que imprima "Guau!". Luego, crea un objeto de tipo <code>Perro</code> y llama a su método <code>ladrar()</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="herencia-polimorfismo">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cubes-stacked icon-header"></i> T2: Introducción a la Orientación a Objetos</h2>
+                    
+                    <div class="sub-section">
+                        <h3>2.1. Clases: atributos, métodos y visibilidad</h3>
+                        <p><strong>Clase:</strong> Es el molde o plantilla que define las propiedades (atributos) y comportamientos (métodos) de los objetos.</p>
+                        <p><strong>Atributos:</strong> Variables que representan las características (ej: color, marca en una clase Coche).</p>
+                        <p><strong>Métodos:</strong> Acciones que la clase puede realizar (ej: acelerar(), frenar()).</p>
+                        <p><strong>Visibilidad:</strong> Controla el acceso: <code>public</code> (accesible por todos), <code>private</code> (solo en la clase), <code>protected</code> (clase y herederas).</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>2.2. Objetos y Mensajes</h3>
+                        <p>Un <strong>objeto</strong> es una instancia de una clase. Tiene:</p>
+                        <ul>
+                            <li><strong>Estado:</strong> Los valores de sus atributos en un momento dado.</li>
+                            <li><strong>Comportamiento:</strong> Lo que puede hacer (sus métodos).</li>
+                            <li><strong>Identidad:</strong> Cada objeto es único.</li>
+                        </ul>
+                        <p>Los objetos interactúan enviando <strong>mensajes</strong> (llamadas a métodos).</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>2.3. Encapsulado</h3>
+                        <p>Principio que consiste en ocultar los detalles internos de una clase y exponer solo lo necesario a través de métodos. Esto protege los datos y permite modificar la implementación sin afectar al resto del programa.</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>2.4. Relaciones entre clases</h3>
+                        <p>Las clases pueden interactuar de varias formas:</p>
+                        <ul>
+                            <li><strong>Asociación:</strong> Una clase usa a otra (un Profesor enseña a un Alumno).</li>
+                            <li><strong>Agregación:</strong> Una clase contiene a otras que pueden existir por separado (una Universidad tiene Facultades).</li>
+                            <li><strong>Composición:</strong> Una clase contiene a otras que dependen de ella (un Coche tiene un Motor).</li>
+                            <li><strong>Herencia:</strong> Una clase (subclase) hereda atributos y métodos de otra (superclase).</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>2.5. Principios básicos de la POO</h3>
+                         <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fa-solid fa-eye-slash"></i>
+                                <h4>Abstracción</h4>
+                                <p>Identificar lo esencial de un objeto y representarlo en una clase.</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fa-solid fa-box-archive"></i>
+                                <h4>Encapsulación</h4>
+                                <p>Ocultar la implementación y exponer solo lo necesario.</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fa-solid fa-sitemap"></i>
+                                <h4>Herencia</h4>
+                                <p>Reutilizar código creando nuevas clases a partir de existentes.</p>
+                            </div>
+                             <div class="feature-item">
+                                <i class="fa-solid fa-shapes"></i>
+                                <h4>Polimorfismo</h4>
+                                <p>Permitir que un mismo método tenga diferentes comportamientos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="elementos-programa">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-puzzle-piece icon-header"></i> T3: Elementos de un Programa</h2>
+
+                    <div class="sub-section">
+                        <h3>3.1. Estructura y Bloques Fundamentales</h3>
+                        <p>Un programa se compone de bloques fundamentales: <strong>Entrada</strong> (recibir datos), <strong>Proceso</strong> (transformarlos) y <strong>Salida</strong> (mostrar resultados).</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>3.2. Identificadores y Palabras Reservadas</h3>
+                        <p><strong>Identificadores:</strong> Nombres que asignamos a variables, funciones, clases, etc. (ej: <code>edad</code>, <code>nombreUsuario</code>).</p>
+                        <p><strong>Palabras Reservadas:</strong> Términos propios del lenguaje con un significado especial que no podemos usar como identificadores (ej: <code>if</code>, <code>class</code>, <code>public</code>).</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>3.4. Variables</h3>
+                        <p>Una <strong>variable</strong> es un espacio en memoria con un nombre que almacena un valor que puede cambiar. Requiere:</p>
+                        <ul>
+                            <li><strong>Declaración:</strong> Informar de su existencia (<code>int edad;</code>).</li>
+                            <li><strong>Inicialización:</strong> Asignarle un valor inicial (<code>edad = 18;</code>).</li>
+                            <li><strong>Utilización:</strong> Usarla en operaciones (<code>total = precio * cantidad;</code>).</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>3.5. Tipos de Datos y Literales</h3>
+                        <p><strong>Tipos de Datos:</strong> Definen la naturaleza del valor que una variable puede contener.</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fa-solid fa-dice-one"></i>
+                                <h4>Primitivos</h4>
+                                <p>Básicos como <code>int</code>, <code>double</code>, <code>boolean</code>.</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                                <h4>Compuestos</h4>
+                                <p>Complejos como <code>String</code>, Arrays o Clases.</p>
+                            </div>
+                        </div>
+                        <p><strong>Literales:</strong> Valores fijos escritos en el código, como <code>10</code>, <code>"Hola"</code>, o <code>true</code>.</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>3.8. Operadores y Expresiones</h3>
+                        <p><strong>Operadores:</strong> Símbolos que realizan operaciones (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>==</code>, <code>&&</code>).</p>
+                        <p><strong>Expresión:</strong> Combinación de variables, literales y operadores que produce un valor (ej: <code>(a + b) * c</code>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="uso-objetos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-hand-pointer icon-header"></i> T4: Utilización de Objetos</h2>
+                    <div class="sub-section">
+                        <h3>4.2. Constructores</h3>
+                        <p>Son métodos especiales que se ejecutan al crear un objeto para inicializar sus atributos. Tienen el mismo nombre que la clase.</p>
+                        <pre><code class="language-java">public class Coche {
+    String color;
+    // Constructor
+    public Coche(String c) {
+        this.color = c;
+    }
+}</code></pre>
+                    </div>
+                    <div class="sub-section">
+                        <h3>4.3. Instanciación de Objetos</h3>
+                        <p>Crear un objeto (instancia) se hace con la palabra clave <code>new</code>, que reserva memoria e invoca al constructor.</p>
+                        <pre><code class="language-java">// Declaración y creación en una sola línea
+Coche miCoche = new Coche("Rojo");</code></pre>
+                    </div>
+                     <div class="sub-section">
+                        <h3>4.7. Memoria: Tipos Básicos vs Objetos</h3>
+                        <p><strong>Tipos básicos (primitivos):</strong> Almacenan el valor directamente en la memoria (ej: <code>int x = 5;</code>).</p>
+                        <p><strong>Objetos:</strong> Almacenan una referencia (una dirección de memoria) que apunta al lugar donde se encuentra el objeto real.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estructuras-control-avanzado">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-arrows-split-up-and-left icon-header"></i> T5: Uso de Estructuras de Control</h2>
+                    <p>Las estructuras de control permiten modificar el flujo de ejecución de un programa para tomar decisiones o repetir acciones.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-code-compare"></i>
+                            <h4>Selección</h4>
+                            <p><code>if-else</code>, <code>switch</code>. Ejecutan código basado en condiciones.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-repeat"></i>
+                            <h4>Repetición</h4>
+                            <p><code>for</code>, <code>while</code>, <code>do-while</code>. Repiten un bloque de código.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <h4>Salto</h4>
+                            <p><code>break</code>, <code>continue</code>, <code>return</code>. Alteran el flujo normal de los bucles o métodos.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="desarrollo-clases">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-hammer icon-header"></i> T6: Desarrollo de Clases</h2>
+                    <div class="sub-section">
+                        <h3>6.7. Sobrecarga de Métodos</h3>
+                        <p>Permite definir varios métodos con el mismo nombre pero con diferentes parámetros (distinto número o tipo). Esto ofrece flexibilidad al llamar al método.</p>
+                         <pre><code class="language-java">class Calculadora {
+    int sumar(int a, int b) {
+        return a + b;
+    }
+    // Sobrecarga con tipo double
+    double sumar(double a, double b) {
+        return a + b;
+    }
+}</code></pre>
+                    </div>
+                    <div class="sub-section">
+                        <h3>6.9. Paso de Parámetros</h3>
+                        <p><strong>Por valor (primitivos):</strong> Se pasa una copia del valor. Los cambios dentro del método no afectan a la variable original.</p>
+                        <p><strong>Por referencia (objetos):</strong> Se pasa la dirección de memoria del objeto. Los cambios en los atributos del objeto dentro del método sí afectan al objeto original.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="almacenamiento">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-database icon-header"></i> T7: Estructuras de Almacenamiento</h2>
+                    <div class="sub-section">
+                        <h3>7.2. Arrays</h3>
+                        <p>Un <strong>array</strong> es una colección de elementos del mismo tipo con un tamaño fijo. Se accede a los elementos mediante un índice que empieza en 0.</p>
+                        <pre><code class="language-java">// Declaración, creación e inicialización de un array
+int[] edades = {18, 20, 25, 30};
+
+// Acceso a un elemento
+int primeraEdad = edades[0]; // 18
+
+// Recorrido con un bucle for-each
+for (int edad : edades) {
+    System.out.println(edad);
+}</code></pre>
+                    </div>
+                    <div class="sub-section">
+                        <h3>7.3. Cadenas de Caracteres (String)</h3>
+                        <p>En Java, las cadenas de texto son objetos de la clase <code>String</code>. Son inmutables, lo que significa que no pueden ser modificadas una vez creadas.</p>
+                        <pre><code class="language-java">String saludo = "Hola";
+String nombre = "Mundo";
+
+// Concatenación
+String mensaje = saludo + ", " + nombre + "!"; // "Hola, Mundo!"
+
+// Métodos útiles
+int longitud = mensaje.length(); // 13
+char primerCaracter = mensaje.charAt(0); // 'H'
+String subcadena = mensaje.substring(6, 11); // "Mundo"
+boolean contiene = mensaje.contains("Mundo"); // true</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clases-avanzado">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-layer-group icon-header"></i> T8: Utilización Avanzada de Clases</h2>
+                    <div class="sub-section">
+                        <h3>8.2. Herencia</h3>
+                        <p>La <strong>herencia</strong> permite que una clase (subclase) adquiera los atributos y métodos de otra (superclase), fomentando la reutilización de código. Se usa la palabra clave <code>extends</code>.</p>
+                    </div>
+                    <div class="sub-section">
+                        <h3>8.7. Clases Abstractas e Interfaces</h3>
+                        <p><strong>Clases Abstractas:</strong> No se pueden instanciar. Sirven como plantillas para otras clases. Pueden tener métodos abstractos (sin implementación) que las subclases deben definir.</p>
+                        <p><strong>Interfaces:</strong> Definen un contrato de métodos que una clase debe implementar. Una clase puede implementar múltiples interfaces, lo que permite una forma de "herencia múltiple" de comportamiento.</p>
+                    </div>
+                     <div class="sub-section">
+                        <h3>8.9. Polimorfismo</h3>
+                        <p>El <strong>polimorfismo</strong> permite que un objeto de una subclase sea tratado como un objeto de su superclase. Esto, combinado con la sobreescritura de métodos, hace que una misma llamada a un método pueda tener diferentes comportamientos según el objeto real.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="excepciones">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-triangle-exclamation icon-header"></i> T9: Control y Manejo de Excepciones</h2>
+                    <p>Una <strong>excepción</strong> es un error que ocurre durante la ejecución y que interrumpe el flujo normal del programa. Java proporciona un mecanismo robusto para manejarlas.</p>
+                    <div class="sub-section">
+                        <h3>9.3. Manejo de Excepciones (try-catch-finally)</h3>
+                        <p>Para manejar errores de forma controlada, se utiliza el bloque <code>try-catch</code>.</p>
+                        <ul>
+                            <li><strong>try:</strong> Contiene el código que podría lanzar una excepción.</li>
+                            <li><strong>catch:</strong> Captura y maneja la excepción si ocurre.</li>
+                            <li><strong>finally:</strong> (Opcional) Se ejecuta siempre, haya o no una excepción. Es ideal para liberar recursos.</li>
+                        </ul>
+                        <pre><code class="language-java">try {
+    int resultado = 10 / 0; // Esto lanzará una ArithmeticException
+} catch (ArithmeticException e) {
+    System.out.println("Error: No se puede dividir por cero.");
+} finally {
+    System.out.println("El bloque finally siempre se ejecuta.");
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Escribe un bloque <code>try-catch</code> que intente acceder a un índice inválido de un array (por ejemplo, el índice 5 en un array de 3 elementos). En el bloque <code>catch</code>, captura la excepción <code>ArrayIndexOutOfBoundsException</code> y muestra un mensaje amigable.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="colecciones">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-list-alt icon-header"></i> T10: Colecciones de Datos</h2>
+                    <p>Las <strong>colecciones</strong> son estructuras dinámicas para almacenar y manipular grupos de objetos. Son más flexibles que los arrays.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-list-ol"></i>
+                            <h4>Listas (List)</h4>
+                            <p>Conjunto ordenado de elementos que pueden repetirse (<code>ArrayList</code>).</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <h4>Pilas (Stack)</h4>
+                            <p>Estructura LIFO (Último en entrar, primero en salir).</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                            <h4>Colas (Queue)</h4>
+                            <p>Estructura FIFO (Primero en entrar, primero en salir).</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-table-list"></i>
+                            <h4>Mapas (Map)</h4>
+                            <p>Colección de pares clave-valor (<code>HashMap</code>).</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>EjemploColecciones.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">import java.util.ArrayList;
+import java.util.HashMap;
+
+// Lista
+ArrayList&lt;String&gt; frutas = new ArrayList&lt;&gt;();
+frutas.add("Manzana");
+
+// Mapa
+HashMap&lt;String, Integer&gt; edades = new HashMap&lt;&gt;();
+edades.put("Juan", 25);</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un <code>ArrayList</code> de tipo <code>String</code> para guardar tus tres películas favoritas. Añádelas a la lista y luego usa un bucle para imprimirlas en la consola.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="streams">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-stream icon-header"></i> T11: Introducción a Streams</h2>
+                    <p>Los <strong>streams</strong> en Java son secuencias de datos que permiten procesar colecciones de manera funcional. Se introdujeron en Java 8 y son parte del paquete <code>java.util.stream</code>.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>EjemploStreams.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">import java.util.Arrays;
+import java.util.List;
+
+List&lt;String&gt; nombres = Arrays.asList("Ana", "Luis", "Alberto");
+nombres.stream()
+       .filter(nombre -> nombre.startsWith("A"))
+       .forEach(System.out::println); // Imprime Ana, Alberto</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea una lista de números enteros. Usa un Stream para filtrar solo los números pares y luego imprimirlos en la consola.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lambdas">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-atom icon-header"></i> T12: Expresiones Lambda</h2>
+                    <p>Las <strong>expresiones lambda</strong> son una forma concisa de representar funciones anónimas en Java. Se utilizan principalmente para implementar interfaces funcionales (interfaces con un solo método abstracto).</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>EjemploLambdas.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">// Interfaz funcional
+interface Operacion {
+    int calcular(int a, int b);
+}
+
+// Usando una expresión lambda
+Operacion suma = (a, b) -> a + b;
+int resultado = suma.calcular(5, 3); // 8</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea una expresión lambda que tome un <code>String</code> y devuelva su longitud. Puedes usar la interfaz funcional <code>Function&lt;String, Integer&gt;</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="maven-gradle">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-tools icon-header"></i> T13: Herramientas de Construcción (Maven y Gradle)</h2>
+                    <p><strong>Maven</strong> y <strong>Gradle</strong> son herramientas de automatización de compilación y gestión de dependencias en proyectos Java.</p>
+                    <div class="sub-section">
+                        <h3>13.1. Maven</h3>
+                        <p>Maven utiliza un archivo <code>pom.xml</code> para definir la configuración del proyecto, sus dependencias, y los plugins a utilizar.</p>
+                        <pre><code class="language-xml">&lt;!-- Dependencia de JUnit 5 en pom.xml (Maven) --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt;
+    &lt;version&gt;5.8.2&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+                    </div>
+                    <div class="sub-section">
+                        <h3>13.2. Gradle</h3>
+                        <p>Gradle utiliza un archivo <code>build.gradle</code> donde se define el proyecto usando una sintaxis basada en Groovy o Kotlin.</p>
+                        <pre><code class="language-groovy">// Ejemplo de build.gradle
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+}
+</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Si tienes Maven o Gradle instalado, intenta crear un nuevo proyecto. Busca en el repositorio de Maven (Maven Central) la dependencia de "Google Gson" y añádela a tu archivo de configuración.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="spring-boot">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cloud icon-header"></i> T14: Introducción a Spring Boot</h2>
+                    <p><strong>Spring Boot</strong> es un framework para crear aplicaciones Java basadas en Spring de manera rápida y sencilla. Proporciona configuraciones predeterminadas y un conjunto de herramientas para desarrollar aplicaciones listas para producción.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Controlador.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ControladorHola {
+
+    @GetMapping("/")
+    public String hola() {
+        return "¡Hola desde Spring Boot!";
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Visita <code>start.spring.io</code>, genera un proyecto simple con la dependencia "Spring Web" y ábrelo en tu IDE. Intenta crear un controlador que responda en la ruta <code>/saludo</code> con tu nombre.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="page-nav">
+            <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-right"></i>
+                <span>Índice</span>
+            </button>
+        <h4>EN ESTA PÁGINA</h4>
+        <ul>
+            <li><a href="#intro-java">Introducción a Java</a></li>
+            <li><a href="#sintaxis-variables">Sintaxis y Variables</a></li>
+            <li><a href="#variables-tipos">Tipos de Datos</a></li>
+            <li><a href="#estructuras-control">Estructuras de Control</a></li>
+            <li><a href="#clases-objetos">Clases y Objetos</a></li>
+            <li><a href="#herencia-polimorfismo">Herencia y Polimorfismo</a></li>
+            <li><a href="#elementos-programa">Elementos de un Programa</a></li>
+            <li><a href="#uso-objetos">Uso de Objetos</a></li>
+            <li><a href="#estructuras-control-avanzado">Control de Flujo Avanzado</a></li>
+            <li><a href="#desarrollo-clases">Desarrollo de Clases</a></li>
+            <li><a href="#almacenamiento">Almacenamiento de Datos</a></li>
+            <li><a href="#clases-avanzado">Clases Avanzadas</a></li>
+            <li><a href="#excepciones">Gestión de Excepciones</a></li>
+            <li><a href="#colecciones">Colecciones</a></li>
+            <li><a href="#streams">Streams</a></li>
+            <li><a href="#lambdas">Expresiones Lambda</a></li>
+            <li><a href="#maven-gradle">Maven y Gradle</a></li>
+            <li><a href="#spring-boot">Spring Boot</a></li>
+        </ul>
+        </aside>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

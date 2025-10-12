@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende XML</title>
+
+    <!-- SCRIPT ANTI-PARPADEO -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body data-page="xml">
+    <div class="layout">
+        <nav class="sidebar">
+            <header class="sidebar-header">
+                <i class="fa-solid fa-file-code logo-icon"></i>
+                <span class="logo-text">XML</span>
+            </header>
+            <button class="toggle-btn sidebar-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-left"></i>
+                <span>Contraer</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a></li>
+                <li><a href="html.html" data-topic="html"><i class="fa-brands fa-html5"></i><span>HTML</span></a></li>
+                <li><a href="css.html" data-topic="css"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></a></li>
+                <li><a href="javascript.html" data-topic="javascript"><i class="fa-brands fa-js"></i><span>JavaScript</span></a></li>
+                <li><a href="xml.html" class="active" data-topic="xml"><i class="fa-solid fa-file-code"></i><span>XML</span></a></li>
+                <li><a href="java.html" data-topic="java"><i class="fa-solid fa-mug-hot"></i><span>Java</span></a></li>
+                <li><a href="python.html" data-topic="python"><i class="fa-brands fa-python"></i><span>Python</span></a></li>
+            </ul>
+            <div class="theme-switcher">
+                <i class="fa-solid fa-sun"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fa-solid fa-moon"></i>
+            </div>
+    </nav>
+
+    <main class="content">
+            <section class="intro">
+                <div class="tutorial-card">
+                    <h1><i class="fa-solid fa-file-code icon-header"></i> Aprende XML</h1>
+                    <p>XML (eXtensible Markup Language) es un lenguaje de marcado diseñado para almacenar y transportar datos. Es flexible, legible y ampliamente utilizado en la web y aplicaciones empresariales.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-tree"></i>
+                            <h3>Estructurado</h3>
+                            <p>Organización jerárquica</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-language"></i>
+                            <h3>Universal</h3>
+                            <p>Estándar internacional</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                            <h3>Extensible</h3>
+                            <p>Personalizable</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;mensaje&gt;
+    ¡Bienvenido al mundo XML!
+&lt;/mensaje&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estructura">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-sitemap icon-header"></i> Estructura Básica</h2>
+                    <p>XML organiza la información en una estructura de árbol con elementos anidados y atributos.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-tag"></i>
+                            <h3>Elementos</h3>
+                            <p>Bloques básicos</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-list"></i>
+                            <h3>Atributos</h3>
+                            <p>Metadatos</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-comments"></i>
+                            <h3>Comentarios</h3>
+                            <p>Documentación</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;biblioteca&gt;
+    &lt;libro categoria="ficcion" isbn="978-3-16-148410-0"&gt;
+        &lt;titulo&gt;El Señor de los Anillos&lt;/titulo&gt;
+        &lt;autor&gt;J.R.R. Tolkien&lt;/autor&gt;
+        &lt;anio&gt;1954&lt;/anio&gt;
+        &lt;precio moneda="EUR"&gt;29.99&lt;/precio&gt;
+    &lt;/libro&gt;
+    
+    &lt;!-- Este es un comentario en XML --&gt;
+    &lt;libro categoria="ciencia"&gt;
+        &lt;titulo&gt;Breve Historia del Tiempo&lt;/titulo&gt;
+        &lt;autor&gt;Stephen Hawking&lt;/autor&gt;
+        &lt;anio&gt;1988&lt;/anio&gt;
+        &lt;precio moneda="EUR"&gt;24.99&lt;/precio&gt;
+    &lt;/libro&gt;
+&lt;/biblioteca&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sintaxis">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-pen-ruler icon-header"></i> Sintaxis y Reglas Fundamentales</h2>
+                    <p>Un documento XML "bien formado" debe seguir reglas estrictas para ser procesado correctamente.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check-circle"></i> Debe tener un único elemento raíz.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Todas las etiquetas deben tener su correspondiente etiqueta de cierre.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Las etiquetas son sensibles a mayúsculas y minúsculas (<code>&lt;Libro&gt;</code> es diferente de <code>&lt;libro&gt;</code>).</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Los elementos deben estar anidados correctamente, sin solaparse.</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Los valores de los atributos deben estar siempre entre comillas (simples o dobles).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="validacion">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-check-double icon-header"></i> Validación: DTD y XSD</h2>
+                    <p>Para que un documento XML sea "válido", debe cumplir con una estructura definida, ya sea mediante un DTD o un XML Schema (XSD).</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <h4>DTD (Document Type Definition)</h4>
+                            <p>Define la estructura legal y los elementos de un documento XML. Es la forma más antigua de validación.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-contract"></i>
+                            <h4>XSD (XML Schema Definition)</h4>
+                            <p>Una alternativa más potente y flexible a DTD. Soporta tipos de datos, restricciones y espacios de nombres.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="xpath">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-route icon-header"></i> XPath: Consultando en XML</h2>
+                    <p>XPath es un lenguaje que permite navegar a través de los elementos y atributos de un documento XML para seleccionar nodos específicos.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-plaintext">/biblioteca/libro[@categoria='ficcion']  // Selecciona todos los libros de ficción
+//libro[precio > 25]                   // Selecciona libros con precio mayor a 25
+//libro/titulo                         // Selecciona todos los títulos de los libros</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="xslt">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-wand-magic-sparkles icon-header"></i> XSLT: Transformando XML</h2>
+                    <p>XSLT (eXtensible Stylesheet Language Transformations) se usa para transformar un documento XML en otro formato, como HTML, PDF o texto plano.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:template match="/"&gt;
+        &lt;html&gt;&lt;body&gt;
+            &lt;h2&gt;Mis Libros&lt;/h2&gt;
+            &lt;xsl:for-each select="biblioteca/libro"&gt;
+                &lt;p&gt;&lt;xsl:value-of select="titulo"/&gt; por &lt;xsl:value-of select="autor"/&gt;&lt;/p&gt;
+            &lt;/xsl:for-each&gt;
+        &lt;/body&gt;&lt;/html&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="namespaces">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-tags icon-header"></i> Namespaces (Espacios de Nombres)</h2>
+                    <p>Los namespaces se utilizan para evitar conflictos de nombres entre elementos que se llaman igual pero tienen diferente significado. Se definen con el atributo <code>xmlns</code>.</p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;root&gt;
+    &lt;h:table xmlns:h="http://www.w3.org/TR/html4/"&gt;
+        &lt;h:tr&gt;&lt;h:td&gt;Celda HTML&lt;/h:td&gt;&lt;/h:tr&gt;
+    &lt;/h:table&gt;
+
+    &lt;f:table xmlns:f="https://www.w3schools.com/furniture"&gt;
+        &lt;f:name&gt;Mesa&lt;/f:name&gt;
+        &lt;f:width&gt;80&lt;/f:width&gt;
+    &lt;/f:table&gt;
+&lt;/root&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="casos-uso">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-lightbulb icon-header"></i> Casos de Uso Comunes</h2>
+                    <p>XML es la base de muchas tecnologías y formatos estándar.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-rss"></i>
+                            <h4>RSS y Atom</h4>
+                            <p>Para sindicación de contenidos y noticias.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-palette"></i>
+                            <h4>SVG</h4>
+                            <p>Define gráficos vectoriales en formato XML.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-cogs"></i>
+                            <h4>Configuración</h4>
+                            <p>Archivos de configuración para aplicaciones (ej. Maven, .NET).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="page-nav">
+            <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
+                <i class="fa-solid fa-angles-right"></i>
+                <span>Índice</span>
+            </button>
+        <h4>EN ESTA PÁGINA</h4>
+        <ul>
+            <li><a href="#estructura">Estructura Básica</a></li>
+            <li><a href="#sintaxis">Sintaxis y Reglas</a></li>
+            <li><a href="#validacion">Validación: DTD y XSD</a></li>
+            <li><a href="#xpath">XPath</a></li>
+            <li><a href="#xslt">XSLT</a></li>
+            <li><a href="#namespaces">Namespaces</a></li>
+            <li><a href="#casos-uso">Casos de Uso</a></li>
+        </ul>
+        </aside>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
