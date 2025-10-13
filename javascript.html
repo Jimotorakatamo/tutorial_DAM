@@ -8,6 +8,7 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -279,6 +280,376 @@ const objetoDesdeJson = JSON.parse(jsonString);</code></pre>
                     </div>
                 </div>
             </section>
+
+            <section id="estructuras-avanzadas">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-layer-group icon-header"></i> Estructuras de Datos Modernas</h2>
+                    <p>Desde ES6 disponemos de colecciones enriquecidas como <code>Map</code>, <code>Set</code> o iteradores. Entenderlas permite escribir código más expresivo y eficiente.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-table-list"></i>
+                            <h3>Map</h3>
+                            <p>Pares clave/valor con cualquier tipo como clave.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-clone"></i>
+                            <h3>Set</h3>
+                            <p>Almacena valores únicos, ideal para eliminar duplicados.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-shuffle"></i>
+                            <h3>Iterables</h3>
+                            <p>Permiten usar <code>for...of</code>, el operador spread y destructuración.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">const roles = new Map();
+roles.set('gonzalo', 'admin');
+roles.set('maria', 'editor');
+
+for (const [usuario, rol] of roles) {
+    console.log(usuario, rol);
+}
+
+const tecnologias = ['HTML', 'CSS', 'JS', 'CSS'];
+const tecnologiasUnicas = new Set(tecnologias);
+console.log([...tecnologiasUnicas]); // ['HTML', 'CSS', 'JS']
+
+const curso = {
+    nombre: 'DAM',
+    modulos: ['Programación', 'Interfaces', 'Bases de datos']
+};
+
+for (const modulo of curso.modulos) {
+    console.log(modulo);
+}</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un <code>Set</code> con los lenguajes que has estudiado y conviértelo a array con el operador spread. Luego, genera un <code>Map</code> que relacione cada lenguaje con el nivel que sientes (básico, medio, avanzado).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="oop">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-chalkboard-teacher icon-header"></i> Programación Orientada a Objetos</h2>
+                    <p>JavaScript soporta clases desde ES6, pero su modelo combina prototipos y azúcar sintáctico. Dominarlo ayuda a estructurar aplicaciones grandes.</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">class Curso {
+    constructor(nombre, horas) {
+        this.nombre = nombre;
+        this.horas = horas;
+    }
+
+    resumen() {
+        return `${this.nombre} (${this.horas} h)`;
+    }
+}
+
+class CursoOnline extends Curso {
+    #plataforma;
+
+    constructor(nombre, horas, plataforma) {
+        super(nombre, horas);
+        this.#plataforma = plataforma;
+    }
+
+    resumen() {
+        return `${super.resumen()} · ${this.#plataforma}`;
+    }
+}
+
+const dam = new CursoOnline('Desarrollo de Interfaces', 96, 'Aula Virtual');
+console.log(dam.resumen());</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Modela una clase <code>Alumno</code> con propiedades como nombre, curso y lista de módulos. Añade un método que calcule la media de sus notas y otro que devuelva un mensaje motivador.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dom-avanzado">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-people-group icon-header"></i> DOM Avanzado y Web Components</h2>
+                    <p>Para interfaces reutilizables, los Web Components encapsulan estructura, estilos y lógica.</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">class BadgeEstado extends HTMLElement {
+    static get observedAttributes() { return ['estado']; }
+
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.innerHTML = `
+            <style>
+                :host { display: inline-block; padding: .25rem .75rem; border-radius: 999px; font-size: .85rem; }
+                :host([estado="aprobado"]) { background: #10b981; color: #0f172a; }
+                :host([estado="pendiente"]) { background: #facc15; color: #0f172a; }
+            </style>
+            <slot></slot>
+        `;
+    }
+
+    attributeChangedCallback(nombre, _anterior, nuevo) {
+        this.setAttribute('aria-label', `Estado ${nuevo}`);
+    }
+}
+
+customElements.define('badge-estado', BadgeEstado);
+</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un componente <code>&lt;card-curso&gt;</code> que muestre el nombre del módulo, la duración y un botón de acción. Usa Shadow DOM para encapsular estilos y prueba a reutilizarlo en distintas páginas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fetch-avanzado">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-network-wired icon-header"></i> Integración con APIs REST</h2>
+                    <p>El ecosistema DAM incluye backends en Java o Python. Desde JavaScript consumimos APIs mediante <code>fetch</code> o librerías como Axios.</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">async function cargarCursos() {
+    try {
+        const respuesta = await fetch('https://dummyjson.com/products?limit=4');
+        if (!respuesta.ok) throw new Error('Petición fallida');
+        const datos = await respuesta.json();
+        const lista = document.querySelector('#listaCursos');
+        datos.products.forEach(producto => {
+            const item = document.createElement('li');
+            item.textContent = `${producto.title} · $${producto.price}`;
+            lista.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Error al cargar cursos', error);
+    }
+}
+
+cargarCursos();</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Consume la API de GitHub (<code>https://api.github.com/users/TU_USUARIO</code>) y muestra tu avatar y bio en un card. Añade manejo de errores y un indicador de carga mientras esperas la respuesta.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="storage">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-database icon-header"></i> Almacenamiento en el Navegador</h2>
+                    <p>Mantén preferencias y datos offline usando LocalStorage, SessionStorage o IndexedDB.</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">// Guardar configuración
+localStorage.setItem('tema', 'oscuro');
+
+// Recuperar configuración
+const temaAlmacenado = localStorage.getItem('tema') ?? 'claro';
+
+// IndexedDB básico
+const solicitud = indexedDB.open('dam-db', 1);
+solicitud.onupgradeneeded = (evento) => {
+    const db = evento.target.result;
+    db.createObjectStore('alumnos', { keyPath: 'id', autoIncrement: true });
+};
+
+solicitud.onsuccess = () => {
+    const db = solicitud.result;
+    const transaccion = db.transaction('alumnos', 'readwrite');
+    transaccion.objectStore('alumnos').add({ nombre: 'Gonzalo', curso: 'DAM1' });
+};</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Implementa un selector de tema que recuerde la elección usando LocalStorage. Para un desafío extra, guarda una lista de tareas en IndexedDB y recupérala al recargar.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="testing">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-vial-circle-check icon-header"></i> Testing y Calidad</h2>
+                    <p>Asegura la calidad de tu código con pruebas unitarias y linters. Aunque sean conceptos de frameworks, puedes iniciar con herramientas sencillas.</p>
+
+                    <ul class="practice-exercise">
+                        <li>Instala <code>npm init -y</code> y añade <code>npm install --save-dev vitest</code>. Crea un test simple para una función <code>suma()</code>.</li>
+                        <li>Ejecuta <code>npx eslint --init</code> y configura reglas para código consistente (usa el estilo recomendado).</li>
+                        <li>Integra pruebas en tu flujo CI/CD básico usando GitHub Actions o scripts de npm.</li>
+                        <li>Utiliza Chrome DevTools &gt; Sources &gt; Snippets para testear fragmentos rápidamente.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="proyecto-js">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-diagram-project icon-header"></i> Proyecto Integrador DAM</h2>
+                    <p>Diseña una SPA ligera que muestre un calendario de módulos del ciclo DAM, permita registrar asistencias y sincronice con LocalStorage.</p>
+                    <ol class="step">
+                        <li><strong>Routing simplificado:</strong> usa hash routing para cambiar de vista sin recargar.</li>
+                        <li><strong>Estado global:</strong> almacena la lista de módulos y estados de asistencia en un objeto central.</li>
+                        <li><strong>API mock:</strong> simula peticiones con <code>fetch</code> hacia archivos JSON locales o un servicio como Mocky.</li>
+                        <li><strong>Componentes:</strong> crea funciones o clases que rendericen tarjetas, formularios y listados.</li>
+                        <li><strong>Persistencia:</strong> guarda cambios en LocalStorage y muestra un indicador de “datos guardados”.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="recursos-js">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-book-open icon-header"></i> Recursos Recomendados</h2>
+                    <p>Amplía tu dominio de JavaScript con documentación y cursos de referencia.</p>
+                    <ul class="practice-exercise">
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank" rel="noopener">MDN JavaScript</a></li>
+                        <li><a href="https://javascript.info/" target="_blank" rel="noopener">JavaScript.info</a></li>
+                        <li><a href="https://frontendmasters.com/books/front-end-handbook/2019/" target="_blank" rel="noopener">Front-End Handbook</a></li>
+                        <li><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank" rel="noopener">FreeCodeCamp: Algoritmos y estructuras de datos</a></li>
+                        <li><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="noopener">You Don’t Know JS (Kyle Simpson)</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="js-integracion">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-sitemap icon-header"></i> JavaScript como nexo entre HTML, CSS y XML</h2>
+                    <p>JavaScript conecta la estructura HTML, los estilos CSS y los datos definidos en XML para ofrecer interfaces vivas. Controla el ciclo: carga datos, inyecta componentes, aplica clases y responde a la interacción.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <h3>Plantillas HTML</h3>
+                            <p>Duplica estructuras con <code>&lt;template&gt;</code> sin recargar la página.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-brush"></i>
+                            <h3>Clases CSS</h3>
+                            <p>Activa temas, estados y transiciones con <code>classList</code>.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-database"></i>
+                            <h3>XML/JSON</h3>
+                            <p>Trae contenido estructurado que puedes transformar y mostrar.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>index.html</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-html">&lt;template id="card-modulo"&gt;
+    &lt;article class="modulo-card"&gt;
+        &lt;h3 class="modulo-card__titulo"&gt;&lt;/h3&gt;
+        &lt;p class="modulo-card__horas"&gt;&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/template&gt;
+
+&lt;section id="panel-modulos" data-modulos&gt;&lt;/section&gt;
+&lt;script type="module" src="js/modulos-dashboard.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>css/modulos.css</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-css">.modulo-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    transition: transform .2s ease;
+}
+
+.modulo-card[data-estado="nuevo"] {
+    border: 2px dashed var(--color-acento);
+}
+
+.modulo-card:hover {
+    transform: translateY(-4px);
+}</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>js/modulos-dashboard.js</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">import { leerPlanFormativo } from './servicios/xml.js';
+
+const seccion = document.querySelector('[data-modulos]');
+const plantilla = document.getElementById('card-modulo');
+
+leerPlanFormativo('datos/modulos.xml').then(plan =&gt; {
+    const fragmento = document.createDocumentFragment();
+
+    plan.modulos.forEach(modulo =&gt; {
+        const nodo = plantilla.content.cloneNode(true);
+        nodo.querySelector('.modulo-card__titulo').textContent = modulo.nombre;
+        nodo.querySelector('.modulo-card__horas').textContent = `${modulo.horas} horas · ${modulo.profesor}`;
+        nodo.querySelector('.modulo-card').dataset.estado = modulo.nuevo ? 'nuevo' : 'existente';
+        fragmento.appendChild(nodo);
+    });
+
+    seccion.replaceChildren(fragmento);
+});</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>servicios/xml.js</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">export async function leerPlanFormativo(ruta) {
+    const respuesta = await fetch(ruta);
+    const texto = await respuesta.text();
+    const xml = new DOMParser().parseFromString(texto, 'application/xml');
+
+    return {
+        curso: xml.documentElement.getAttribute('curso'),
+        modulos: [...xml.querySelectorAll('modulo')].map(nodo =&gt; ({
+            nombre: nodo.getAttribute('nombre'),
+            horas: Number(nodo.querySelector('horas').textContent),
+            profesor: nodo.querySelector('profesor').textContent,
+            nuevo: nodo.getAttribute('nuevo') === 'true'
+        }))
+    };
+}</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>datos/modulos.xml</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;plan formacion="DAM" curso="2025"&gt;
+    &lt;modulo nombre="Programación" nuevo="false"&gt;
+        &lt;horas&gt;256&lt;/horas&gt;
+        &lt;profesor&gt;Ana López&lt;/profesor&gt;
+    &lt;/modulo&gt;
+    &lt;modulo nombre="Interfaces" nuevo="true"&gt;
+        &lt;horas&gt;140&lt;/horas&gt;
+        &lt;profesor&gt;Luis Romero&lt;/profesor&gt;
+    &lt;/modulo&gt;
+&lt;/plan&gt;</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Amplía el dashboard: permite filtrar módulos por curso y registra favoritos guardándolos en LocalStorage. Muestra un indicador visual aplicando clases CSS en las tarjetas seleccionadas.</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <aside class="page-nav">
@@ -299,6 +670,7 @@ const objetoDesdeJson = JSON.parse(jsonString);</code></pre>
             <li><a href="#es6">Nuevas Características de ES6+</a></li>
             <li><a href="#modulos">Módulos ES6</a></li>
             <li><a href="#json">JSON</a></li>
+            <li><a href="#js-integracion">Integración completa</a></li>
         </ul>
         </aside>
     </div>

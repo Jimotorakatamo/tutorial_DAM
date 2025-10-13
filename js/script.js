@@ -128,6 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Aplicar la animación de entrada al cuerpo de la página
     document.body.classList.add('fade-in');
+    const releaseTransition = () => document.documentElement.classList.remove('transition-init');
+    if (window.requestAnimationFrame) {
+        requestAnimationFrame(() => requestAnimationFrame(releaseTransition));
+    } else {
+        releaseTransition();
+    }
 
     // --- LÓGICA DE TRANSICIÓN DE PÁGINA ---
     const allLinks = document.querySelectorAll('a');
@@ -219,28 +225,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA DE SCROLLSPY (adaptada para ser más robusta) ---
-    const sections = document.querySelectorAll('main section');
+    const sections = [...document.querySelectorAll('main section')].filter(section => Boolean(section.id));
     const navLinks = document.querySelectorAll('.nav-links li a');
-    const pageNavLinks = document.querySelectorAll('.page-nav ul li a');
+    const pageNavLinks = [...document.querySelectorAll('.page-nav ul li a')];
+
+    const activatePageNavLink = (sectionId) => {
+        if (!sectionId) {
+            return;
+        }
+        const targetHref = `#${sectionId}`;
+        let hasMatch = false;
+        pageNavLinks.forEach(link => {
+            const match = link.getAttribute('href') === targetHref;
+            link.classList.toggle('active', match);
+            if (match) {
+                hasMatch = true;
+            }
+        });
+
+        if (!hasMatch && pageNavLinks.length) {
+            pageNavLinks[0].classList.add('active');
+        }
+    };
 
     // Solo ejecutar el observador si estamos en una página de contenido (con secciones y enlaces de navegación)
     if (sections.length > 0 && pageNavLinks.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const activeId = entry.target.id;
-                    
-                    // Resaltar menú de página
-                    pageNavLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${activeId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+                    activatePageNavLink(entry.target.id);
                 }
             });
-        }, { threshold: 0.4 });
+        }, {
+            rootMargin: '-30% 0px -40% 0px',
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+        });
         sections.forEach(section => observer.observe(section));
+
+        const initialSection = window.location.hash ? window.location.hash.substring(1) : sections[0]?.id;
+        activatePageNavLink(initialSection);
+        pageNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const id = link.getAttribute('href').substring(1);
+                activatePageNavLink(id);
+            });
+        });
     }
 
     // --- LÓGICA DE COLAPSADO DE BARRAS LATERALES ---
@@ -248,6 +277,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarToggle = document.querySelector('.sidebar-toggle');
     const pageNav = document.querySelector('.page-nav');
     const pageNavToggle = document.querySelector('.page-nav-toggle');
+
+    const LAYOUT_STORAGE_KEY = 'layout-preferences-v1';
+
+    const loadLayoutState = () => {
+        try {
+            const raw = localStorage.getItem(LAYOUT_STORAGE_KEY);
+            if (!raw) {
+                return {};
+            }
+            const parsed = JSON.parse(raw);
+            return typeof parsed === 'object' && parsed ? parsed : {};
+        } catch (error) {
+            console.warn('No se pudo cargar el estado de la maquetación:', error);
+            return {};
+        }
+    };
+
+    const layoutState = loadLayoutState();
+
+    const persistLayoutState = () => {
+        try {
+            localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify(layoutState));
+        } catch (error) {
+            console.warn('No se pudo guardar el estado de la maquetación:', error);
+        }
+    };
+
+    const getPersistedCollapse = (key) => (typeof layoutState[key] === 'boolean' ? layoutState[key] : false);
+
+    const updateLayoutFlags = () => {
+        if (!document.body) {
+            return;
+        }
+        const sidebarIsCollapsed = sidebar?.classList.contains('collapsed');
+        const pageNavIsCollapsed = pageNav?.classList.contains('collapsed');
+        document.body.classList.toggle('sidebar-collapsed', Boolean(sidebarIsCollapsed));
+        document.body.classList.toggle('page-nav-collapsed', Boolean(pageNavIsCollapsed));
+    };
 
     const syncToggleState = (toggleBtn, isExpanded) => {
         if (!toggleBtn) return;
@@ -274,17 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebarToggle.disabled = isMobile;
                 sidebarToggle.setAttribute('aria-disabled', String(isMobile));
             }
-            if (isMobile) {
-                if (!sidebar.classList.contains('collapsed')) {
-                    sidebar.classList.add('collapsed');
-                }
-                syncToggleState(sidebarToggle, false);
-            } else {
-                if (sidebar.classList.contains('collapsed')) {
-                    sidebar.classList.remove('collapsed');
-                }
-                syncToggleState(sidebarToggle, true);
-            }
+            const collapseSidebar = isMobile ? true : getPersistedCollapse('sidebarCollapsed');
+            sidebar.classList.toggle('collapsed', collapseSidebar);
+            syncToggleState(sidebarToggle, !collapseSidebar);
         }
 
         if (pageNav) {
@@ -292,18 +351,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageNavToggle.disabled = isMobile;
                 pageNavToggle.setAttribute('aria-disabled', String(isMobile));
             }
-            if (isMobile) {
-                if (!pageNav.classList.contains('collapsed')) {
-                    pageNav.classList.add('collapsed');
-                }
-                syncToggleState(pageNavToggle, false);
-            } else {
-                if (pageNav.classList.contains('collapsed')) {
-                    pageNav.classList.remove('collapsed');
-                }
-                syncToggleState(pageNavToggle, true);
-            }
+            const collapsePageNav = isMobile ? true : getPersistedCollapse('pageNavCollapsed');
+            pageNav.classList.toggle('collapsed', collapsePageNav);
+            syncToggleState(pageNavToggle, !collapsePageNav);
         }
+
+        updateLayoutFlags();
     };
 
     applyResponsiveNavState();
@@ -316,7 +369,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             const collapsed = sidebar.classList.toggle('collapsed');
+            layoutState.sidebarCollapsed = collapsed;
+            persistLayoutState();
             syncToggleState(sidebarToggle, !collapsed);
+            updateLayoutFlags();
         });
     }
 
@@ -327,7 +383,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             const collapsed = pageNav.classList.toggle('collapsed');
+            layoutState.pageNavCollapsed = collapsed;
+            persistLayoutState();
             syncToggleState(pageNavToggle, !collapsed);
+            updateLayoutFlags();
         });
     }
+
+    updateLayoutFlags();
 });

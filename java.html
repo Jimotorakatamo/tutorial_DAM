@@ -8,6 +8,7 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -705,6 +706,286 @@ public class ControladorHola {
                     </div>
                 </div>
             </section>
+
+            <section id="java-moderno">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-fire-flame-curved icon-header"></i> Java Moderno (Java 17+)</h2>
+                    <p>Las versiones LTS recientes aportan mejoras de productividad y rendimiento como <strong>records</strong>, <strong>pattern matching</strong>, <strong>sealed classes</strong> o el nuevo <strong>HttpClient</strong>. Adoptarlas permite escribir código más seguro y expresivo.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Pedido.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">public sealed interface Pedido permits PedidoOnline, PedidoPresencial {}
+
+public record PedidoOnline(String id, double total) implements Pedido {}
+
+public final class PedidoPresencial implements Pedido {
+    private final String id;
+    private final double total;
+
+    public PedidoPresencial(String id, double total) {
+        this.id = id;
+        this.total = total;
+    }
+
+    public String id() { return id; }
+    public double total() { return total; }
+}
+
+static String describe(Pedido pedido) {
+    return switch (pedido) {
+        case PedidoOnline online -> "Pedido web " + online.id();
+        case PedidoPresencial presencial -> "Pedido tienda " + presencial.id();
+    };
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un <strong>record</strong> para representar alumnos de DAM incluyendo nombre, curso y nota media. Implementa un método que use <code>switch</code> con pattern matching para clasificar al alumnado según su nota.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="funcional-reactivo">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-wave-square icon-header"></i> Programación Funcional y Reactiva</h2>
+                    <p>Java incorpora conceptos funcionales mediante <strong>Streams</strong>, <strong>Optional</strong>, <strong>CompletableFuture</strong> y librerías como <strong>Project Reactor</strong>. Estos enfoques facilitan pipelines declarativos para procesar datos y orquestar tareas asíncronas.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Pipelines.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">List&lt;String&gt; modulosDam = List.of("Programación", "Lenguajes de marcas", "Entornos");
+
+String resumen = modulosDam.stream()
+        .map(String::toUpperCase)
+        .filter(nombre -> nombre.contains("O"))
+        .sorted()
+        .collect(Collectors.joining(", "));
+
+CompletableFuture&lt;String&gt; saludo = CompletableFuture.supplyAsync(() -> "Hola DAM")
+        .thenApply(String::toUpperCase);
+
+saludo.thenAccept(System.out::println);</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Modela una lista de módulos DAM con su carga horaria y usa Streams para calcular el total de horas. Después, transforma el resultado a JSON usando la librería Gson o Jackson.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="concurrencia">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-network-wired icon-header"></i> Concurrencia y Paralelismo</h2>
+                    <p>La concurrencia moderna en Java se apoya en <strong>ExecutorService</strong>, <strong>CompletableFuture</strong> y proyectos como <strong>Virtual Threads (Project Loom)</strong>. Permiten escalar aplicaciones sin bloquear hilos.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Concurrente.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">ExecutorService pool = Executors.newFixedThreadPool(4);
+
+List&lt;Callable&lt;Integer&gt;&gt; tareas = List.of(
+        () -> calcularNotas(),
+        () -> sincronizarXml(),
+        () -> consumirApiRest()
+);
+
+List&lt;Future&lt;Integer&gt;&gt; resultados = pool.invokeAll(tareas);
+
+try (var scope = StructuredTaskScope.ShutdownOnFailure.open()) {
+    Supplier&lt;String&gt; html = scope.fork(this::renderTemplateHtml);
+    Supplier&lt;String&gt; css = scope.fork(this::generarCssCritico);
+    scope.join();
+    scope.throwIfFailed();
+    publicar(html.get(), css.get());
+}
+</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea una pequeña aplicación que descargue en paralelo el contenido de tres URLs usando <code>CompletableFuture</code> y mida el tiempo total empleado. Prueba también con hilos virtuales si usas Java 21.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="persistencia">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-database icon-header"></i> Persistencia y Acceso a Datos</h2>
+                    <p>Para interactuar con bases de datos puedes usar <strong>JDBC</strong>, <strong>JPA/Hibernate</strong> o frameworks como <strong>Spring Data</strong>. Separar la capa de datos facilita las pruebas y el mantenimiento.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>AlumnoRepository.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">@Entity
+public class Alumno {
+    @Id @GeneratedValue
+    private Long id;
+    private String nombre;
+    private String ciclo;
+    private double notaMedia;
+
+    // getters/setters
+}
+
+public interface AlumnoRepository extends JpaRepository&lt;Alumno, Long&gt; {
+    List&lt;Alumno&gt; findByCiclo(String ciclo);
+}
+
+// Servicio de aplicación
+@Service
+public class AlumnoService {
+    private final AlumnoRepository repository;
+
+    public AlumnoService(AlumnoRepository repository) {
+        this.repository = repository;
+    }
+
+    public List&lt;Alumno&gt; alumnosSobresalientes() {
+        return repository.findAll().stream()
+                .filter(alumno -> alumno.getNotaMedia() &gt;= 9)
+                .toList();
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Levanta una base de datos con Docker (por ejemplo PostgreSQL) y usa Spring Data JPA para guardar y listar alumnos. Añade un endpoint REST que exponga los datos en formato JSON consumible por tu frontend HTML/JavaScript.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="testing-calidad">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-vial icon-header"></i> Testing y Calidad</h2>
+                    <p>Los tests automatizados garantizan regresiones controladas. Combina <strong>JUnit 5</strong>, <strong>AssertJ</strong>, <strong>Mockito</strong> e incluso pruebas de integración con <strong>Testcontainers</strong> para entornos realistas.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>AlumnoServiceTest.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">@ExtendWith(MockitoExtension.class)
+class AlumnoServiceTest {
+
+    @Mock
+    AlumnoRepository repository;
+
+    @InjectMocks
+    AlumnoService service;
+
+    @Test
+    void filtraAlumnadoSobresaliente() {
+        when(repository.findAll()).thenReturn(List.of(
+                new Alumno("Ana", "DAM", 9.2),
+                new Alumno("Luis", "ASIR", 8.1)
+        ));
+
+        List&lt;Alumno&gt; resultado = service.alumnosSobresalientes();
+
+        assertThat(resultado)
+                .hasSize(1)
+                .first()
+                .extracting(Alumno::getNombre)
+                .isEqualTo("Ana");
+    }
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Configura una pipeline simple de GitHub Actions que compile tu proyecto Maven y ejecute los tests. Integra Jacoco para obtener métricas de cobertura y analiza los resultados.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interop">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-link icon-header"></i> Integración con Otros Lenguajes</h2>
+                    <p>Java convive con tecnologías web y scripting. Puedes consumir servicios desde <strong>JavaScript</strong>, procesar XML generado por <strong>HTML/CSS</strong> y combinarlo con scripts de <strong>Python</strong> para automatizar tareas.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-earth-europe"></i>
+                            <h3>REST + Frontend</h3>
+                            <p>Expone APIs en JSON que consumen tus páginas HTML/CSS/JavaScript mediante <code>fetch</code>.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-code"></i>
+                            <h3>XML y Java</h3>
+                            <p>Genera feeds o plantillas con JAXB y combínalos con transformaciones XSLT.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-flask"></i>
+                            <h3>Python Automation</h3>
+                            <p>Usa Jython o scripts externos para tareas de datos, invocándolos con <code>ProcessBuilder</code>.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>IntegracionPython.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">ProcessBuilder pb = new ProcessBuilder("python", "scripts/sync_xml.py", "alumnado.xml");
+pb.directory(Path.of("..", "python").toFile());
+Process proceso = pb.start();
+
+try (BufferedReader reader = proceso.inputReader()) {
+    reader.lines().forEach(System.out::println);
+}
+
+int codigo = proceso.waitFor();
+System.out.println("Sincronización terminada con código " + codigo);
+</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="java-proyecto">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cubes icon-header"></i> Proyecto Integrador: Portal DAM</h2>
+                    <p>Combina todo lo aprendido creando un backend Java que complemente tus páginas HTML, CSS, JavaScript y XML.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-server"></i>
+                            <h3>API REST</h3>
+                            <p>Spring Boot + JPA para exponer módulos y horarios.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-code"></i>
+                            <h3>Frontend Dinámico</h3>
+                            <p>Consume la API desde <code>javascript.html</code> con fetch y renderizado dinámico.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <h3>Intercambio XML</h3>
+                            <p>Exporta horarios a XML y transforma a HTML con XSLT.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-shield"></i>
+                            <h3>Calidad</h3>
+                            <p>Pipeline CI/CD, pruebas automatizadas y contenedores Docker.</p>
+                        </div>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-trophy"></i> Reto Final</h4>
+                        <p>Desarrolla un portal completo para la gestión de módulos DAM: genera datos desde Java, expónlos por REST, preséntalos en tus páginas HTML/CSS, añade interacción con JavaScript y sincroniza copias XML/Python para reporting.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="recursos-java">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-book-open icon-header"></i> Recursos Recomendados</h2>
+                    <ul>
+                        <li><strong>Documentación oficial:</strong> <a href="https://docs.oracle.com/javase/" target="_blank" rel="noopener">docs.oracle.com</a></li>
+                        <li><strong>Guía de Migración:</strong> <a href="https://docs.oracle.com/en/java/javase/17/migrate/index.html" target="_blank" rel="noopener">Java 17 Migration Guide</a></li>
+                        <li><strong>Spring:</strong> <a href="https://spring.io/guides" target="_blank" rel="noopener">Spring Guides</a></li>
+                        <li><strong>Testing:</strong> <a href="https://junit.org/junit5/docs/current/user-guide/" target="_blank" rel="noopener">JUnit 5 User Guide</a></li>
+                        <li><strong>Comunidad:</strong> <a href="https://dev.java/" target="_blank" rel="noopener">dev.java</a> y <a href="https://stackoverflow.com/questions/tagged/java" target="_blank" rel="noopener">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </section>
         </main>
 
         <aside class="page-nav">
@@ -732,6 +1013,14 @@ public class ControladorHola {
             <li><a href="#lambdas">Expresiones Lambda</a></li>
             <li><a href="#maven-gradle">Maven y Gradle</a></li>
             <li><a href="#spring-boot">Spring Boot</a></li>
+            <li><a href="#java-moderno">Java Moderno</a></li>
+            <li><a href="#funcional-reactivo">Programación Funcional</a></li>
+            <li><a href="#concurrencia">Concurrencia</a></li>
+            <li><a href="#persistencia">Persistencia</a></li>
+            <li><a href="#testing-calidad">Testing y Calidad</a></li>
+            <li><a href="#interop">Integración Tecnológica</a></li>
+            <li><a href="#java-proyecto">Proyecto Integrador</a></li>
+            <li><a href="#recursos-java">Recursos</a></li>
         </ul>
         </aside>
     </div>

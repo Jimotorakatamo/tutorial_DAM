@@ -8,6 +8,7 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -508,6 +509,296 @@ navigator.geolocation.getCurrentPosition(pos => {
                     </div>
                 </div>
             </section>
+
+            <section id="accesibilidad">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-universal-access icon-header"></i> Accesibilidad y ARIA</h2>
+                    <p>Una página HTML completa debe ser usable por el mayor número posible de personas. Las etiquetas semánticas, junto con atributos ARIA, ayudan a los lectores de pantalla a interpretar la interfaz.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-tty"></i>
+                            <h3>Roles y landmarks</h3>
+                            <p>Define regiones como <code>banner</code>, <code>navigation</code> o <code>main</code> para orientar dispositivos de asistencia.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-keyboard"></i>
+                            <h3>Navegación por teclado</h3>
+                            <p>Gestiona el foco con <code>tabindex</code> y usa <code>aria-live</code> para avisos dinámicos.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-ear-listen"></i>
+                            <h3>Texto alternativo</h3>
+                            <p>Describe imágenes, iconos y controles visuales con <code>alt</code> o <code>aria-label</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-html">&lt;header role="banner"&gt;
+    &lt;h1&gt;Portal DAM&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav aria-label="Navegación principal" role="navigation"&gt;
+    &lt;button aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"&gt;
+        &lt;i class="fa-solid fa-bars" aria-hidden="true"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;ul id="menu" hidden&gt;
+        &lt;li&gt;&lt;a href="#html"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#css"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;main role="main"&gt;
+    &lt;section aria-labelledby="seccion-form"&gt;
+        &lt;h2 id="seccion-form"&gt;Formulario de alta&lt;/h2&gt;
+        &lt;form aria-describedby="ayuda-form"&gt;
+            &lt;label for="email"&gt;Correo institucional&lt;/label&gt;
+            &lt;input id="email" type="email" required aria-required="true"&gt;
+            &lt;span id="ayuda-form" class="visually-hidden"&gt;El correo debe terminar en @centro.edu&lt;/span&gt;
+        &lt;/form&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Revisa cualquier formulario que hayas creado y añade etiquetas <code>label</code>, atributos <code>aria-describedby</code> y mensajes para usuarios con lector de pantalla. Comprueba con la tecla <kbd>Tab</kbd> que el foco recorre los campos en orden lógico.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="componentes">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-layer-group icon-header"></i> Plantillas y Componentes Reutilizables</h2>
+                    <p>Con HTML puedes crear bloques reutilizables usando elementos como <code>&lt;template&gt;</code> o personalizando etiquetas con Web Components.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-clone"></i>
+                            <h3>&lt;template&gt;</h3>
+                            <p>Define fragmentos ocultos listos para clonar desde JavaScript.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <h3>Slots</h3>
+                            <p>Los Web Components permiten insertar contenido dinámico dentro de plantillas encapsuladas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-import"></i>
+                            <h3>Includes del servidor</h3>
+                            <p>En proyectos grandes reutiliza cabeceras mediante frameworks o motores de plantillas.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-html">&lt;template id="card-template"&gt;
+    &lt;article class="curso"&gt;
+        &lt;h3 class="curso__titulo"&gt;&lt;/h3&gt;
+        &lt;p class="curso__descripcion"&gt;&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/template&gt;
+
+&lt;section id="cursos"&gt;&lt;/section&gt;
+
+&lt;script&gt;
+const cursos = [
+    { titulo: 'Interfaces Web', descripcion: 'HTML5, componentes web y accesibilidad.' },
+    { titulo: 'Programación', descripcion: 'Java y patrones orientados a objetos.' }
+];
+
+const tpl = document.getElementById('card-template');
+const contenedor = document.getElementById('cursos');
+
+cursos.forEach(curso =&gt; {
+    const fragmento = tpl.content.cloneNode(true);
+    fragmento.querySelector('.curso__titulo').textContent = curso.titulo;
+    fragmento.querySelector('.curso__descripcion').textContent = curso.descripcion;
+    contenedor.appendChild(fragmento);
+});
+&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un <code>&lt;template&gt;</code> para mostrar fichas de asignaturas del ciclo DAM. Añade al menos tres asignaturas con su descripción y genera el listado desde JavaScript.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="proyecto-final">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-diagram-project icon-header"></i> Proyecto Integrador</h2>
+                    <p>Consolida lo aprendido construyendo una landing para un ciclo formativo DAM que combine estructura semántica, formularios y multimedia.</p>
+
+                    <ol class="step">
+                        <li><strong>Estructura general:</strong> usa <code>header</code>, <code>main</code>, <code>section</code>, <code>aside</code> y <code>footer</code> para dividir el contenido.</li>
+                        <li><strong>Sección de módulos:</strong> crea una tabla o cards para listar asignaturas con horas y profesores.</li>
+                        <li><strong>Testimonios:</strong> agrega un <code>&lt;blockquote&gt;</code> con citas de alumnado, acompañadas de imágenes accesibles.</li>
+                        <li><strong>Formulario de inscripción:</strong> solicita nombre, email, turno preferido y acepta la política de datos mediante un checkbox obligatorio.</li>
+                        <li><strong>Llamada a la acción:</strong> coloca un botón que enlace a la página del centro con atributos <code>rel="noopener"</code> y <code>target="_blank"</code>.</li>
+                    </ol>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡Entrega opcional!</h4>
+                        <p>Publica tu landing en GitHub Pages o en Netlify. Comparte el enlace con tus compañeros para recibir feedback y proponte añadir animaciones CSS en la siguiente fase.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="validacion">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-check-double icon-header"></i> Validación y Mejores Prácticas</h2>
+                    <p>Antes de dar por finalizado un documento HTML conviene pasar por un checklist que garantice calidad y mantenimiento.</p>
+                    <ul class="practice-exercise">
+                        <li>Valida el marcado en <a href="https://validator.w3.org/" target="_blank" rel="noopener">validator.w3.org</a> para detectar etiquetas mal anidadas o atributos incorrectos.</li>
+                        <li>Activa Lighthouse (Chrome DevTools) y revisa secciones de accesibilidad y SEO.</li>
+                        <li>Comprueba que todos los enlaces funcionan y que las rutas de imágenes son relativas cuando corresponda.</li>
+                        <li>Asegúrate de que los formularios incluyen estados de error visibles y mensajes de ayuda.</li>
+                        <li>Incluye comentarios puntuales para secciones complejas, pero evita llenar el documento con anotaciones innecesarias.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="recursos">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-book-open icon-header"></i> Recursos Recomendados</h2>
+                    <p>Sigue ampliando tus conocimientos de HTML con material de referencia actualizado.</p>
+                    <ul class="practice-exercise">
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener">Guía HTML de MDN</a></li>
+                        <li><a href="https://web.dev/learn/html" target="_blank" rel="noopener">Curso interactivo Learn HTML</a></li>
+                        <li><a href="https://a11yproject.com/checklist/" target="_blank" rel="noopener">Checklist de accesibilidad A11Y Project</a></li>
+                        <li><a href="https://caniuse.com/" target="_blank" rel="noopener">Can I use… para consultar soporte de etiquetas</a></li>
+                        <li><a href="https://validator.w3.org/nu/#textarea" target="_blank" rel="noopener">Validador HTML5 (formulario directo)</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="integracion-web">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-layer-group icon-header"></i> Integración con CSS, JavaScript y XML</h2>
+                    <p>HTML es el esqueleto. CSS define el aspecto, JavaScript inyecta interactividad y XML transporta los datos que mostrarás. Juntos construyen experiencias web completas dentro del ciclo DAM.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-code"></i>
+                            <h3>Estructura HTML</h3>
+                            <p>Organiza el contenido con secciones semánticas, listas y plantillas reutilizables.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-palette"></i>
+                            <h3>Estilos CSS</h3>
+                            <p>Aplica diseño responsivo, variables de tema y animaciones suaves.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h3>Lógica JavaScript</h3>
+                            <p>Consume XML/JSON, filtra datos y actualiza la vista dinámicamente.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-database"></i>
+                            <h3>Datos XML</h3>
+                            <p>Centraliza horarios, módulos o noticias en un formato interoperable.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>index.html</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-html">&lt;section id="modulos" class="grid-modulos" aria-live="polite"&gt;
+    &lt;article class="modulo" data-tema="interfaces"&gt;
+        &lt;h3 class="modulo__titulo"&gt;Interfaces&lt;/h3&gt;
+        &lt;ul class="modulo__lista" data-lista&gt;&lt;/ul&gt;
+    &lt;/article&gt;
+&lt;/section&gt;
+
+&lt;link rel="stylesheet" href="css/modulos.css"&gt;
+&lt;script type="module" src="js/modulos.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>css/modulos.css</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-css">.grid-modulos {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.modulo {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.modulo:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modulo__lista {
+    margin-top: 1rem;
+    display: grid;
+    gap: .75rem;
+}
+
+.modulo__lista li {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>js/modulos.js</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">const parser = new DOMParser();
+const lista = document.querySelector('[data-lista]');
+
+async function cargarModulos() {
+    const respuesta = await fetch('datos/modulos.xml');
+    const texto = await respuesta.text();
+    const xml = parser.parseFromString(texto, 'application/xml');
+    const modulos = [...xml.querySelectorAll('modulo')];
+
+    lista.innerHTML = modulos.map(modulo =&gt; `
+        &lt;li&gt;
+            &lt;span&gt;${modulo.getAttribute('nombre')}&lt;/span&gt;
+            &lt;small&gt;${modulo.querySelector('horas').textContent} h&lt;/small&gt;
+        &lt;/li&gt;
+    `).join('');
+}
+
+cargarModulos();</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>datos/modulos.xml</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;plan formacion="DAM" curso="2025"&gt;
+    &lt;modulo nombre="Programación" ciclo="DAM1"&gt;
+        &lt;horas&gt;256&lt;/horas&gt;
+        &lt;profesor&gt;Ana López&lt;/profesor&gt;
+    &lt;/modulo&gt;
+    &lt;modulo nombre="Interfaces" ciclo="DAM2"&gt;
+        &lt;horas&gt;140&lt;/horas&gt;
+        &lt;profesor&gt;Luis Romero&lt;/profesor&gt;
+    &lt;/modulo&gt;
+&lt;/plan&gt;</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Convierte tu proyecto integrador en un tablero inteligente: guarda los datos en XML, estílalos con CSS y permite filtrado y ordenación desde JavaScript. Añade un botón que exporte la vista a JSON para compartirla.</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <aside class="page-nav">
@@ -529,6 +820,12 @@ navigator.geolocation.getCurrentPosition(pos => {
             <li><a href="#atributos-avanzados">Atributos Avanzados</a></li>
             <li><a href="#graficos">Gráficos</a></li>
             <li><a href="#apis-html5">APIs de HTML5</a></li>
+            <li><a href="#accesibilidad">Accesibilidad y ARIA</a></li>
+            <li><a href="#componentes">Plantillas y Componentes</a></li>
+            <li><a href="#proyecto-final">Proyecto Integrador</a></li>
+            <li><a href="#validacion">Validación y buenas prácticas</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#integracion-web">Integración total</a></li>
         </ul>
         </aside>
     </div>

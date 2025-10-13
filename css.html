@@ -8,6 +8,7 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -390,6 +391,406 @@ p::before {
                     </div>
                 </div>
             </section>
+
+            <section id="responsive">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-mobile-screen-button icon-header"></i> Diseño Responsive Moderno</h2>
+                    <p>El objetivo del responsive es que el diseño se adapte fluidamente a cualquier pantalla. CSS moderno ofrece funciones como <code>clamp()</code>, consultas a nivel de contenedor y unidades fluidas.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            <h3>Consultas de media (<code>@media</code>)</h3>
+                            <p>Define reglas específicas para breakpoints clave como móviles, tablets y escritorio.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-diagram-successor"></i>
+                            <h3>Consultas de contenedor</h3>
+                            <p>Evalúan el tamaño del contenedor, ideales para componentes reutilizables.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-heading"></i>
+                            <h3>Tipografía fluida</h3>
+                            <p>Usa <code>clamp()</code> y unidades <code>vw</code> para escalar títulos sin media queries extra.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">:root {
+    --max-width: clamp(320px, 90vw, 1100px);
+}
+
+.layout {
+    width: min(var(--max-width), 100%);
+    margin: 0 auto;
+    padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        inset: auto;
+    }
+}
+
+@container (min-width: 520px) {
+    .tarjeta-curso {
+        grid-template-columns: 1fr auto;
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Convierte una sección rígida de tu proyecto en un layout fluido: establece un ancho máximo con <code>min()</code> o <code>clamp()</code>, añade padding proporcional y define al menos dos breakpoints (<code>768px</code> y <code>1024px</code>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="arquitectura-css">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-diagram-project icon-header"></i> Arquitectura y Mantenimiento</h2>
+                    <p>En proyectos de DAM o empresariales, organizar el CSS es clave para evitar conflictos. Patrones como BEM, ITCSS o la división por capas ayudan a mantener el código escalable.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <h3>BEM</h3>
+                            <p>Bloque–Elemento–Modificador para nombres de clases claros (<code>.bloque__elemento--estado</code>).</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-align-left"></i>
+                            <h3>Capas</h3>
+                            <p>Define capas (<code>@layer</code>) para reset, componentes y utilidades.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <h3>Design tokens</h3>
+                            <p>Variables CSS centralizan colores, espaciados y tipografías.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">@layer reset, base, components, utilities;
+
+@layer reset {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+}
+
+@layer base {
+    :root {
+        --color-brand: #2563eb;
+        --espaciado-m: 1.5rem;
+    }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.65; }
+}
+
+@layer components {
+    .hero {
+        padding: var(--espaciado-m);
+        background: linear-gradient(135deg, var(--color-brand), #0f172a);
+    }
+    .hero__cta--destacado {
+        background: #fff;
+        color: var(--color-brand);
+    }
+}
+
+@layer utilities {
+    .text-center { text-align: center; }
+    .mt-l { margin-top: 2.5rem; }
+}</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Renombra un componente usando BEM (por ejemplo, <code>.card</code> → <code>.card</code>, <code>.card__titulo</code>, <code>.card__cta--primaria</code>) y agrupa sus estilos dentro de una capa <code>@layer components</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="preprocesadores">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-code icon-header"></i> Preprocesadores y Postprocesado</h2>
+                    <p>Sass, Less o PostCSS permiten escribir CSS más expresivo. Aunque luego se compile, conviene entender su sintaxis y beneficios.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <h3>Sass</h3>
+                            <p>Variables, mixins, anidación controlada y funciones personalizadas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-magic"></i>
+                            <h3>Autoprefixer</h3>
+                            <p>PostCSS añade prefijos automáticamente según el soporte del navegador.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <h3>Build tooling</h3>
+                            <p>Herramientas como Vite o Parcel empaquetan el CSS junto a JavaScript.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">// Sass (SCSS)
+$color-primario: #ec4899;
+
+@mixin boton-base($bg, $color) {
+    background: $bg;
+    color: $color;
+    padding: .75rem 1.5rem;
+    border-radius: 999px;
+}
+
+.boton {
+    @include boton-base($color-primario, #fff);
+    &:hover { filter: brightness(1.05); }
+}
+
+/* CSS compilado */
+.boton {
+    background: #ec4899;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+}
+.boton:hover {
+    filter: brightness(1.05);
+}</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Instala Sass de forma global (<code>npm install -g sass</code>) o usa la versión local. Crea un archivo <code>estilos.scss</code> con un mixin de botones y compílalo a CSS con <code>sass estilos.scss estilos.css --watch</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="css-js">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-plug icon-header"></i> CSS y JavaScript trabajando juntos</h2>
+                    <p>Las interfaces modernas combinan CSS con JavaScript para gestionar estados, temas y animaciones complejas.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-toggle-on"></i>
+                            <h3>Tema claro/oscuro</h3>
+                            <p>Alterna clases o atributos en <code>&lt;html&gt;</code> para cambiar variables CSS.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                            <h3>Estados interactivos</h3>
+                            <p>Usa <code>classList.toggle()</code> para activar modales o menús.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-gauge-high"></i>
+                            <h3>Preferencias del usuario</h3>
+                            <p>Lee <code>matchMedia</code> y sincroniza con <code>localStorage</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-html">&lt;button id="toggle-layout"&gt;Cambiar layout&lt;/button&gt;
+&lt;section class="panel panel--grid" id="panelCursos"&gt;...&lt;/section&gt;
+
+&lt;script&gt;
+const toggle = document.getElementById('toggle-layout');
+const panel = document.getElementById('panelCursos');
+
+toggle.addEventListener('click', () =&gt; {
+    panel.classList.toggle('panel--grid');
+    panel.classList.toggle('panel--lista');
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+.panel--grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.panel--lista { display: flex; flex-direction: column; gap: 1rem; }
+&lt;/style&gt;</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Añade un botón que permita activar/desactivar un modo de alto contraste: crea una clase <code>.modo-contraste</code> con fondos claros y texto oscuro, y alterna esa clase en <code>body</code> usando JavaScript.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="proyecto-css">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-laptop-code icon-header"></i> Proyecto Integrador de Estilos</h2>
+                    <p>Aplica todo lo aprendido diseñando una intranet para el ciclo DAM con enfoque responsive, tokens de diseño y animaciones sutiles.</p>
+                    <ol class="step">
+                        <li><strong>Configura el tema:</strong> Define variables para colores primarios, secundarios y estados, además de espaciados y tipografía.</li>
+                        <li><strong>Layout flexible:</strong> Usa Grid para el dashboard y Flexbox para el menú lateral.</li>
+                        <li><strong>Componentes reutilizables:</strong> Diseña tarjetas de módulos, listados de tareas y un formulario modal.</li>
+                        <li><strong>Feedback visual:</strong> Añade transiciones a los botones y estados <code>:focus-visible</code> accesibles.</li>
+                        <li><strong>Dark mode:</strong> Implementa un toggle que cambie variables de color y sombras.</li>
+                    </ol>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡Entrega opcional!</h4>
+                        <p>Publica capturas o una demo en línea de tu intranet y documenta qué decisiones de arquitectura CSS tomaste (nomenclatura, variables, breakpoints).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="herramientas-css">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-toolbox icon-header"></i> Herramientas de Diagnóstico</h2>
+                    <p>Optimiza tu CSS revisando peso, especificidad y rendimiento.</p>
+                    <ul class="practice-exercise">
+                        <li>Abre Chrome DevTools &gt; <em>Coverage</em> para detectar CSS no utilizado.</li>
+                        <li>Utiliza la pestaña <em>Accessibility</em> para comprobar contraste y orden de tabulación.</li>
+                        <li>Ejecuta Lighthouse e interpreta las recomendaciones sobre <em>Best Practices</em> y <em>Performance</em>.</li>
+                        <li>Analiza el peso del CSS en la pestaña <em>Network</em> y considera minificar o dividir en chunks.</li>
+                        <li>Pasa tu hoja de estilos por <a href="https://stylelint.io/" target="_blank" rel="noopener">Stylelint</a> para mantener un estilo consistente.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="recursos-css">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-book-open icon-header"></i> Recursos Recomendados</h2>
+                    <p>Sigue profundizando en CSS con referencias de confianza.</p>
+                    <ul class="practice-exercise">
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener">MDN CSS</a></li>
+                        <li><a href="https://css-tricks.com/" target="_blank" rel="noopener">CSS-Tricks</a></li>
+                        <li><a href="https://every-layout.dev/" target="_blank" rel="noopener">Every Layout (Patrones responsive)</a></li>
+                        <li><a href="https://utopia.fyi/" target="_blank" rel="noopener">Utopia.fyi (tipografía fluida)</a></li>
+                        <li><a href="https://web.dev/learn/css/" target="_blank" rel="noopener">Curso Learn CSS de web.dev</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="css-integracion">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-layer-group icon-header"></i> CSS conectado con HTML, JavaScript y XML</h2>
+                    <p>CSS da identidad visual al contenido HTML, responde a la lógica de JavaScript y presenta datos provenientes de XML. Mantener esta colaboración ordenada asegura escalabilidad y accesibilidad.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-droplet"></i>
+                            <h3>Variables temáticas</h3>
+                            <p>Sincroniza colores entre hojas globales y componentes.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-grid-2"></i>
+                            <h3>Layouts dinámicos</h3>
+                            <p>Grid y Flex adaptan los datos XML que JavaScript inserta.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <h3>Estados reactivos</h3>
+                            <p>Clases toggled via JS disparan transiciones y microinteracciones.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>css/modulos.css</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-css">:root {
+    --color-programacion: hsl(222 85% 60%);
+    --color-interfaces: hsl(280 75% 60%);
+    --surface: hsl(220 16% 16%);
+    --bordes: hsl(220 16% 24%);
+}
+
+.modulos-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.modulo-card {
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--bordes);
+    box-shadow: var(--shadow-md);
+    transition: transform .25s ease-out, box-shadow .25s ease-out;
+}
+
+.modulo-card[data-estado="destacado"] {
+    outline: 2px solid var(--color-interfaces);
+}
+
+.modulo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modulo-card__lista {
+    margin-top: 1rem;
+    display: grid;
+    gap: .75rem;
+}
+
+.modulo-card__lista li span {
+    font-weight: 600;
+}
+
+.modulo-card__lista li small {
+    opacity: .75;
+}</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>js/modulos.js</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">import { cargarPlan } from './servicios/xml.js';
+
+const contenedor = document.querySelector('[data-modulos]');
+
+cargarPlan('datos/modulos.xml').then(plan =&gt; {
+    contenedor.innerHTML = plan.modulos.map(modulo =&gt; `
+        &lt;article class="modulo-card" data-estado="${modulo.destacado ? 'destacado' : 'normal'}"&gt;
+            &lt;h3&gt;${modulo.nombre}&lt;/h3&gt;
+            &lt;ul class="modulo-card__lista"&gt;
+                &lt;li&gt;&lt;span&gt;Horas&lt;/span&gt;&lt;small&gt;${modulo.horas}&lt;/small&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;span&gt;Profesorado&lt;/span&gt;&lt;small&gt;${modulo.profesor}&lt;/small&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/article&gt;
+    `).join('');
+});</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>servicios/xml.js</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">export async function cargarPlan(ruta) {
+    const respuesta = await fetch(ruta);
+    const texto = await respuesta.text();
+    const xml = new DOMParser().parseFromString(texto, 'application/xml');
+
+    return {
+        curso: xml.documentElement.getAttribute('curso'),
+        modulos: [...xml.querySelectorAll('modulo')].map(modulo =&gt; ({
+            nombre: modulo.getAttribute('nombre'),
+            horas: modulo.querySelector('horas').textContent,
+            profesor: modulo.querySelector('profesor').textContent,
+            destacado: modulo.getAttribute('destacado') === 'true'
+        }))
+    };
+}</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Define un set de variables y utilízalas para colorear tarjetas según los módulos que recibes por XML. Añade un toggle en JavaScript para destacar el módulo con más horas aplicando la clase <code>data-estado="destacado"</code>.</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <aside class="page-nav">
@@ -409,6 +810,14 @@ p::before {
             <li><a href="#pseudoclases-pseudoelementos">Pseudoclases y Pseudoelementos</a></li>
             <li><a href="#sombras-gradientes">Sombras y Gradientes</a></li>
             <li><a href="#unidades-medida">Unidades en CSS</a></li>
+            <li><a href="#responsive">Responsive Moderno</a></li>
+            <li><a href="#arquitectura-css">Arquitectura CSS</a></li>
+            <li><a href="#preprocesadores">Preprocesadores</a></li>
+            <li><a href="#css-js">CSS + JavaScript</a></li>
+            <li><a href="#proyecto-css">Proyecto Integrador</a></li>
+            <li><a href="#herramientas-css">Herramientas</a></li>
+            <li><a href="#recursos-css">Recursos</a></li>
+            <li><a href="#css-integracion">CSS en el ecosistema</a></li>
         </ul>
         </aside>
     </div>

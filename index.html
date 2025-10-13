@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Índice de Tutoriales Web</title>
+    <title>Tutoriales de Desarrollo de Aplicaciones Multiplataforma</title>
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -23,8 +24,8 @@
 
     <div class="index-container">
         <header class="index-header">
-            <h1>Tutoriales de Desarrollo Web</h1>
-            <p class="subtitle">Una colección de guías interactivas para aprender las tecnologías fundamentales de la web.</p>
+            <h1>Tutoriales de Desarrollo de Aplicaciones Multiplataforma</h1>
+            <p class="subtitle">Selección de guías interactivas orientadas al ciclo formativo de DAM: fundamentos web, estilos modernos y lenguajes clave en un solo portal.</p>
         </header>
 
         <main class="index-grid">
@@ -61,7 +62,7 @@
         </main>
 
         <footer class="index-footer">
-            <p>Desarrollado por <strong>Gonzalo Ramos + IA</strong></p>
+            <p>Desarrollado por <strong>Gonzalo Ramos García + IA</strong></p>
             <div class="footer-badge">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Técnico Superior en DAM</span>

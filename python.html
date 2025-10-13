@@ -8,6 +8,7 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
+            document.documentElement.classList.add('transition-init');
             const storedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -26,7 +27,7 @@
     <div class="layout">
         <nav class="sidebar">
             <header class="sidebar-header">
-                <i class="fa-brands fa-python logo-icon"></i>
+                <img src="assets/img/python-logo.svg" alt="Logo de Python" class="logo-img">
                 <span class="logo-text">Python</span>
             </header>
             <button class="toggle-btn sidebar-toggle" type="button" aria-expanded="true">
@@ -585,7 +586,7 @@ def proceso_largo():
     time.sleep(1)
     print("Proceso finalizado.")
 
-proceso_largo()</code></pre>
+    assert respuesta.json()["nombre"] == modulo["nombre"]
                     </div>
                 </div>
             </section>
@@ -670,6 +671,273 @@ print(f"Respuesta de GitHub: {response.status_code}")</code></pre>
                     </div>
                 </div>
             </section>
+
+            <section id="data-science">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-chart-line icon-header"></i> Ciencia de Datos y Análisis</h2>
+                    <p>Python es la columna vertebral del análisis de datos moderno. Bibliotecas como <strong>Pandas</strong> y <strong>NumPy</strong> permiten limpiar, transformar y visualizar información en cuestión de minutos.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>analisis_notas.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">import pandas as pd
+
+datos = pd.read_xml("datos/alumnado.xml")
+
+resumen = (
+    datos.assign(Nota=lambda df: df["nota"].astype(float))
+         .groupby("ciclo")
+         .agg(media_nota=("Nota", "mean"), alumnado=("nombre", "count"))
+         .sort_values("media_nota", ascending=False)
+)
+
+print(resumen)
+resumen.to_json("salidas/alumnado_por_ciclo.json", orient="table", indent=2)</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Exporta tus datos de módulos DAM desde <code>xml.html</code> y analiza las horas por módulo con Pandas. Genera un gráfico con <code>matplotlib</code> o <code>seaborn</code> y embébelo en tu web.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="web-apis">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-server icon-header"></i> APIs y Desarrollo Web Moderno</h2>
+                    <p>Frameworks como <strong>FastAPI</strong> facilitan construir microservicios que dialogan con los frontends HTML/CSS/JavaScript que has creado.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>main.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Modulo(BaseModel):
+    nombre: str
+    horas: int
+    curso: str
+
+app = FastAPI()
+
+MODULOS = [Modulo(nombre="Programación", horas=256, curso="DAM1")]
+
+@app.get("/modulos", response_model=list[Modulo])
+def listar_modulos():
+    return MODULOS
+
+@app.post("/modulos", response_model=Modulo, status_code=201)
+def crear_modulo(modulo: Modulo):
+    MODULOS.append(modulo)
+    return modulo</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Levanta una API con FastAPI o Flask que sirva los módulos DAM. Consúmela desde <code>javascript.html</code> usando <code>fetch</code> y pinta la respuesta en la interfaz.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="asincronia">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-wave-square icon-header"></i> Concurrencia y Asincronía</h2>
+                    <p>El módulo <strong>asyncio</strong> facilita gestionar tareas concurrentes como peticiones HTTP o procesamiento en paralelo sin bloquear tu aplicación.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>descargas_async.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">import asyncio
+import httpx
+
+URLS = [
+    "https://jsonplaceholder.typicode.com/todos/1",
+    "https://jsonplaceholder.typicode.com/todos/2",
+    "https://jsonplaceholder.typicode.com/todos/3",
+]
+
+async def descargar(url: str) -> dict:
+    async with httpx.AsyncClient(timeout=10) as client:
+        resp = await client.get(url)
+        resp.raise_for_status()
+        return resp.json()
+
+async def main():
+    tareas = [asyncio.create_task(descargar(url)) for url in URLS]
+    resultados = await asyncio.gather(*tareas)
+    for dato in resultados:
+        print(dato["title"])
+
+asyncio.run(main())</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Usa <code>asyncio</code> para sincronizar archivos XML con tu backend Java mediante peticiones REST. Mide el tiempo de ejecución frente a una versión secuencial.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="automatizacion">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-gears icon-header"></i> Automatización y Scripting</h2>
+                    <p>Python brilla en tareas repetitivas: integración con el sistema operativo, scraping o generación de informes.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>pipeline.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">from pathlib import Path
+import subprocess
+
+BASE = Path(__file__).parent
+salida_xml = BASE / "salidas" / "modulos.xml"
+
+def generar_xml():
+    subprocess.run(["java", "-jar", "generador-dam.jar", str(salida_xml)], check=True)
+
+def publicar_html():
+    destino = BASE / ".." / "html.html"
+    print("Actualiza la sección de módulos en", destino.resolve())
+
+if __name__ == "__main__":
+    generar_xml()
+    publicar_html()</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un script que genere copias de seguridad de tu carpeta <code>html-tutorial-page</code>, comprimiéndola y subiéndola a un repositorio o almacenamiento en la nube.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="testing-calidad-python">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-vial icon-header"></i> Testing y Calidad en Python</h2>
+                    <p>Combina <strong>pytest</strong>, <strong>unittest</strong> y herramientas de calidad para prevenir regresiones.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>test_servicios.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">import pytest
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_listar_modulos_devuelve_200():
+    respuesta = client.get("/modulos")
+    assert respuesta.status_code == 200
+    assert isinstance(respuesta.json(), list)
+
+@pytest.mark.parametrize("modulo", [
+    {"nombre": "Sistemas", "horas": 192, "curso": "DAM1"},
+    {"nombre": "Interfaces", "horas": 123, "curso": "DAM2"},
+])
+def test_crear_modulo(modulo):
+    respuesta = client.post("/modulos", json=modulo)
+    assert respuesta.status_code == 201
+    assert respuesta.json()["nombre"] == modulo["nombre"])</code></pre>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Configura <code>tox</code> o <code>nox</code> para ejecutar pruebas, linting con <code>ruff</code> y verificación de tipos con <code>mypy</code>. Incluye el proceso en GitHub Actions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="python-integration">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-link icon-header"></i> Integración con HTML, JavaScript y Java</h2>
+                    <p>Python puede actuar como pegamento entre tu frontend y servicios empresariales escritos en Java o XML.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-code"></i>
+                            <h3>Plantillas HTML</h3>
+                            <p>Renderiza vistas con Jinja2 o libera datos JSON para tus páginas HTML/CSS.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <h3>APIs Híbridas</h3>
+                            <p>Coordina microservicios Java y Python usando colas o REST.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-code"></i>
+                            <h3>Procesamiento XML</h3>
+                            <p>Transforma XML de Java en JSON para JavaScript con <code>lxml</code>.</p>
+                        </div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>bridge.py</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-python">import subprocess
+import json
+
+def obtener_datos_java():
+    proceso = subprocess.run([
+        "java", "-jar", "exportador-xml.jar"
+    ], capture_output=True, check=True, text=True)
+    return proceso.stdout
+
+def transformar_a_json(xml_str: str) -> str:
+    import xmltodict
+    data = xmltodict.parse(xml_str)
+    return json.dumps(data, indent=2, ensure_ascii=False)
+
+if __name__ == "__main__":
+    xml = obtener_datos_java()
+    print(transformar_a_json(xml))</code></pre>
+                </div>
+            </section>
+
+            <section id="python-proyecto">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cubes icon-header"></i> Proyecto Integrador: Tablero DAM</h2>
+                    <p>Construye un sistema completo que unifique tus lenguajes.</p>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-database"></i>
+                            <h3>Backend</h3>
+                            <p>API FastAPI para gestionar módulos, alumnado y notas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <h3>Frontend</h3>
+                            <p>Integra la API en tus páginas HTML, CSS y JavaScript.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-file-export"></i>
+                            <h3>Intercambio</h3>
+                            <p>Genera informes XML y sincronízalos con Java para validación.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <h3>Calidad</h3>
+                            <p>Pruebas automatizadas, CI/CD y despliegue en contenedores.</p>
+                        </div>
+                    </div>
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-trophy"></i> Reto Final</h4>
+                        <p>Implementa el tablero completo, versiona con Git y publica la documentación en <code>README.md</code> detallando cómo interactúan todos los lenguajes del proyecto.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="recursos-python">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-book-open icon-header"></i> Recursos Recomendados</h2>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener">Documentación oficial de Python</a></li>
+                        <li><a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI Docs</a></li>
+                        <li><a href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">Guía de Pandas</a></li>
+                        <li><a href="https://realpython.com/" target="_blank" rel="noopener">Real Python</a></li>
+                        <li><a href="https://pytest.org/" target="_blank" rel="noopener">pytest</a> y <a href="https://mypy-lang.org/" target="_blank" rel="noopener">mypy</a></li>
+                    </ul>
+                </div>
+            </section>
         </main>
 
         <aside class="page-nav">
@@ -692,6 +960,14 @@ print(f"Respuesta de GitHub: {response.status_code}")</code></pre>
             <li><a href="#poo">POO</a></li>
             <li><a href="#modulos-paquetes">Módulos y Paquetes</a></li>
             <li><a href="#ecosistema">Ecosistema</a></li>
+            <li><a href="#data-science">Ciencia de Datos</a></li>
+            <li><a href="#web-apis">APIs Web</a></li>
+            <li><a href="#asincronia">Asincronía</a></li>
+            <li><a href="#automatizacion">Automatización</a></li>
+            <li><a href="#testing-calidad-python">Testing y Calidad</a></li>
+            <li><a href="#python-integration">Integración Tecnológica</a></li>
+            <li><a href="#python-proyecto">Proyecto Integrador</a></li>
+            <li><a href="#recursos-python">Recursos</a></li>
         </ul>
         </aside>
     </div>
