@@ -2,6 +2,102 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    let maintenanceElements = null;
+    let maintenanceTriggered = false;
+
+    const ensureMaintenanceOverlay = () => {
+        if (maintenanceElements) {
+            return maintenanceElements;
+        }
+
+        const overlay = document.createElement('div');
+        overlay.className = 'maintenance-overlay';
+        overlay.setAttribute('role', 'alertdialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = `
+            <div class="maintenance-card">
+                <div class="maintenance-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+                <h2>Estamos mejorando la web</h2>
+                <p class="maintenance-message">En unos instantes volverá la magia.</p>
+                <p class="maintenance-detail" data-maintenance-detail hidden></p>
+                <div class="maintenance-actions">
+                    <button type="button" class="maintenance-reload">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Reintentar
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        const detailNode = overlay.querySelector('[data-maintenance-detail]');
+        const reloadBtn = overlay.querySelector('.maintenance-reload');
+        if (reloadBtn) {
+            reloadBtn.addEventListener('click', () => window.location.reload());
+        }
+
+        maintenanceElements = { overlay, detailNode };
+        return maintenanceElements;
+    };
+
+    const showMaintenanceNotice = (detail) => {
+        const { overlay, detailNode } = ensureMaintenanceOverlay();
+
+        if (detailNode) {
+            if (detail) {
+                detailNode.textContent = detail;
+                detailNode.hidden = false;
+            } else {
+                detailNode.textContent = '';
+                detailNode.hidden = true;
+            }
+        }
+
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-visible');
+        document.body.classList.add('maintenance-active');
+        maintenanceTriggered = true;
+    };
+
+    const registerMaintenanceListeners = () => {
+        window.addEventListener('error', (event) => {
+            if (maintenanceTriggered) {
+                return;
+            }
+            const message = event?.message ? `Error: ${event.message}` : 'Ocurrió un error inesperado.';
+            showMaintenanceNotice(message);
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            if (maintenanceTriggered) {
+                return;
+            }
+            const reason = event?.reason;
+            const detail = typeof reason === 'string' ? reason : reason?.message;
+            showMaintenanceNotice(detail ? `Detalle: ${detail}` : 'Detectamos un problema al cargar la página.');
+        });
+
+        window.addEventListener('offline', () => {
+            const detail = navigator.onLine ? '' : 'Parece que no hay conexión a internet.';
+            showMaintenanceNotice(detail);
+        });
+    };
+
+    registerMaintenanceListeners();
+
+    window.triggerMaintenanceOverlay = (detail) => {
+        showMaintenanceNotice(detail || 'Modo debug: overlay forzado.');
+    };
+
+    const maintenanceParam = new URLSearchParams(window.location.search);
+    if (maintenanceParam.has('maintenance')) {
+        const detailValue = maintenanceParam.get('maintenance');
+        const detailText = detailValue && detailValue !== '1' ? detailValue : 'Modo debug: overlay forzado.';
+        showMaintenanceNotice(detailText);
+    }
+
     const versionTargets = document.querySelectorAll('[data-version]');
     if (versionTargets.length) {
         const tryPaths = ['VERSION', '../VERSION', '../../VERSION'];
@@ -12,12 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const [current, ...rest] = paths;
             fetch(current)
-                .then(resp => resp.ok ? resp.text() : Promise.reject())
+                .then(resp => resp.ok ? resp.text() : Promise.reject(new Error(`HTTP ${resp.status}`)))
                 .then(text => {
                     const version = text.trim();
                     versionTargets.forEach(node => node.textContent = version);
                 })
-                .catch(() => loadVersion(rest));
+                .catch((error) => {
+                    if (!rest.length) {
+                        versionTargets.forEach(node => node.textContent = 'v?.?.?');
+                        const detail = error?.message ? `Motivo: ${error.message}` : 'No pudimos sincronizar la versión del sitio.';
+                        showMaintenanceNotice(detail);
+                        return;
+                    }
+                    loadVersion(rest);
+                });
         };
         loadVersion(tryPaths);
     }
@@ -47,35 +151,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    console.log("El DOM está completamente cargado. Iniciando script.");
-
     // --- LÓGICA DEL MODO OSCURO ---
     const themeToggle = document.getElementById('theme-toggle');
+    const systemMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    let storedTheme = localStorage.getItem('theme');
+    let userInteracted = Boolean(storedTheme);
+
+    const resolveTheme = () => storedTheme || (systemMedia.matches ? 'dark' : 'light');
+
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (themeToggle) {
+            themeToggle.checked = theme === 'dark';
+        }
+    };
+
+    applyTheme(resolveTheme());
+
+    const persistTheme = (theme) => {
+        localStorage.setItem('theme', theme);
+        storedTheme = theme;
+    };
 
     // Verificación: ¿Existe el interruptor?
     if (themeToggle) {
-        console.log("Interruptor 'theme-toggle' encontrado.");
-
-        // Cargar el tema guardado o usar 'light' por defecto
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', currentTheme);
-
-        if (currentTheme === 'dark') {
-            themeToggle.checked = true;
-        }
-
         // Añadir el listener para el evento 'change'
         themeToggle.addEventListener('change', function() {
             const newTheme = this.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            console.log(`Tema cambiado a: ${newTheme}`);
+            applyTheme(newTheme);
+            persistTheme(newTheme);
+            userInteracted = true;
         });
 
     } else {
         // Si el interruptor no se encuentra, mostrar un error claro en la consola.
         console.error("ERROR CRÍTICO: No se pudo encontrar el elemento con id='theme-toggle'. Verifica tu archivo index.html.");
+    }
+
+    if (!userInteracted) {
+        systemMedia.addEventListener('change', (event) => {
+            if (userInteracted) {
+                return;
+            }
+            const newTheme = event.matches ? 'dark' : 'light';
+            applyTheme(newTheme);
+            console.log(`Tema ajustado según el sistema: ${newTheme}`);
+        });
     }
 
     // --- LÓGICA DE COPIAR CÓDIGO (sin cambios) ---
@@ -143,8 +264,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const mobileNavMedia = window.matchMedia('(max-width: 768px)');
+
+    const applyResponsiveNavState = () => {
+        const isMobile = mobileNavMedia.matches;
+
+        if (sidebar) {
+            if (sidebarToggle) {
+                sidebarToggle.disabled = isMobile;
+                sidebarToggle.setAttribute('aria-disabled', String(isMobile));
+            }
+            if (isMobile) {
+                if (!sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.add('collapsed');
+                }
+                syncToggleState(sidebarToggle, false);
+            } else {
+                if (sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.remove('collapsed');
+                }
+                syncToggleState(sidebarToggle, true);
+            }
+        }
+
+        if (pageNav) {
+            if (pageNavToggle) {
+                pageNavToggle.disabled = isMobile;
+                pageNavToggle.setAttribute('aria-disabled', String(isMobile));
+            }
+            if (isMobile) {
+                if (!pageNav.classList.contains('collapsed')) {
+                    pageNav.classList.add('collapsed');
+                }
+                syncToggleState(pageNavToggle, false);
+            } else {
+                if (pageNav.classList.contains('collapsed')) {
+                    pageNav.classList.remove('collapsed');
+                }
+                syncToggleState(pageNavToggle, true);
+            }
+        }
+    };
+
+    applyResponsiveNavState();
+    mobileNavMedia.addEventListener('change', applyResponsiveNavState);
+
     if (sidebar && sidebarToggle) {
         sidebarToggle.addEventListener('click', () => {
+            if (mobileNavMedia.matches || sidebarToggle.disabled) {
+                syncToggleState(sidebarToggle, false);
+                return;
+            }
             const collapsed = sidebar.classList.toggle('collapsed');
             syncToggleState(sidebarToggle, !collapsed);
         });
@@ -152,6 +322,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (pageNav && pageNavToggle) {
         pageNavToggle.addEventListener('click', () => {
+            if (mobileNavMedia.matches || pageNavToggle.disabled) {
+                syncToggleState(pageNavToggle, false);
+                return;
+            }
             const collapsed = pageNav.classList.toggle('collapsed');
             syncToggleState(pageNavToggle, !collapsed);
         });

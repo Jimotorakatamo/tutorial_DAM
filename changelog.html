@@ -7,7 +7,9 @@
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
-            const theme = localStorage.getItem('theme') || 'light';
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
@@ -35,12 +37,204 @@
                 <span class="meta-version" data-version></span>
                 <span class="meta-updated">
                     <i class="fa-regular fa-calendar"></i>
-                    Actualizado el 12 de octubre de 2025
+                    Actualizado el 13 de octubre de 2025
                 </span>
             </div>
         </header>
 
         <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.3.0</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Overlay vivo y UX compacta</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-screwdriver-wrench"></i> Modo mantenimiento</h3>
+                    <ul>
+                        <li>El overlay de mantenimiento ahora recorre en bucle los degradados de todas las secciones, suavizando la transición cuando se activa.</li>
+                        <li>El icono y el botón de reintento heredan el mismo flujo cromático, manteniendo contraste legible en modo claro y oscuro.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-compass"></i> Navegación estable</h3>
+                    <ul>
+                        <li>Fijamos el botón del índice derecho para que no se desplace al colapsar la barra, eliminando saltos en escritorio.</li>
+                        <li>En móviles ocultamos los botones de colapso de ambas barras laterales y mantenemos los paneles recogidos por defecto para ganar espacio de lectura.</li>
+                        <li>Reducimos el ancho máximo del contenido principal con un <code>clamp</code>, evitando márgenes vacíos en pantallas grandes.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-brands fa-python"></i> Feedback visual</h3>
+                    <ul>
+                        <li>El icono de Python en la navegación lateral cambia a sólido claro/oscuro al pasar el cursor o al seleccionar la sección, dando feedback inmediato.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-circle-play"></i>
+                        Revisar la experiencia refinada
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.2.6</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Navegación móvil pulida</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-mobile-screen"></i> Flujo responsive</h3>
+                    <ul>
+                        <li>Reordenamos la barra global y el índice contextual para que convivan al inicio en móviles, con comportamiento sticky y carrusel horizontal.</li>
+                        <li>Los toggles aparecen siempre visibles y colapsan automáticamente en pantallas estrechas para liberar más espacio de lectura.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-shoe-prints"></i> Detalles finales</h3>
+                    <ul>
+                        <li>Las insignias de versión y el pie de página permanecen dentro del contenedor en teléfonos, sin recortes ni desbordes.</li>
+                        <li>Ajustamos los estilos de colapso para que las dos barras laterales actúen como paneles plegables táctiles.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Probar la navegación móvil
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.2.5</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Responsive total y Python vitaminado</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-tablet-screen-button"></i> Adaptabilidad</h3>
+                    <ul>
+                        <li>Restructuramos la maquetación para que sidebar, contenido y navegación secundaria respiren en tablets y móviles sin romper jerarquías.</li>
+                        <li>El menú de secciones pasa a formato carrusel en pantallas pequeñas, manteniendo los anclajes accesibles con un toque.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-brands fa-python"></i> Contraste Python</h3>
+                    <ul>
+                        <li>Los bloques destacados del tutorial de Python suman halos translúcidos y relieve para igualar el punch visual del resto de tecnologías.</li>
+                        <li>Aplicamos sombras y degradados animados sobre pasos, ejemplos y tarjetas para mejorar legibilidad en ambos temas.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="python.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Revisar tutorial de Python
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.2.4</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Iconos nítidos y modo oscuro seguro</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Experiencia visual</h3>
+                    <ul>
+                        <li>Añadimos halos selectivos para los iconos Font Awesome y SVG, aumentando su contraste tanto en hover como en estado inactivo.</li>
+                        <li>Los iconos clave de tarjetas, navegación y llamadas a la acción mantienen ahora un resplandor sutil que los separa del fondo animado.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-moon"></i> Robustez de temas</h3>
+                    <ul>
+                        <li>El tema se alinea automáticamente con la preferencia del sistema cuando el usuario no ha fijado una opción manual.</li>
+                        <li>Exponemos la propiedad <code>color-scheme</code> para que los navegadores no apliquen forzados agresivos que destrocen el diseño.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Revisar el índice
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.2.3</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Python con contraste azul + amarillo</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                    <ul>
+                        <li>El icono pequeño de Python en la barra lateral vuelve a lucir el degradado azul + amarillo, igual que en la portada.</li>
+                        <li>El logo grande del encabezado mantiene su aspecto original, sin aplicar el corte bicolor.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-book"></i> Documentación</h3>
+                    <ul>
+                        <li>Incrementamos a `v1.2.3` en `VERSION`, `README.md` y este changelog para dejar constancia del ajuste fino.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="python.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Ver tutorial de Python
+                    </a>
+                </footer>
+            </article>
+
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.2.0</span>
+                    <span class="release-date">13 · octubre · 2025</span>
+                    <span class="release-focus">Café Java a dos tonos</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                    <ul>
+                        <li>El icono de Java luce vapor naranja y taza azul mediante un gradiente vertical que resalta el humo sobre la taza.</li>
+                        <li>El tutorial de Java adopta una paleta dual azul + naranja (fondos, enlaces y tarjetas) siguiendo el estilo bicolor de Python.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-book"></i> Documentación</h3>
+                    <ul>
+                        <li>Actualizamos `VERSION`, `README.md` y este changelog para reflejar la versión v1.2.0 y el nuevo look del apartado Java.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Explorar tutoriales
+                    </a>
+                </footer>
+            </article>
+
             <article class="release-card">
                 <div class="release-meta">
                     <span class="release-badge">v1.1.1</span>
