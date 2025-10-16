@@ -29,33 +29,33 @@
         </header>
 
         <main class="index-grid">
-            <a href="html.html" class="tech-card html">
-                <i class="fa-brands fa-html5"></i>
+            <a href="html.html" class="tech-card html" aria-label="Abrir tutorial de HTML">
+                <i class="fa-brands fa-html5" aria-hidden="true"></i>
                 <h3>HTML</h3>
                 <p>El esqueleto de la web</p>
             </a>
-            <a href="css.html" class="tech-card css">
-                <i class="fa-brands fa-css3-alt"></i>
+            <a href="css.html" class="tech-card css" aria-label="Abrir tutorial de CSS">
+                <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
                 <h3>CSS</h3>
                 <p>El estilo y diseño visual</p>
             </a>
-            <a href="javascript.html" class="tech-card js">
-                <i class="fa-brands fa-js"></i>
+            <a href="javascript.html" class="tech-card js" aria-label="Abrir tutorial de JavaScript">
+                <i class="fa-brands fa-js" aria-hidden="true"></i>
                 <h3>JavaScript</h3>
                 <p>La interactividad y lógica</p>
             </a>
-            <a href="xml.html" class="tech-card xml">
-                <i class="fa-solid fa-file-code"></i>
+            <a href="xml.html" class="tech-card xml" aria-label="Abrir tutorial de XML">
+                <i class="fa-solid fa-file-code" aria-hidden="true"></i>
                 <h3>XML</h3>
                 <p>Almacenamiento de datos</p>
             </a>
-            <a href="java.html" class="tech-card java">
-                <i class="fa-solid fa-mug-hot"></i>
+            <a href="java.html" class="tech-card java" aria-label="Abrir tutorial de Java">
+                <i class="fa-solid fa-mug-hot" aria-hidden="true"></i>
                 <h3>Java</h3>
                 <p>Programación robusta</p>
             </a>
-            <a href="python.html" class="tech-card python">
-                <i class="fa-brands fa-python"></i>
+            <a href="python.html" class="tech-card python" aria-label="Abrir tutorial de Python">
+                <i class="fa-brands fa-python" aria-hidden="true"></i>
                 <h3>Python</h3>
                 <p>Un lenguaje versátil</p>
             </a>
@@ -64,24 +64,25 @@
         <footer class="index-footer">
             <p>Desarrollado por <strong>Gonzalo Ramos García + IA</strong></p>
             <div class="footer-badge">
-                <i class="fa-solid fa-graduation-cap"></i>
+                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
                 <span>Técnico Superior en DAM</span>
             </div>
             <div class="site-version" role="contentinfo">
                 <span class="version-label">Versión</span>
-                <span class="version-number" data-version></span>
+                <span class="version-number" data-version aria-live="polite"></span>
                 <a class="changelog-link" href="changelog.html" target="_blank" rel="noopener">Ver changelog</a>
             </div>
         </footer>
     </div>
 
-    <div class="theme-switcher-corner">
-        <i class="fa-solid fa-sun"></i>
+    <div class="theme-switcher-corner" role="group" aria-label="Selector de tema">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
         <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider round"></span>
+            <span class="sr-only">Cambiar entre tema claro y oscuro</span>
+            <input type="checkbox" id="theme-toggle" aria-label="Cambiar tema">
+            <span class="slider round" aria-hidden="true"></span>
         </label>
-        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
     </div>
 
     <script src="js/script.js"></script>

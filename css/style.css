@@ -2,7 +2,7 @@
     /* Tema Claro (por defecto) */
     --bg-color: #f4f7f9;
     --sidebar-color: #ffffff;
-    --text-color: #333;
+    --text-color: #1f2937;
     --accent-color: #007bff;
     --accent-hover: #0056b3;
     --border-color: #e0e0e0;
@@ -308,7 +308,7 @@ html.transition-init body {
 body {
     font-family: var(--font-family);
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--card-text-color, var(--text-color));
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
@@ -1880,6 +1880,9 @@ body[data-page="xml"] .copy-btn:focus-visible {
 
 .tech-card {
     --card-gradient: var(--panel-gradient);
+    --icon-color: var(--accent-color, #0ea5e9);
+    --icon-glow: rgba(14, 165, 233, 0.32);
+    --icon-glow-hover: rgba(14, 165, 233, 0.5);
     background: var(--card-gradient), var(--sidebar-color);
     background-size: 250% 250%, auto;
     background-position: 0% 50%, center;
@@ -1903,10 +1906,24 @@ body[data-page="xml"] .copy-btn:focus-visible {
     box-shadow: 0 26px 44px var(--card-shadow);
 }
 
+html[data-theme="dark"] .tech-card {
+    color: var(--card-text-color-dark, var(--text-color));
+}
+
 .tech-card i {
     font-size: 4rem;
     margin-bottom: 1.5rem;
-    transition: color 0.3s ease;
+    color: var(--icon-color);
+    text-shadow: 0 16px 36px var(--icon-glow);
+    filter: drop-shadow(0 12px 30px var(--icon-glow));
+    transition: color 0.3s ease, text-shadow 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.tech-card:hover i,
+.tech-card:focus-visible i {
+    transform: translateY(-4px);
+    text-shadow: 0 20px 46px var(--icon-glow-hover);
+    filter: drop-shadow(0 16px 40px var(--icon-glow-hover));
 }
 
 .tech-card h3 {
@@ -1925,9 +1942,14 @@ body[data-page="xml"] .copy-btn:focus-visible {
 /* Colores específicos para cada tarjeta */
 .tech-card.html {
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(220, 38, 38, 0.24));
-    color: #b91c1c;
     box-shadow: 0 20px 36px rgba(239, 68, 68, 0.22);
+    --card-shadow: rgba(239, 68, 68, 0.28);
+    --card-text-color: #111827;
+    --card-text-color-dark: #f8fafc;
     --tech-title-glow: rgba(255, 107, 53, 0.55);
+    --icon-color: #e34f26;
+    --icon-glow: rgba(227, 79, 38, 0.45);
+    --icon-glow-hover: rgba(227, 79, 38, 0.62);
 }
 
 /* Changelog page */
@@ -1957,6 +1979,7 @@ body[data-page="xml"] .copy-btn:focus-visible {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    position: relative;
 }
 
 .changelog-header {
@@ -2184,22 +2207,28 @@ body[data-page="css"] .release-footer .cta:focus-visible {
     }
 }
 .tech-card.html:hover { border-color: #e34f26; }
-.tech-card.html i { color: #e34f26; }
 
 .tech-card.css {
     --card-gradient: linear-gradient(140deg, rgba(139, 92, 246, 0.22), rgba(91, 33, 182, 0.12));
     box-shadow: 0 24px 40px rgba(91, 33, 182, 0.26);
+    --card-shadow: rgba(91, 33, 182, 0.32);
     --tech-title-gradient: linear-gradient(120deg, #8b5cf6, #7c3aed, #c084fc, #8b5cf6);
     --tech-title-glow: rgba(139, 92, 246, 0.55);
+    --icon-color: #8b5cf6;
+    --icon-glow: rgba(139, 92, 246, 0.48);
+    --icon-glow-hover: rgba(139, 92, 246, 0.66);
 }
 .tech-card.css:hover { border-color: #8b5cf6; }
-.tech-card.css i { color: #8b5cf6; }
 
 .tech-card.js {
     --card-gradient: linear-gradient(140deg, rgba(247, 223, 30, 0.28), rgba(247, 223, 30, 0.12));
     box-shadow: 0 24px 40px rgba(247, 223, 30, 0.28);
+    --card-shadow: rgba(247, 223, 30, 0.34);
     --tech-title-gradient: linear-gradient(120deg, #facc15, #f97316, #fbbf24, #facc15);
     --tech-title-glow: rgba(250, 204, 21, 0.6);
+    --icon-color: #f7df1e;
+    --icon-glow: rgba(247, 223, 30, 0.42);
+    --icon-glow-hover: rgba(247, 223, 30, 0.6);
 }
 .tech-card.js:hover { border-color: #f7df1e; }
 .tech-card.js i { color: #f7df1e; }
@@ -2209,8 +2238,12 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
 .tech-card.xml {
     --card-gradient: linear-gradient(140deg, rgba(239, 68, 68, 0.26), rgba(127, 29, 29, 0.12));
     box-shadow: 0 24px 40px rgba(239, 68, 68, 0.32);
+    --card-shadow: rgba(239, 68, 68, 0.38);
     --tech-title-gradient: linear-gradient(120deg, #ef4444, #dc2626, #7f1d1d, #ef4444);
     --tech-title-glow: rgba(239, 68, 68, 0.55);
+    --icon-color: #ef4444;
+    --icon-glow: rgba(239, 68, 68, 0.46);
+    --icon-glow-hover: rgba(220, 38, 38, 0.62);
 }
 .tech-card.xml:hover { border-color: #ef4444; }
 .tech-card.xml i { color: #ef4444; }
@@ -2219,8 +2252,12 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
 .tech-card.java {
     --card-gradient: linear-gradient(140deg, rgba(15, 90, 165, 0.28), rgba(249, 115, 22, 0.18));
     box-shadow: 0 24px 40px rgba(15, 90, 165, 0.26);
+    --card-shadow: rgba(15, 90, 165, 0.32);
     --tech-title-gradient: linear-gradient(120deg, #0f5aa5, #f97316, #0f5aa5);
     --tech-title-glow: rgba(15, 90, 165, 0.52);
+    --icon-color: #0f5aa5;
+    --icon-glow: rgba(15, 90, 165, 0.44);
+    --icon-glow-hover: rgba(249, 115, 22, 0.58);
 }
 .tech-card.java:hover { border-color: #f97316; }
 .tech-card.java i { color: #0f5aa5; }
@@ -2245,8 +2282,12 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
 .tech-card.python {
     --card-gradient: linear-gradient(140deg, rgba(55, 118, 171, 0.24), rgba(255, 212, 59, 0.18));
     box-shadow: 0 24px 40px rgba(55, 118, 171, 0.28);
+    --card-shadow: rgba(55, 118, 171, 0.34);
     --tech-title-gradient: linear-gradient(120deg, #3776ab, #224e9f, #ffd43b, #3776ab);
     --tech-title-glow: rgba(55, 118, 171, 0.55);
+    --icon-color: #3776ab;
+    --icon-glow: rgba(55, 118, 171, 0.45);
+    --icon-glow-hover: rgba(255, 212, 59, 0.6);
 }
 .tech-card.python:hover { border-color: #ffd43b; }
 .tech-card.python i {
@@ -2306,28 +2347,28 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
     isolation: isolate;
 }
 
-.changelog-theme {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1.35rem;
-    margin-left: auto;
-    background: var(--panel-gradient), var(--sidebar-color);
-    background-size: 240% 240%, auto;
-    background-position: 0% 50%, center;
-    animation: gradientFlowLayered 26s ease-in-out infinite;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 16px 30px var(--card-shadow);
-    isolation: isolate;
+.changelog-theme-switcher {
+    position: absolute;
+    top: 2rem;
+    right: clamp(1.2rem, 4vw, 3rem);
+    margin: 0;
+    padding: 0.85rem 1.4rem;
+    gap: 0.5rem;
+    box-shadow: 0 20px 38px var(--card-shadow);
+    z-index: 10;
 }
 
-.changelog-theme .switch {
-    margin: 0 0.85rem;
+.changelog-theme-switcher .switch {
+    margin: 0 0.75rem;
 }
 
-.changelog-theme i {
-    font-size: 1rem;
+@media (max-width: 768px) {
+    .changelog-theme-switcher {
+        position: static;
+        align-self: flex-end;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .sr-only {
