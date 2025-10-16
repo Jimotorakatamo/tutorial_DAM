@@ -2,6 +2,31 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const motionMedia = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const lowSpecSignals = (() => {
+        const cores = navigator.hardwareConcurrency || 0;
+        const memory = navigator.deviceMemory || 0;
+        const slowCpu = cores > 0 && cores <= 4;
+        const limitedMemory = memory > 0 && memory <= 4;
+        const slowConnection = typeof connection?.effectiveType === 'string' && /^(slow-)?2g$/.test(connection.effectiveType);
+        return slowCpu || limitedMemory || slowConnection;
+    })();
+
+    const refreshEffectBudget = () => {
+        const prefersReducedMotion = Boolean(motionMedia?.matches);
+        const shouldReduce = prefersReducedMotion || lowSpecSignals;
+        document.documentElement.classList.toggle('reduced-effects', shouldReduce);
+    };
+
+    if (motionMedia?.addEventListener) {
+        motionMedia.addEventListener('change', refreshEffectBudget);
+    } else if (motionMedia?.addListener) {
+        motionMedia.addListener(refreshEffectBudget);
+    }
+
+    refreshEffectBudget();
+
     let maintenanceElements = null;
     let maintenanceTriggered = false;
 
@@ -128,6 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Aplicar la animación de entrada al cuerpo de la página
     document.body.classList.add('fade-in');
+        const resetPageFade = () => {
+            document.body.classList.remove('fade-out');
+            document.body.classList.add('fade-in');
+        };
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted || document.body.classList.contains('fade-out')) {
+                resetPageFade();
+            }
+        });
     const releaseTransition = () => document.documentElement.classList.remove('transition-init');
     if (window.requestAnimationFrame) {
         requestAnimationFrame(() => requestAnimationFrame(releaseTransition));
@@ -239,36 +273,95 @@ document.addEventListener('DOMContentLoaded', () => {
             const match = link.getAttribute('href') === targetHref;
             link.classList.toggle('active', match);
             if (match) {
+                link.setAttribute('aria-current', 'location');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+            if (match) {
                 hasMatch = true;
             }
         });
 
         if (!hasMatch && pageNavLinks.length) {
             pageNavLinks[0].classList.add('active');
+            pageNavLinks[0].setAttribute('aria-current', 'location');
         }
+    };
+
+    const sectionVisibility = new Map();
+
+    const getDominantSection = () => {
+        if (sectionVisibility.size) {
+            let dominantId = null;
+            let dominantRatio = -1;
+            sectionVisibility.forEach((ratio, sectionId) => {
+                if (ratio > dominantRatio) {
+                    dominantRatio = ratio;
+                    dominantId = sectionId;
+                }
+            });
+            if (dominantId) {
+                return dominantId;
+            }
+        }
+
+        let closestId = null;
+        let smallestDistance = Number.POSITIVE_INFINITY;
+        const referenceLine = window.innerHeight * 0.25;
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const distance = Math.abs(rect.top - referenceLine);
+            if (distance < smallestDistance) {
+                smallestDistance = distance;
+                closestId = section.id;
+            }
+        });
+        return closestId;
     };
 
     // Solo ejecutar el observador si estamos en una página de contenido (con secciones y enlaces de navegación)
     if (sections.length > 0 && pageNavLinks.length > 0) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-                    activatePageNavLink(entry.target.id);
+                if (entry.isIntersecting) {
+                    sectionVisibility.set(entry.target.id, entry.intersectionRatio);
+                } else {
+                    sectionVisibility.delete(entry.target.id);
                 }
             });
+
+            const dominantSection = getDominantSection();
+            if (dominantSection) {
+                activatePageNavLink(dominantSection);
+            }
         }, {
-            rootMargin: '-30% 0px -40% 0px',
-            threshold: [0, 0.25, 0.5, 0.75, 1]
+            rootMargin: '-20% 0px -45% 0px',
+            threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.75, 1]
         });
         sections.forEach(section => observer.observe(section));
 
         const initialSection = window.location.hash ? window.location.hash.substring(1) : sections[0]?.id;
         activatePageNavLink(initialSection);
         pageNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
                 const id = link.getAttribute('href').substring(1);
-                activatePageNavLink(id);
+                const targetSection = document.getElementById(id);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                    setTimeout(() => activatePageNavLink(id), 150);
+                    history.replaceState(null, '', `#${id}`);
+                }
             });
+        });
+
+        window.addEventListener('hashchange', () => {
+            const targetId = window.location.hash.replace('#', '');
+            activatePageNavLink(targetId);
         });
     }
 

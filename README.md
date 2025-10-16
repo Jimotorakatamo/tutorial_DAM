@@ -1,6 +1,6 @@
 # tutorial_DAM
 
-**Current version:** `v1.3.0`
+**Current version:** `v1.3.1`
 
 ## Overview
 Este proyecto recopila tutoriales modernos e interactivos sobre las principales tecnologías de desarrollo web: HTML, CSS, JavaScript, XML, Java y Python. Cada página combina contenido educativo, ejemplos de código y componentes UI estilizados con gradientes animados.

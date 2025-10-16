@@ -179,6 +179,59 @@ html[data-theme="dark"] {
     --icon-filter-strong: drop-shadow(0 0 12px rgba(148, 197, 255, 0.62)) drop-shadow(0 10px 28px rgba(12, 74, 110, 0.55));
 }
 
+html.reduced-effects {
+    --card-shadow: rgba(15, 23, 42, 0.18);
+    --primary-glow: rgba(14, 165, 233, 0.24);
+}
+
+html.reduced-effects[data-theme="dark"] {
+    --card-shadow: rgba(2, 6, 23, 0.32);
+    --primary-glow: rgba(56, 189, 248, 0.28);
+}
+
+html.reduced-effects body {
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+html.reduced-effects :is(.sidebar,
+                         .page-nav,
+                         .tutorial-card,
+                         .feature-item,
+                         .tech-card,
+                         .nav-links li a,
+                         .page-nav ul li a,
+                         .toggle-btn,
+                         .copy-btn,
+                         .theme-switcher,
+                         .theme-switcher-corner,
+                         .code-container,
+                         .badge,
+                         .maintenance-card) {
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html.reduced-effects :is(.sidebar,
+                         .page-nav,
+                         .tutorial-card,
+                         .tech-card,
+                         .feature-item) {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+}
+
+html.reduced-effects .page-nav::before {
+    animation: none !important;
+}
+
+html.reduced-effects[data-theme="dark"] :is(.sidebar,
+                                             .page-nav,
+                                             .tutorial-card,
+                                             .tech-card,
+                                             .feature-item) {
+    box-shadow: 0 12px 28px rgba(2, 6, 23, 0.32);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -279,6 +332,11 @@ html[data-theme="dark"] body {
     width: 100%;
     gap: 2rem;
     box-sizing: border-box;
+}
+
+main section {
+    scroll-margin-top: clamp(5.5rem, 12vh, 7.5rem);
+    margin-bottom: clamp(2rem, 4vh, 3rem);
 }
 
 .toggle-btn {
@@ -769,7 +827,7 @@ body[data-page="xml"] .nav-links li:first-child a.active {
     background: var(--home-gradient);
     background-size: 360% 360%;
     background-position: 0% 50%;
-    animation: maintenanceFlow 18s ease-in-out infinite;
+    animation: maintenanceFlow 12s ease-in-out infinite;
     animation-play-state: running;
     z-index: -2;
 }
@@ -1021,30 +1079,47 @@ body.sidebar-collapsed.page-nav-collapsed .content {
     top: var(--safe-area-top);
     align-self: flex-start;
     height: auto;
-    min-height: calc(100vh - var(--safe-area-top));
-    max-height: calc(100vh - var(--safe-area-top) + 12rem);
-    padding: calc(6rem + var(--safe-area-top)) 2rem var(--rail-bottom-padding) 2rem;
+    max-height: calc(100vh - var(--safe-area-top) - 0.75rem);
+    padding: calc(3.5rem + var(--safe-area-top)) clamp(1.8rem, 2.8vw, 2.4rem) calc(var(--rail-bottom-padding) + 2.5rem) clamp(1.8rem, 2.8vw, 2.4rem);
     box-sizing: border-box;
     font-size: 0.9rem;
-    overflow-y: auto;
-    border-left: 1px solid var(--border-color);
-    background: var(--panel-gradient), var(--sidebar-color);
-    background-size: 260% 260%, auto;
-    background-position: 0% 50%, center;
-    animation: gradientFlowLayered 24s ease-in-out infinite;
+    margin-inline-start: clamp(2.2rem, 4.5vw, 3.8rem);
+    margin-inline-end: clamp(0.75rem, 2.5vw, 1.8rem);
+    border: 1px solid var(--border-color);
+    border-radius: 26px;
+    background: var(--sidebar-color);
+    overflow: hidden;
+    z-index: 3;
     box-shadow: 0 24px 40px var(--card-shadow);
     backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     inset-inline-start: auto;
+    isolation: isolate;
+}
+
+.page-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--panel-gradient);
+    background-size: 220% 220%;
+    background-position: 55% 45%;
+    animation: gradientFlowLayered 24s ease-in-out infinite;
+    opacity: 0.9;
+    z-index: -1;
 }
 
 .page-nav.collapsed {
     flex: 0 0 72px;
-    padding: calc(6rem + var(--safe-area-top)) 0.8rem max(1.5rem, var(--rail-bottom-padding));
+    padding: calc(6rem + var(--safe-area-top)) 0.8rem calc(max(1.5rem, var(--rail-bottom-padding)) + 1.5rem);
+    margin-inline-start: clamp(2.2rem, 4.5vw, 3.8rem);
+    margin-inline-end: clamp(0.75rem, 2.5vw, 1.8rem);
     overflow: visible;
-    border-left: none;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
     box-shadow: none;
 }
 
@@ -1055,6 +1130,10 @@ body.sidebar-collapsed.page-nav-collapsed .content {
 
 .page-nav.collapsed::after {
     content: '';
+}
+
+.page-nav.collapsed::before {
+    display: none;
 }
 
 .page-nav .toggle-btn {
@@ -1091,6 +1170,17 @@ body.sidebar-collapsed.page-nav-collapsed .content {
 .page-nav ul {
     list-style: none;
     padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-right: 0.75rem;
+    margin-right: 0;
+    padding-bottom: 1.5rem;
+    scrollbar-gutter: stable both-edges;
 }
 
 .page-nav ul li {
@@ -1323,6 +1413,17 @@ html[data-theme="dark"] .page-nav ul ul li a {
     border: 1px solid var(--border-color);
     box-shadow: 0 18px 28px var(--card-shadow);
     backdrop-filter: blur(8px);
+}
+
+html[data-theme="dark"] body[data-page="css"] .feature-item {
+    background: linear-gradient(155deg, rgba(20, 12, 37, 0.94), rgba(32, 18, 58, 0.9));
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 16px 26px rgba(12, 6, 24, 0.6), 0 0 18px rgba(139, 92, 246, 0.22);
+    animation: none;
+}
+
+html[data-theme="dark"] body[data-page="css"] .feature-item:hover {
+    box-shadow: 0 20px 32px rgba(12, 6, 24, 0.68), 0 0 22px rgba(139, 92, 246, 0.28);
 }
 
 .feature-item:hover {
@@ -1823,9 +1924,9 @@ body[data-page="xml"] .copy-btn:focus-visible {
 
 /* Colores específicos para cada tarjeta */
 .tech-card.html {
-    --card-gradient: linear-gradient(140deg, rgba(227, 79, 38, 0.22), rgba(227, 79, 38, 0.08));
-    box-shadow: 0 24px 40px rgba(227, 79, 38, 0.22);
-    --tech-title-gradient: linear-gradient(120deg, #e34f26, #ff6b35, #f97316, #e34f26);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(220, 38, 38, 0.24));
+    color: #b91c1c;
+    box-shadow: 0 20px 36px rgba(239, 68, 68, 0.22);
     --tech-title-glow: rgba(255, 107, 53, 0.55);
 }
 
@@ -2106,13 +2207,14 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
 
 
 .tech-card.xml {
-    --card-gradient: linear-gradient(140deg, rgba(255, 102, 0, 0.24), rgba(255, 102, 0, 0.10));
-    box-shadow: 0 24px 40px rgba(255, 102, 0, 0.26);
-    --tech-title-gradient: linear-gradient(120deg, #ff7a18, #ff3d00, #ff9f43, #ff7a18);
-    --tech-title-glow: rgba(255, 122, 24, 0.55);
+    --card-gradient: linear-gradient(140deg, rgba(239, 68, 68, 0.26), rgba(127, 29, 29, 0.12));
+    box-shadow: 0 24px 40px rgba(239, 68, 68, 0.32);
+    --tech-title-gradient: linear-gradient(120deg, #ef4444, #dc2626, #7f1d1d, #ef4444);
+    --tech-title-glow: rgba(239, 68, 68, 0.55);
 }
-.tech-card.xml:hover { border-color: #ff6600; }
-.tech-card.xml i { color: #ff6600; }
+.tech-card.xml:hover { border-color: #ef4444; }
+.tech-card.xml i { color: #ef4444; }
+.tech-card.xml:hover i { color: #b91c1c; }
 
 .tech-card.java {
     --card-gradient: linear-gradient(140deg, rgba(15, 90, 165, 0.28), rgba(249, 115, 22, 0.18));
@@ -2170,20 +2272,20 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
     display: flex;
     align-items: center;
     gap: 0.65rem;
+    padding: 0.9rem 1.55rem;
     background: var(--panel-gradient), var(--sidebar-color);
     background-size: 240% 240%, auto;
     background-position: 0% 50%, center;
-    animation: gradientFlowLayered 22s ease-in-out infinite;
-    padding: 0.9rem 1.55rem;
     border-radius: 999px;
+    border: 1px solid var(--border-color);
     box-shadow: 0 22px 34px var(--card-shadow);
+    animation: gradientFlowLayered 22s ease-in-out infinite;
     backdrop-filter: blur(12px);
     overflow: hidden;
     isolation: isolate;
+    z-index: 20;
 }
 
-
-/* Theme Switcher */
 .theme-switcher {
     display: flex;
     align-items: center;
@@ -2202,6 +2304,41 @@ html[data-theme="dark"] .tech-card.js i { color: #f7df1e; } /* Mantener color en
     position: relative;
     overflow: hidden;
     isolation: isolate;
+}
+
+.changelog-theme {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.35rem;
+    margin-left: auto;
+    background: var(--panel-gradient), var(--sidebar-color);
+    background-size: 240% 240%, auto;
+    background-position: 0% 50%, center;
+    animation: gradientFlowLayered 26s ease-in-out infinite;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 16px 30px var(--card-shadow);
+    isolation: isolate;
+}
+
+.changelog-theme .switch {
+    margin: 0 0.85rem;
+}
+
+.changelog-theme i {
+    font-size: 1rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 .theme-switcher i {
@@ -2413,6 +2550,7 @@ html[data-theme="dark"] input:checked + .slider:before {
         width: 100%;
         align-self: stretch;
         margin-top: 1.5rem;
+        margin-inline: 0;
         margin-bottom: 0;
         height: auto;
         border-radius: 16px;
@@ -2424,6 +2562,11 @@ html[data-theme="dark"] input:checked + .slider:before {
         box-shadow: 0 18px 28px var(--card-shadow);
         backdrop-filter: blur(10px);
         padding: 1.25rem;
+        isolation: isolate;
+    }
+    .page-nav::before {
+        inset: 0;
+        border-radius: inherit;
     }
     .page-nav .toggle-btn {
         position: static;
@@ -2436,12 +2579,13 @@ html[data-theme="dark"] input:checked + .slider:before {
     }
     .page-nav ul {
         display: flex;
+        flex-direction: row;
         gap: 0.75rem;
+        overflow-y: auto;
         overflow-x: auto;
         padding-bottom: 0.5rem;
-    }
-    .page-nav ul li {
-        flex: 0 0 auto;
+        padding-right: 0;
+        margin-right: 0;
     }
     .page-nav ul li a {
         padding: 0.6rem 1rem;
@@ -2656,9 +2800,24 @@ body.maintenance-active {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(16px);
+    background: rgba(6, 12, 28, 0.82);
+    backdrop-filter: blur(18px);
+    overflow: hidden;
     z-index: 9999;
+}
+
+.maintenance-overlay::before {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background:
+        radial-gradient(42% 58% at 20% 20%, rgba(239, 68, 68, 0.55), transparent 62%),
+        radial-gradient(36% 50% at 80% 25%, rgba(250, 204, 21, 0.45), transparent 70%),
+        radial-gradient(46% 64% at 50% 82%, rgba(37, 99, 235, 0.5), transparent 68%);
+    filter: blur(48px);
+    opacity: 0.85;
+    animation: maintenanceAurora 14s linear infinite;
+    pointer-events: none;
 }
 
 .maintenance-overlay.is-visible {
@@ -2677,7 +2836,7 @@ body.maintenance-active {
     );
     max-width: 460px;
     width: min(100%, 460px);
-    padding: 2.5rem 2rem;
+    padding: 2.75rem 2.25rem;
     border-radius: 22px;
     background: var(--maintenance-gradient);
     background-size: 360% 360%;
@@ -2686,10 +2845,20 @@ body.maintenance-active {
     text-align: center;
     display: grid;
     gap: 1rem;
-    color: #0f172a;
+    color: #e2e8f0;
     overflow: hidden;
     position: relative;
-    animation: maintenanceFlow 26s ease-in-out infinite;
+    animation: maintenanceFlow 15s ease-in-out infinite;
+}
+
+.maintenance-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(15, 23, 42, 0.12));
+    mix-blend-mode: soft-light;
+    opacity: 0.85;
+    pointer-events: none;
 }
 
 .maintenance-card .maintenance-icon {
@@ -2718,7 +2887,7 @@ body.maintenance-active {
     background-size: 360% 360%;
     mix-blend-mode: screen;
     opacity: 0.65;
-    animation: maintenanceFlow 26s ease-in-out infinite;
+    animation: maintenanceFlow 15s ease-in-out infinite;
 }
 
 .maintenance-card .maintenance-icon i {
@@ -2727,28 +2896,26 @@ body.maintenance-active {
 }
 
 .maintenance-card h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     margin: 0;
-    background: var(--maintenance-gradient);
-    background-size: 360% 360%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: maintenanceFlow 26s ease-in-out infinite;
-    filter: drop-shadow(0 12px 28px rgba(15, 23, 42, 0.38));
+    color: #f8fafc;
+    text-shadow: 0 18px 42px rgba(2, 6, 23, 0.55);
 }
 
 .maintenance-card .maintenance-message {
     margin: 0;
-    color: rgba(15, 23, 42, 0.88);
-    opacity: 0.94;
+    color: rgba(241, 245, 249, 0.95);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
 }
 
 .maintenance-card .maintenance-detail {
     margin: 0;
     font-size: 0.95rem;
-    color: rgba(15, 23, 42, 0.74);
+    color: rgba(248, 250, 252, 0.9);
+    background: rgba(15, 23, 42, 0.32);
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
 }
 
 .maintenance-card .maintenance-actions {
@@ -2783,7 +2950,7 @@ body.maintenance-active {
     background-size: 360% 360%;
     opacity: 0.9;
     z-index: -1;
-    animation: maintenanceFlow 26s ease-in-out infinite;
+    animation: maintenanceFlow 15s ease-in-out infinite;
     transition: opacity 0.2s ease;
 }
 
@@ -2810,7 +2977,21 @@ body.maintenance-active {
     }
 }
 
+@keyframes maintenanceAurora {
+    0% {
+        transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translate3d(12%, 8%, 0) rotate(32deg) scale(1.08);
+    }
+    100% {
+        transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
+    .maintenance-overlay::before,
+    .maintenance-card::before,
     .maintenance-card,
     .maintenance-card .maintenance-icon,
     .maintenance-card .maintenance-icon::after,

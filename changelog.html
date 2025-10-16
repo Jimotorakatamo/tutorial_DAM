@@ -28,6 +28,15 @@
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Volver al inicio</span>
             </a>
+            <div class="changelog-theme">
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round" aria-hidden="true"></span>
+                </label>
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                <span class="sr-only">Cambiar tema</span>
+            </div>
             <div class="changelog-preamble">
                 <span class="release-tagline">Historial de cambios</span>
                 <h1>La evolución del proyecto</h1>
@@ -44,6 +53,48 @@
         </header>
 
         <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.3.1</span>
+                    <span class="release-date">16 · octubre · 2025</span>
+                    <span class="release-focus">UI afinada y rendimiento adaptativo</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-layer-group"></i> Navegación contextual</h3>
+                    <ul>
+                        <li>El índice derecho ahora mantiene su desplazamiento completo, con márgenes equilibrados y degradados que acompañan al contenido sin solaparlo.</li>
+                        <li>Corrigimos la posición del interruptor flotante en la portada para que siempre sea accesible.</li>
+                        <li>El panel de XML en el índice adopta la nueva paleta roja del tutorial para mantener consistencia visual.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-gauge-high"></i> Rendimiento adaptativo</h3>
+                    <ul>
+                        <li>Detectamos dispositivos de baja potencia o usuarios con “prefiere reducido” y desactivamos animaciones pesadas automáticamente.</li>
+                        <li>Aceleramos los bucles cromáticos y la transición de retorno entre páginas para evitar pantallas en negro al retroceder.</li>
+                        <li>Los gradientes del modo mantenimiento y el enlace de inicio giran más rápido sin sacrificar suavidad.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-shield-heart"></i> Overlay de mantenimiento</h3>
+                    <ul>
+                        <li>Reforzamos el contraste del mensaje, dando mayor legibilidad a títulos, detalles y acciones.</li>
+                        <li>Estrenamos un fondo “aurora” animado que aporta dinamismo y ambientación mientras se reintenta la carga.</li>
+                        <li>El changelog luce el interruptor de tema en la cabecera para alternar modo claro/oscuro sin desplazarse.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Explorar los ajustes recientes
+                    </a>
+                </footer>
+            </article>
+
             <article class="release-card">
                 <div class="release-meta">
                     <span class="release-badge">v1.3.0</span>
@@ -320,15 +371,6 @@
                 <a class="changelog-link" href="changelog.html" aria-current="page">Estás en el changelog</a>
             </div>
         </footer>
-    </div>
-
-    <div class="theme-switcher-corner">
-        <i class="fa-solid fa-sun"></i>
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider round"></span>
-        </label>
-        <i class="fa-solid fa-moon"></i>
     </div>
 
     <script src="js/script.js"></script>
