@@ -77,6 +77,69 @@ h1 {
                 </div>
             </section>
 
+            <section id="proposito-css">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-brush icon-header"></i> ¿Para qué sirve CSS?</h2>
+                    <p>CSS controla la apariencia y el comportamiento visual de tus interfaces. Define colores, tipografías, animaciones, layouts y cualquier detalle estético que transforma un esqueleto HTML en una experiencia pulida.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <h3>Interfaces web</h3>
+                            <p>Diseña paneles responsive, dashboards y tiendas con identidad propia.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-palette"></i>
+                            <h3>Design systems</h3>
+                            <p>Construye bibliotecas de componentes reutilizables con tokens de estilo.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <h3>Aplicaciones híbridas</h3>
+                            <p>Personaliza apps PWA o vistas móviles usando la misma hoja de estilos.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Enlaza tu CSS:</strong> usa <code>&lt;link rel="stylesheet"&gt;</code> o <code>@import</code> si trabajas con compiladores.</li>
+                        <li><strong>Define la base:</strong> ajusta tipografía, colores y un reset que normalice márgenes.</li>
+                        <li><strong>Crea el layout:</strong> combina Flexbox y Grid para distribuir secciones y componentes.</li>
+                        <li><strong>Refina interacciones:</strong> aplica transiciones, estados hover y variables para soportar temas.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">:root {
+    --color-fondo: #0f172a;
+    --color-acento: #38bdf8;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.18), transparent 55%),
+                #0b1220;
+}
+
+.widget {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 40px rgba(56, 189, 248, 0.28);
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
             <section id="selectores">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-magnifying-glass icon-header"></i> Selectores CSS</h2>
@@ -800,6 +863,7 @@ cargarPlan('datos/modulos.xml').then(plan =&gt; {
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-css">¿Para qué sirve CSS?</a></li>
             <li><a href="#intro-css">Introducción</a></li>
             <li><a href="#selectores">Selectores CSS</a></li>
             <li><a href="#propiedades-comunes">Modelo de Caja</a></li>

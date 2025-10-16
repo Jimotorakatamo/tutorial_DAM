@@ -73,6 +73,70 @@ console.log('Este es un mensaje para desarrolladores.');</code></pre>
                 </div>
             </section>
 
+            <section id="proposito-js">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-bullseye icon-header"></i> ¿Para qué sirve JavaScript?</h2>
+                    <p>JavaScript aporta dinamismo, lógica y conectividad a la web. Corre en el navegador para reaccionar a eventos del usuario y en el servidor (Node.js) para construir APIs y automatizaciones.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <h3>Interfaces reactivas</h3>
+                            <p>Dashboards, SPA y formularios que responden al instante sin recargar la página.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-cloud"></i>
+                            <h3>Servicios backend</h3>
+                            <p>APIs REST, WebSockets y microservicios escritos con Node.js o Deno.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-robot"></i>
+                            <h3>Automatización</h3>
+                            <p>Scripts para build, pruebas end-to-end y tareas de integración continua.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Identifica la interacción:</strong> decide qué evento o dato debe disparar tu lógica.</li>
+                        <li><strong>Obtén referencias del DOM:</strong> usa <code>querySelector</code> para manipular elementos.</li>
+                        <li><strong>Procesa datos:</strong> transforma información con funciones puras o llamadas a APIs.</li>
+                        <li><strong>Actualiza la vista:</strong> modifica texto, clases o renderiza plantillas de forma segura.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-javascript">const listaCursos = document.querySelector('[data-cursos]');
+const filtro = document.querySelector('#filtro-modalidad');
+
+async function cargarCursos() {
+    const respuesta = await fetch('/api/cursos');
+    const cursos = await respuesta.json();
+    renderizar(cursos);
+}
+
+function renderizar(datos) {
+    listaCursos.innerHTML = datos.map((curso) => `
+        &lt;article class="curso" data-modalidad="${curso.modalidad}"&gt;
+            &lt;h3&gt;${curso.nombre}&lt;/h3&gt;
+            &lt;p&gt;${curso.horas} horas · ${curso.modalidad}&lt;/p&gt;
+        &lt;/article&gt;
+    `).join('');
+}
+
+filtro.addEventListener('change', (evento) =&gt; {
+    const modalidad = evento.target.value;
+    const cursosFiltrados = [...listaCursos.querySelectorAll('.curso')]
+        .filter((card) =&gt; modalidad === 'todas' || card.dataset.modalidad === modalidad);
+
+    listaCursos.innerHTML = cursosFiltrados.map((nodo) =&gt; nodo.outerHTML).join('');
+});
+
+cargarCursos();</code></pre>
+                    </div>
+                </div>
+            </section>
+
             <section id="variables-tipos">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-box icon-header"></i> Variables y Tipos de Datos</h2>
@@ -659,6 +723,7 @@ leerPlanFormativo('datos/modulos.xml').then(plan =&gt; {
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-js">¿Para qué sirve JavaScript?</a></li>
             <li><a href="#intro-js">Introducción a JS</a></li>
             <li><a href="#variables-tipos">Variables y Tipos</a></li>
             <li><a href="#operadores">Operadores</a></li>

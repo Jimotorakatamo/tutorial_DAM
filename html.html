@@ -79,6 +79,58 @@
                 </div>
             </section>
 
+            <section id="proposito-html">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-bullseye icon-header"></i> ¿Para qué sirve HTML?</h2>
+                    <p>HTML define la estructura y el significado del contenido web. Con él describes encabezados, párrafos, formularios, tablas y cualquier bloque que después podrás enriquecer con CSS y JavaScript.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-building"></i>
+                            <h3>Web corporativa</h3>
+                            <p>Landing pages, portfolios y sitios institucionales con jerarquías claras.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <h3>Catálogos online</h3>
+                            <p>Estructura fichas de producto, listas de precios y formularios de compra.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            <h3>Documentación</h3>
+                            <p>Guías técnicas, wikis y recursos educativos accesibles.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Define el objetivo:</strong> lista qué secciones necesita la página (hero, servicios, contacto...).</li>
+                        <li><strong>Traza el esqueleto:</strong> crea la estructura base con <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> y <code>&lt;footer&gt;</code>.</li>
+                        <li><strong>Añade semántica:</strong> usa etiquetas específicas como <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> o <code>&lt;nav&gt;</code>.</li>
+                        <li><strong>Revisa accesibilidad:</strong> comprueba orden de encabezados, textos alternativos e interacciones de teclado.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-html">&lt;main&gt;
+    &lt;section class="hero" role="banner"&gt;
+        &lt;h1&gt;Academia DAM&lt;/h1&gt;
+        &lt;p&gt;Formación práctica en desarrollo multiplataforma.&lt;/p&gt;
+        &lt;a class="cta" href="#cursos"&gt;Ver cursos&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;section id="cursos" aria-labelledby="titulo-cursos"&gt;
+        &lt;h2 id="titulo-cursos"&gt;Oferta formativa&lt;/h2&gt;
+        &lt;article class="card"&gt;
+            &lt;h3&gt;Programación&lt;/h3&gt;
+            &lt;p&gt;Algoritmos, POO y patrones para aplicaciones empresariales.&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
             <section id="estructura">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-sitemap icon-header"></i> Estructura Básica</h2>
@@ -808,6 +860,7 @@ cargarModulos();</code></pre>
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-html">¿Para qué sirve HTML?</a></li>
             <li><a href="#estructura">Estructura Básica</a></li>
             <li><a href="#etiquetas">Etiquetas Esenciales</a></li>
             <li><a href="#semantica">HTML Semántico</a></li>

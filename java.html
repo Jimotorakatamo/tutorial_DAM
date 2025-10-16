@@ -79,6 +79,63 @@
                 </div>
             </section>
 
+            <section id="proposito-java">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-bullseye icon-header"></i> ¿Para qué sirve Java?</h2>
+                    <p>Java impulsa aplicaciones empresariales, servicios backend, Android nativo y sistemas críticos donde la estabilidad es clave. Su ecosistema maduro y la máquina virtual (JVM) permiten desplegar el mismo código en servidores, escritorio o dispositivos embebidos.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-network-wired"></i>
+                            <h3>Backends escalables</h3>
+                            <p>APIs REST, microservicios y procesos batch con Spring Boot, Jakarta EE o Quarkus.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-robot"></i>
+                            <h3>Android &amp; IoT</h3>
+                            <p>Aplicaciones móviles nativas y control de dispositivos conectados.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-database"></i>
+                            <h3>Integración empresarial</h3>
+                            <p>Procesos ETL, mensajería JMS y conexión con bases de datos y sistemas legados.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Configura el entorno:</strong> instala JDK, elige un IDE (IntelliJ, Eclipse) y crea un proyecto Maven o Gradle.</li>
+                        <li><strong>Modela el dominio:</strong> define clases, interfaces y paquetes coherentes con el negocio.</li>
+                        <li><strong>Implementa la lógica:</strong> escribe servicios, controladores y pruebas automatizadas.</li>
+                        <li><strong>Despliega y monitoriza:</strong> empaqueta en JAR/WAR, automatiza builds y monitoriza con logs y métricas.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>CursoController.java</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-java">@RestController
+@RequestMapping("/api/cursos")
+public class CursoController {
+
+    private final CursoService servicio;
+
+    public CursoController(CursoService servicio) {
+        this.servicio = servicio;
+    }
+
+    @GetMapping
+    public List&lt;Curso&gt; listar(@RequestParam Optional&lt;String&gt; modalidad) {
+        return servicio.buscar(modalidad.orElse("todas"));
+    }
+}
+
+public record Curso(String nombre, int horas, String modalidad) {}</code></pre>
+                    </div>
+                </div>
+            </section>
+
             <section id="intro-java">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-mug-hot"></i> Introducción a Java</h2>
@@ -995,6 +1052,7 @@ System.out.println("Sincronización terminada con código " + codigo);
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-java">¿Para qué sirve Java?</a></li>
             <li><a href="#intro-java">Introducción a Java</a></li>
             <li><a href="#sintaxis-variables">Sintaxis y Variables</a></li>
             <li><a href="#variables-tipos">Tipos de Datos</a></li>

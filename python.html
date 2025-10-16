@@ -103,6 +103,68 @@ División: {numero1 / numero2}
                 </div>
             </section>
 
+            <section id="proposito-python">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-bullseye icon-header"></i> ¿Para qué sirve Python?</h2>
+                    <p>Python se utiliza para automatizar tareas, analizar datos, crear APIs web, desarrollar inteligencia artificial y prototipar ideas rápidamente. Su ecosistema de librerías acelera cualquier proyecto, desde scripts sencillos hasta soluciones empresariales.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h3>Data &amp; IA</h3>
+                            <p>Análisis con Pandas, modelos con Scikit-learn o TensorFlow.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <h3>Automatización</h3>
+                            <p>Scripts para ETL, generación de informes y bots operativos.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-globe"></i>
+                            <h3>Servicios web</h3>
+                            <p>APIs REST con FastAPI, Django o Flask listas para producción.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Identifica el problema:</strong> define qué proceso quieres automatizar o qué datos analizar.</li>
+                        <li><strong>Selecciona librerías:</strong> instala paquetes con <code>pip</code> según tu dominio (requests, numpy, fastapi...).</li>
+                        <li><strong>Implementa y prueba:</strong> divide la lógica en funciones pequeñas y escribe tests con <code>pytest</code>.</li>
+                        <li><strong>Empaqueta y despliega:</strong> usa entornos virtuales, requisitos (<code>requirements.txt</code>) y contenedores si es necesario.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-python">from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class Curso(BaseModel):
+    nombre: str
+    horas: int
+    modalidad: str
+
+
+cursos = []
+
+
+@app.post("/cursos")
+def crear_curso(curso: Curso):
+    cursos.append(curso)
+    return {"total": len(cursos)}
+
+
+@app.get("/cursos")
+def listar_cursos(modalidad: str | None = None):
+    resultados = [c for c in cursos if modalidad in (None, c.modalidad)]
+    return resultados</code></pre>
+                    </div>
+                </div>
+            </section>
+
             <section id="como-programar">
                 <h2><i class="fa-solid fa-terminal icon-header"></i> ¿Cómo programar en Python?</h2>
                 <p>Comenzar con Python es un proceso sencillo. Te guiaremos paso a paso para configurar tu entorno de desarrollo perfecto:</p>
@@ -947,6 +1009,7 @@ if __name__ == "__main__":
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-python">¿Para qué sirve Python?</a></li>
             <li><a href="#como-programar">¿Cómo programar?</a></li>
             <li><a href="#sintaxis-basica">Sintaxis básica</a></li>
             <li><a href="#variables-tipos">Variables y tipos</a></li>

@@ -87,6 +87,99 @@
                 </div>
             </section>
 
+            <section id="proposito-xml">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-circle-info icon-header"></i> ¿Para qué sirve XML?</h2>
+                    <p>XML modela datos estructurados y transportables entre sistemas heterogéneos. Es extensible, legible por humanos y soportado en integraciones empresariales desde hace décadas.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-plug-circle-check"></i>
+                            <h3>Integración empresarial</h3>
+                            <p>Mensajería entre ERP, CRM y plataformas de logística vía SOAP o colas.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <h3>Configuraciones</h3>
+                            <p>Define pipelines de despliegue, reglas de compilación o políticas de apps.</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-rss"></i>
+                            <h3>Intercambio de contenidos</h3>
+                            <p>Feeds RSS/Atom, catálogos de productos y documentos normalizados.</p>
+                        </div>
+                    </div>
+
+                    <h3>Paso a paso</h3>
+                    <ol class="step">
+                        <li><strong>Define el dominio:</strong> enumera entidades, atributos y relaciones clave.</li>
+                        <li><strong>Diseña la jerarquía:</strong> elige un elemento raíz y anida nodos según dependencia.</li>
+                        <li><strong>Valida la estructura:</strong> crea un DTD/XSD para garantizar consistencia entre equipos.</li>
+                        <li><strong>Automatiza la transformación:</strong> aplica XPath o XSLT para convertir los datos en vistas, reportes o JSON.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;intercambio fecha="2025-10-16" origen="ERP" destino="CRM"&gt;
+    &lt;cliente id="CL-204" segmento="PyME"&gt;
+        &lt;nombre&gt;Tecnologías Rivera&lt;/nombre&gt;
+        &lt;contacto canal="email"&gt;ventas@rivera.es&lt;/contacto&gt;
+    &lt;/cliente&gt;
+    &lt;pedido codigo="P-8891" total="1290.50" moneda="EUR" estado="pendiente"/&gt;
+&lt;/intercambio&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="primer-xml">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-seedling icon-header"></i> Tu primer documento XML paso a paso</h2>
+                    <p>Sigue este flujo cada vez que necesites definir datos estructurados. Mantiene tu XML legible y listo para validarse.</p>
+
+                    <ol class="step">
+                        <li><strong>Declara la cabecera:</strong> especifica versión y codificación para evitar problemas de caracteres.</li>
+                        <li><strong>Elige un elemento raíz:</strong> debe describir el conjunto completo de datos (ej. <code>&lt;catalogo&gt;</code>).</li>
+                        <li><strong>Define nodos hijos:</strong> reutiliza nombres coherentes y anida sólo cuando tenga sentido.</li>
+                        <li><strong>Añade atributos:</strong> aporta metadatos compactos como identificadores, unidades o estados.</li>
+                    </ol>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;catalogo&gt;
+    &lt;elemento&gt;...&lt;/elemento&gt;
+&lt;/catalogo&gt;</code></pre>
+                    </div>
+
+                    <p>Completa el esqueleto con elementos, atributos y texto. El resultado podría verse así:</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;catalogo cursos="DAM" actualizado="2025-10-16"&gt;
+    &lt;modulo codigo="PRO" horas="256" curso="DAM1"&gt;
+        &lt;titulo&gt;Programación&lt;/titulo&gt;
+        &lt;profesor email="ana.lopez@centro.es"&gt;Ana López&lt;/profesor&gt;
+        &lt;descripcion&gt;Algoritmos, estructuras de datos y POO.&lt;/descripcion&gt;
+    &lt;/modulo&gt;
+    &lt;modulo codigo="INT" horas="140" curso="DAM2" turno="Tarde"&gt;
+        &lt;titulo&gt;Interfaces&lt;/titulo&gt;
+        &lt;profesor email="luis.romero@centro.es"&gt;Luis Romero&lt;/profesor&gt;
+        &lt;requisitos&gt;
+            &lt;elemento&gt;Programación&lt;/elemento&gt;
+            &lt;elemento&gt;Diseño UX&lt;/elemento&gt;
+        &lt;/requisitos&gt;
+    &lt;/modulo&gt;
+&lt;/catalogo&gt;</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Crea un XML similar para un calendario de evaluaciones. Incluye atributos como <code>fecha</code>, <code>duracion</code> y <code>tipo</code> (ordinaria, recuperación) y valida que cada elemento tenga un único identificador.</p>
+                    </div>
+                </div>
+            </section>
+
             <section id="estructura">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-sitemap icon-header"></i> Estructura Básica</h2>
@@ -162,6 +255,84 @@
                             <h4>XSD (XML Schema Definition)</h4>
                             <p>Una alternativa más potente y flexible a DTD. Soporta tipos de datos, restricciones y espacios de nombres.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="validacion-ejemplo">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-file-shield icon-header"></i> Ejemplo práctico de DTD y XSD</h2>
+                    <p>Define las reglas de tus documentos con un DTD o un XSD y valida desde la terminal o tu IDE.</p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>catalogo.dtd</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-xml">&lt;!ELEMENT catalogo (modulo+)&gt;
+&lt;!ATTLIST catalogo cursos CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT modulo (titulo, profesor, descripcion?)&gt;
+&lt;!ATTLIST modulo codigo CDATA #REQUIRED
+                  horas CDATA #REQUIRED
+                  curso CDATA #IMPLIED&gt;
+
+&lt;!ELEMENT titulo (#PCDATA)&gt;
+&lt;!ELEMENT profesor (#PCDATA)&gt;
+&lt;!ATTLIST profesor email CDATA #IMPLIED&gt;
+&lt;!ELEMENT descripcion (#PCDATA)&gt;</code></pre>
+                    </div>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>catalogo.xsd</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-xml">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"&gt;
+    &lt;xs:element name="catalogo"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="modulo" maxOccurs="unbounded"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute name="cursos" type="xs:string" use="required"/&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+
+    &lt;xs:element name="modulo"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="titulo" type="xs:string"/&gt;
+                &lt;xs:element name="profesor" type="xs:string"/&gt;
+                &lt;xs:element name="descripcion" type="xs:string" minOccurs="0"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute name="codigo" type="xs:string" use="required"/&gt;
+            &lt;xs:attribute name="horas" type="xs:positiveInteger" use="required"/&gt;
+            &lt;xs:attribute name="curso" type="xs:string"/&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</code></pre>
+                    </div>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Validar desde consola</span>
+                            <button class="copy-btn" title="Copiar comando"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-bash"># Validar con DTD usando xmllint
+xmllint --noout --dtdvalid catalogo.dtd catalogo.xml
+
+# Validar con XSD
+xmlstarlet val --err --xsd catalogo.xsd catalogo.xml</code></pre>
+                    </div>
+
+                    <p>Incluye la referencia al esquema dentro del XML para automatizar la validación:</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-xml">&lt;catalogo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="catalogo.xsd" cursos="DAM"&gt;
+    ...
+&lt;/catalogo&gt;</code></pre>
                     </div>
                 </div>
             </section>
@@ -351,6 +522,60 @@ print(f"Curso: {nombre} ({horas}h)")</code></pre>
                 </div>
             </section>
 
+            <section id="apis-xml">
+                <div class="tutorial-card">
+                    <h2><i class="fa-solid fa-cloud-arrow-down icon-header"></i> XML en APIs y servicios</h2>
+                    <p>Algunas APIs REST o SOAP todavía consumen y responden en XML. Saber construir peticiones bien formadas es clave para integraciones empresariales.</p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Petición HTTP</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-http">POST /api/matriculas HTTP/1.1
+Host: api.centro.es
+Content-Type: application/xml
+Accept: application/xml
+
+&lt;matricula&gt;
+    &lt;alumno id="A-102"&gt;
+        &lt;nombre&gt;Sara Martín&lt;/nombre&gt;
+        &lt;curso&gt;DAM2&lt;/curso&gt;
+    &lt;/alumno&gt;
+    &lt;modulo codigo="PRO"/&gt;
+    &lt;modulo codigo="INT"/&gt;
+&lt;/matricula&gt;</code></pre>
+                    </div>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Consumir desde JavaScript</span>
+                            <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <pre><code class="language-javascript">const cuerpo = `&lt;matricula&gt;...&lt;/matricula&gt;`;
+
+const respuesta = await fetch('https://api.centro.es/api/matriculas', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/xml',
+        'Accept': 'application/xml'
+    },
+    body: cuerpo
+});
+
+const texto = await respuesta.text();
+const xml = new DOMParser().parseFromString(texto, 'application/xml');
+const estado = xml.querySelector('estado').textContent;
+console.log(`Estado de la matrícula: ${estado}`);</code></pre>
+                    </div>
+
+                    <div class="practice-exercise">
+                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
+                        <p>Diseña una petición XML para registrar incidencias en un ERP ficticio. Añade cabeceras de autenticación y procesa la respuesta en JSON para comparar qué formato resulta más cómodo en tu proyecto.</p>
+                    </div>
+                </div>
+            </section>
+
             <section id="xml-integracion-web">
                 <div class="tutorial-card">
                     <h2><i class="fa-solid fa-layer-group icon-header"></i> XML al servicio de HTML, CSS y JavaScript</h2>
@@ -478,9 +703,12 @@ fetch('datos/modulos.xml')
             </button>
         <h4>EN ESTA PÁGINA</h4>
         <ul>
+            <li><a href="#proposito-xml">¿Para qué sirve XML?</a></li>
+            <li><a href="#primer-xml">Tu primer XML</a></li>
             <li><a href="#estructura">Estructura Básica</a></li>
             <li><a href="#sintaxis">Sintaxis y Reglas</a></li>
             <li><a href="#validacion">Validación: DTD y XSD</a></li>
+            <li><a href="#validacion-ejemplo">Ejemplo de validación</a></li>
             <li><a href="#xpath">XPath</a></li>
             <li><a href="#xslt">XSLT</a></li>
             <li><a href="#namespaces">Namespaces</a></li>
@@ -488,6 +716,7 @@ fetch('datos/modulos.xml')
             <li><a href="#xml-json">XML vs JSON</a></li>
             <li><a href="#herramientas">Herramientas</a></li>
             <li><a href="#integracion">Integración Java/Python</a></li>
+            <li><a href="#apis-xml">XML en APIs</a></li>
             <li><a href="#xml-integracion-web">Integración Web</a></li>
             <li><a href="#proyecto-xml">Proyecto Integrador</a></li>
             <li><a href="#recursos-xml">Recursos</a></li>
