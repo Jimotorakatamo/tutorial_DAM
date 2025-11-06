@@ -47,12 +47,84 @@
                 <span class="meta-version" data-version></span>
                 <span class="meta-updated">
                     <i class="fa-regular fa-calendar"></i>
-                    Actualizado el 4 de noviembre de 2025
+                    Actualizado el 6 de noviembre de 2025
                 </span>
             </div>
         </header>
 
         <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v2.0.0</span>
+                    <span class="release-date">6 · noviembre · 2025</span>
+                    <span class="release-focus">🎉 Reorganización completa y versión móvil renovada</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-folder-tree"></i> Estructura del Proyecto</h3>
+                    <ul>
+                        <li>Reorganización completa en dos carpetas principales: <code>desktop/</code> y <code>mobile/</code></li>
+                        <li>Todos los archivos de escritorio movidos a <code>desktop/</code> (CSS, JS, assets, HTML)</li>
+                        <li>Versión móvil completa en carpeta <code>mobile/</code> con estructura optimizada</li>
+                        <li>Actualizados todos los enlaces de navegación entre versiones</li>
+                        <li>README.md actualizado con documentación de la nueva estructura</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-mobile-screen-button"></i> Versión Móvil Renovada</h3>
+                    <ul>
+                        <li>Añadido botón flotante de changelog (naranja circular) en todas las páginas móviles</li>
+                        <li>Sistema completo de resaltado de sintaxis con 18 clases de colores para código</li>
+                        <li>Tematización completa por página con colores distintivos:
+                            <ul>
+                                <li>HTML: Azul predominante (#3b82f6)</li>
+                                <li>CSS: Morado (#8b5cf6)</li>
+                                <li>JavaScript: Amarillo (#facc15)</li>
+                                <li>XML: Rojo (#ef4444)</li>
+                                <li>Java: Naranja (#f97316)</li>
+                                <li>Python: Azul con amarillo (#3b82f6)</li>
+                            </ul>
+                        </li>
+                        <li>Barras de navegación temáticas con gradientes personalizados por página</li>
+                        <li>Info-cards con estilos distintivos (note, tip, important)</li>
+                        <li>Tag-lists con iconos temáticos por tecnología</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-book-open"></i> Contenido Expandido</h3>
+                    <ul>
+                        <li>XML: Expandido de 355 a 867 líneas (17 secciones completas: validación, XPath, XSLT, namespaces)</li>
+                        <li>Java: 1364 líneas con secciones avanzadas (streams, lambdas, Spring Boot, JPA, Maven/Gradle)</li>
+                        <li>Python: 1274 líneas (async/await, FastAPI, testing con pytest, decoradores, context managers)</li>
+                        <li>Changelog móvil: 509 líneas con historial completo de versiones</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-paintbrush"></i> Mejoras Visuales</h3>
+                    <ul>
+                        <li>Corregido padding-top (76px) para evitar solapamiento con barra de navegación en móvil</li>
+                        <li>Botones flotantes con animaciones y sombras mejoradas (z-index: 1002)</li>
+                        <li>Mejor diferenciación de colores entre HTML (azul), Java (naranja) y JavaScript (amarillo)</li>
+                        <li>Gradientes optimizados en barras de navegación para mejor visibilidad</li>
+                        <li>Info-cards con opacidad aumentada (0.15) para mayor contraste</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-bug"></i> Correcciones</h3>
+                    <ul>
+                        <li>Solucionado solapamiento de contenido con barra superior en todas las páginas móviles</li>
+                        <li>Corregidos errores de sintaxis HTML en página XML (atributos data-copy con IDs)</li>
+                        <li>Ajustados selectores CSS de JavaScript (data-page="javascript" en lugar de "js")</li>
+                        <li>Eliminada carpeta duplicada html-tutorial-page/ de la raíz</li>
+                        <li>Actualizados enlaces relativos después de la reorganización de carpetas</li>
+                    </ul>
+                </div>
+            </article>
+
             <article class="release-card">
                 <div class="release-meta">
                     <span class="release-badge">v1.4.0</span>
