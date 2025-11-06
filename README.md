@@ -95,8 +95,10 @@ Este proyecto está configurado para funcionar con GitHub Pages. La página prin
 
 - **Detección automática**: El `index.html` en la raíz redirige a `mobile/` o `desktop/` según el dispositivo
 - **Forzar versión**: Añade `?desktop=true` o `?mobile=true` a la URL para forzar una versión específica
-- **Sin Jekyll**: El archivo `.nojekyll` evita el procesamiento de Jekyll, manteniendo las rutas originales
+- **Sin Jekyll**: El archivo `.nojekyll` desactiva Jekyll completamente, sirviendo el `index.html` directamente
 - **Rutas relativas**: Todos los enlaces usan rutas relativas para funcionar tanto localmente como en GitHub Pages
+
+**Importante**: Asegúrate de que el archivo `.nojekyll` existe en la raíz del repositorio. Esto garantiza que GitHub Pages sirva el `index.html` en lugar del README.md.
 
 ### Acceso directo a versiones
 
