@@ -1,0 +1,31 @@
+# Configuración de GitHub Pages para tutorial_DAM
+
+# Nombre del sitio
+title: Tutorial DAM
+description: Tutoriales interactivos de HTML, CSS, JavaScript, XML, Java y Python
+
+# URL base del sitio (ajústalo según tu repositorio)
+# Si tu repo es username.github.io/tutorial_DAM, usa: /tutorial_DAM
+# Si es un dominio personalizado, ajústalo según corresponda
+baseurl: ""
+
+# Configuración de archivos a incluir/excluir
+include:
+  - desktop
+  - mobile
+  - README.md
+  - CHANGELOG.md
+  - VERSION
+
+# Excluir archivos innecesarios
+exclude:
+  - .git
+  - .gitignore
+  - node_modules
+  - "*.log"
+
+# Configuración de Jekyll
+plugins: []
+
+# Sin procesamiento de Jekyll para archivos HTML/CSS/JS
+markdown: kramdown

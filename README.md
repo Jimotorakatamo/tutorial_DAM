@@ -74,6 +74,35 @@ html-tutorial-page/
 - Verifica el contraste de texto con herramientas como [Accessible Palette](https://accessiblepalette.com/).
 - Añade enlaces externos con `rel="noopener"` cuando abran en nueva pestaña.
 
+## GitHub Pages
+
+### 🚀 Configuración
+
+Este proyecto está configurado para funcionar con GitHub Pages. La página principal (`index.html` en la raíz) detecta automáticamente si el usuario está en un dispositivo móvil o desktop y lo redirige a la versión apropiada.
+
+**URL de ejemplo**: `https://tu-usuario.github.io/tutorial_DAM/`
+
+### Activar GitHub Pages
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en **Settings** (Configuración)
+3. En el menú lateral, selecciona **Pages**
+4. En **Source**, selecciona la rama `main` y carpeta `/ (root)`
+5. Haz clic en **Save**
+6. GitHub generará una URL pública (puede tardar 1-2 minutos)
+
+### Características de la configuración
+
+- **Detección automática**: El `index.html` en la raíz redirige a `mobile/` o `desktop/` según el dispositivo
+- **Forzar versión**: Añade `?desktop=true` o `?mobile=true` a la URL para forzar una versión específica
+- **Sin Jekyll**: El archivo `.nojekyll` evita el procesamiento de Jekyll, manteniendo las rutas originales
+- **Rutas relativas**: Todos los enlaces usan rutas relativas para funcionar tanto localmente como en GitHub Pages
+
+### Acceso directo a versiones
+
+- **Versión Desktop**: `https://tu-usuario.github.io/tutorial_DAM/desktop/`
+- **Versión Móvil**: `https://tu-usuario.github.io/tutorial_DAM/mobile/`
+
 ## Contribuir
 Las contribuciones son bienvenidas. Antes de abrir un PR:
 1. Crea una rama descriptiva desde `main`.
@@ -86,6 +115,7 @@ Las contribuciones son bienvenidas. Antes de abrir un PR:
 - [ ] Documentación actualizada (`README.md`, notas específicas del tutorial).
 - [ ] Pruebas manuales en modo claro y oscuro.
 - [ ] Verificación de enlaces externos y accesibilidad de teclado.
+- [ ] Prueba local y en GitHub Pages si afecta rutas o navegación.
 
 ## Licencia
 MIT License. Consulta el archivo `LICENSE` para más detalles.
