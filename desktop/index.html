@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutoriales de Desarrollo de Aplicaciones Multiplataforma</title>
+    
+    <!-- DETECCIÓN MÓVIL -->
+    <script src="js/mobile-detect.js"></script>
+    
     <!-- SCRIPT ANTI-PARPADEO -->
     <script>
         (function() {
@@ -72,12 +76,16 @@
                 <span class="version-number" data-version aria-live="polite"></span>
                 <a class="changelog-link" href="changelog.html" target="_blank" rel="noopener">Ver changelog</a>
             </div>
+            <a href="../mobile/index.html" class="mobile-version-link">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                Ver versión móvil
+            </a>
         </footer>
     </div>
 
     <div class="theme-switcher-corner" role="group" aria-label="Selector de tema">
         <i class="fa-solid fa-sun" aria-hidden="true"></i>
-        <label class="switch">
+        <label class="switch"> 
             <span class="sr-only">Cambiar entre tema claro y oscuro</span>
             <input type="checkbox" id="theme-toggle" aria-label="Cambiar tema">
             <span class="slider round" aria-hidden="true"></span>

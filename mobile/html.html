@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HTML - Tutorial DAM Móvil</title>
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="css/mobile-style.css">
+    <link rel="stylesheet" href="css/tutorial-mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="tutorial-mobile-body" data-page="html">
+
+    <!-- Navigation Bar -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1>Tutorial HTML</h1>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="mobile-side-menu" id="mobile-side-menu">
+        <div class="mobile-menu-header">
+            <h3>Contenido</h3>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="#intro">Introducción</a></li>
+            <li><a href="#proposito">¿Para qué sirve?</a></li>
+            <li><a href="#estructura">Estructura Básica</a></li>
+            <li><a href="#etiquetas">Etiquetas Esenciales</a></li>
+            <li><a href="#semantica">HTML Semántico</a></li>
+            <li><a href="#formularios">Formularios</a></li>
+            <li><a href="#texto-avanzado">Texto Avanzado</a></li>
+            <li><a href="#listas-enlaces">Listas y Enlaces</a></li>
+            <li><a href="#multimedia">Multimedia</a></li>
+            <li><a href="#tablas">Tablas</a></li>
+            <li><a href="#metatags">Metaetiquetas</a></li>
+            <li><a href="#atributos">Atributos Avanzados</a></li>
+            <li><a href="#graficos">Gráficos</a></li>
+            <li><a href="#apis">APIs HTML5</a></li>
+            <li><a href="#accesibilidad">Accesibilidad</a></li>
+            <li><a href="#componentes">Componentes</a></li>
+            <li><a href="#proyecto">Proyecto Final</a></li>
+            <li><a href="#validacion">Validación</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#integracion">Integración Web</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+    <!-- Content -->
+    <main class="tutorial-mobile-content">
+        
+        <!-- Introducción -->
+        <section id="intro" class="tutorial-section">
+            <h2><i class="fa-brands fa-html5"></i> Aprende HTML Moderno</h2>
+            <p>HTML es el lenguaje fundamental de la web. Con él podrás crear la estructura básica de cualquier página web. En este tutorial, aprenderás desde los conceptos básicos hasta las características más modernas de HTML5.</p>
+            
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-cubes"></i>
+                    <h4>Estructurado</h4>
+                    <p>Organiza el contenido de forma lógica</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-universal-access"></i>
+                    <h4>Accesible</h4>
+                    <p>Compatible con lectores de pantalla</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <h4>Responsivo</h4>
+                    <p>Se adapta a todos los dispositivos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿Para qué sirve HTML? -->
+        <section id="proposito" class="tutorial-section">
+            <h2><i class="fa-solid fa-bullseye"></i> ¿Para qué sirve HTML?</h2>
+            <p>HTML define la estructura y el significado del contenido web. Con él describes encabezados, párrafos, formularios, tablas y cualquier bloque que después podrás enriquecer con CSS y JavaScript.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-building"></i>
+                    <h4>Web corporativa</h4>
+                    <p>Landing pages, portfolios y sitios institucionales</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h4>Catálogos online</h4>
+                    <p>Estructura fichas de producto y formularios de compra</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h4>Documentación</h4>
+                    <p>Guías técnicas y recursos educativos accesibles</p>
+                </div>
+            </div>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-lightbulb"></i>
+                <p><strong>Paso a paso:</strong> Define el objetivo, traza el esqueleto con header/main/footer, añade semántica con article/section y revisa la accesibilidad.</p>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="ejemplo-proposito"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="ejemplo-proposito">&lt;main&gt;
+    &lt;section class="hero" role="banner"&gt;
+        &lt;h1&gt;Academia DAM&lt;/h1&gt;
+        &lt;p&gt;Formación práctica en desarrollo multiplataforma.&lt;/p&gt;
+        &lt;a class="cta" href="#cursos"&gt;Ver cursos&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;section id="cursos"&gt;
+        &lt;h2&gt;Oferta formativa&lt;/h2&gt;
+        &lt;article class="card"&gt;
+            &lt;h3&gt;Programación&lt;/h3&gt;
+            &lt;p&gt;Algoritmos, POO y patrones.&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Estructura Básica -->
+        <section id="estructura" class="tutorial-section">
+            <h2><i class="fa-solid fa-sitemap"></i> Estructura Básica</h2>
+            <p>Todo documento HTML tiene una estructura fundamental que define su organización. Aquí tienes un ejemplo de la estructura básica:</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-file-code"></i>
+                    <h4>DOCTYPE</h4>
+                    <p>Define el tipo de documento</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-globe"></i>
+                    <h4>HTML</h4>
+                    <p>Elemento raíz del documento</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>HEAD</h4>
+                    <p>Metadatos y recursos</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h4>BODY</h4>
+                    <p>Contenido visible</p>
+                </div>
+            </div>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="estructura-basica"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="estructura-basica">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mi Primera Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hola, Mundo&lt;/h1&gt;
+    &lt;p&gt;Este es mi primer documento HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Crea tu propio archivo <code>ejercicio.html</code> y replica la estructura básica. Cambia el título y el contenido del párrafo por algo personal.</p>
+            </div>
+        </section>
+
+        <!-- Etiquetas Esenciales -->
+        <section id="etiquetas" class="tutorial-section">
+            <h2><i class="fa-solid fa-tags"></i> Etiquetas Esenciales</h2>
+            <p>Las etiquetas HTML son los bloques básicos de construcción de una página web. Aquí tienes las más importantes:</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-heading"></i>
+                    <h4>Encabezados</h4>
+                    <p>h1 hasta h6</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-paragraph"></i>
+                    <h4>Párrafos</h4>
+                    <p>Texto y contenido</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-image"></i>
+                    <h4>Imágenes</h4>
+                    <p>Contenido visual</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-link"></i>
+                    <h4>Enlaces</h4>
+                    <p>Navegación</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="etiquetas-comunes"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="etiquetas-comunes">&lt;!-- Encabezados --&gt;
+&lt;h1&gt;Título Principal&lt;/h1&gt;
+&lt;h2&gt;Subtítulo&lt;/h2&gt;
+
+&lt;!-- Párrafos y texto --&gt;
+&lt;p&gt;Este es un párrafo con &lt;strong&gt;texto importante&lt;/strong&gt; 
+y &lt;em&gt;énfasis&lt;/em&gt;.&lt;/p&gt;
+
+&lt;!-- Enlaces --&gt;
+&lt;a href="https://ejemplo.com"&gt;Visita mi sitio web&lt;/a&gt;
+
+&lt;!-- Imágenes --&gt;
+&lt;img src="imagen.jpg" alt="Descripción de la imagen"&gt;
+
+&lt;!-- Listas --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Elemento de lista no ordenada&lt;/li&gt;
+    &lt;li&gt;Otro elemento&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- HTML Semántico -->
+        <section id="semantica" class="tutorial-section">
+            <h2><i class="fa-solid fa-code-branch"></i> HTML Semántico</h2>
+            <p>El HTML semántico da significado a la estructura de tu página, mejorando la accesibilidad y el SEO.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-bars"></i>
+                    <h4>Nav</h4>
+                    <p>Menú de navegación</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <h4>Article</h4>
+                    <p>Contenido independiente</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-section"></i>
+                    <h4>Section</h4>
+                    <p>Secciones temáticas</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                    <h4>Footer</h4>
+                    <p>Pie de página</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="html-semantico"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="html-semantico">&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#servicios"&gt;Servicios&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h1&gt;Título del Artículo&lt;/h1&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Sección 1&lt;/h2&gt;
+            &lt;p&gt;Contenido de la sección...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;
+        &lt;h3&gt;Contenido Relacionado&lt;/h3&gt;
+        &lt;p&gt;Enlaces y recursos adicionales...&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 Mi Sitio Web&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Formularios -->
+        <section id="formularios" class="tutorial-section">
+            <h2><i class="fa-solid fa-paper-plane"></i> Formularios</h2>
+            <p>Los formularios permiten la interacción con el usuario y la recolección de datos.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-input-text"></i>
+                    <h4>Inputs</h4>
+                    <p>Campos de entrada</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-check-square"></i>
+                    <h4>Checkboxes</h4>
+                    <p>Opciones múltiples</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-circle-dot"></i>
+                    <h4>Radio</h4>
+                    <p>Opción única</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-rectangle-list"></i>
+                    <h4>Select</h4>
+                    <p>Listas desplegables</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="formularios-html"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="formularios-html">&lt;form action="/enviar" method="post"&gt;
+    &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+    &lt;input type="text" id="nombre" name="nombre_usuario"&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Crea un formulario de contacto simple que pida el email del usuario y un área de texto para el mensaje. No olvides el botón de envío.</p>
+            </div>
+        </section>
+
+        <!-- Formato de Texto Avanzado -->
+        <section id="texto-avanzado" class="tutorial-section">
+            <h2><i class="fa-solid fa-font"></i> Formato de Texto Avanzado</h2>
+            <p>HTML ofrece una gran variedad de etiquetas para dar formato específico al texto, más allá de la negrita y la cursiva.</p>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="texto-avanzado"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="texto-avanzado">&lt;p&gt;Esto es &lt;strong&gt;importante&lt;/strong&gt; 
+y esto es &lt;em&gt;enfatizado&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O y 2&lt;sup&gt;3&lt;/sup&gt; = 8&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;Texto resaltado&lt;/mark&gt; para destacar.&lt;/p&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Añade un nuevo párrafo que contenga al menos una palabra en negrita, otra en cursiva, y una fórmula química usando sub o sup.</p>
+            </div>
+        </section>
+
+        <!-- Listas y Enlaces -->
+        <section id="listas-enlaces" class="tutorial-section">
+            <h2><i class="fa-solid fa-list-alt"></i> Listas y Enlaces</h2>
+            <p>Las listas y enlaces son fundamentales para la navegación y organización del contenido.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-list"></i>
+                    <h4>Listas</h4>
+                    <p>Ordenadas y no ordenadas</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-link"></i>
+                    <h4>Enlaces</h4>
+                    <p>Navegación entre páginas</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="listas-enlaces"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="listas-enlaces">&lt;!-- Lista no ordenada --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Elemento 1&lt;/li&gt;
+    &lt;li&gt;Elemento 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Enlace a un sitio externo --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;
+Ir a Google
+&lt;/a&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Añade una lista ordenada con tus 3 comidas favoritas. Después, crea un enlace que lleve a Wikipedia.</p>
+            </div>
+        </section>
+
+        <!-- Multimedia -->
+        <section id="multimedia" class="tutorial-section">
+            <h2><i class="fa-solid fa-photo-film"></i> Multimedia en HTML</h2>
+            <p>HTML5 facilitó enormemente la inserción de contenido multimedia sin necesidad de plugins externos.</p>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="multimedia"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="multimedia">&lt;!-- Imagen con texto alternativo --&gt;
+&lt;img src="https://via.placeholder.com/150" 
+     alt="Imagen de ejemplo"&gt;
+
+&lt;!-- Audio con controles --&gt;
+&lt;audio controls src="audio.mp3"&gt;
+Tu navegador no soporta audio.
+&lt;/audio&gt;
+
+&lt;!-- Video con controles --&gt;
+&lt;video controls width="300" src="video.mp4"&gt;
+Tu navegador no soporta video.
+&lt;/video&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Busca una imagen que te guste en internet y añádela a tu página con la etiqueta img. Asegúrate de ponerle un texto alternativo descriptivo.</p>
+            </div>
+        </section>
+
+        <!-- Tablas -->
+        <section id="tablas" class="tutorial-section">
+            <h2><i class="fa-solid fa-table"></i> Tablas</h2>
+            <p>Las tablas se usan para mostrar datos tabulares de forma organizada. Es importante usar su estructura semántica.</p>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="tablas"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="tablas">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Nombre&lt;/th&gt;
+            &lt;th&gt;Edad&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Ana&lt;/td&gt;
+            &lt;td&gt;28&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Luis&lt;/td&gt;
+            &lt;td&gt;32&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Crea una tabla sencilla con dos columnas: "Producto" y "Precio". Añade dos filas con datos de ejemplo.</p>
+            </div>
+        </section>
+
+        <!-- Metaetiquetas y SEO -->
+        <section id="metatags" class="tutorial-section">
+            <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Metaetiquetas y SEO</h2>
+            <p>Las metaetiquetas en el head proporcionan información crucial para los navegadores y los motores de búsqueda.</p>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="metatags"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="metatags">&lt;head&gt;
+    &lt;!-- Título (muy importante para SEO) --&gt;
+    &lt;title&gt;Título Descriptivo de la Página&lt;/title&gt;
+
+    &lt;!-- Descripción para buscadores --&gt;
+    &lt;meta name="description" 
+          content="Una descripción concisa de tu página."&gt;
+
+    &lt;!-- Open Graph para redes sociales --&gt;
+    &lt;meta property="og:title" 
+          content="Título para Redes Sociales"&gt;
+    &lt;meta property="og:description" 
+          content="Descripción al compartir."&gt;
+    &lt;meta property="og:image" 
+          content="https://ejemplo.com/imagen.jpg"&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Atributos Avanzados -->
+        <section id="atributos" class="tutorial-section">
+            <h2><i class="fa-solid fa-cogs"></i> Atributos Avanzados</h2>
+            <p>Además de los atributos comunes, HTML ofrece otros para funcionalidades más específicas.</p>
+
+            <h3>Atributos data-*</h3>
+            <p>Permiten almacenar información extra y personalizada en cualquier elemento HTML, que luego puede ser fácilmente accedida con JavaScript.</p>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="atributos"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="atributos">&lt;div id="usuario" data-id="12345" data-role="admin"&gt;
+    John Doe
+&lt;/div&gt;
+
+&lt;script&gt;
+const usuarioDiv = document.getElementById('usuario');
+console.log(usuarioDiv.dataset.id); // "12345"
+console.log(usuarioDiv.dataset.role); // "admin"
+&lt;/script&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Gráficos en la Web -->
+        <section id="graficos" class="tutorial-section">
+            <h2><i class="fa-solid fa-palette"></i> Gráficos en la Web</h2>
+            <p>HTML5 introdujo dos potentes formas de crear gráficos directamente en el navegador.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                    <h4>Canvas</h4>
+                    <p>Un lienzo para dibujar gráficos 2D y 3D dinámicamente con JavaScript</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-vector-square"></i>
+                    <h4>SVG</h4>
+                    <p>Gráficos vectoriales escalables sin perder calidad</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="graficos"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="graficos">&lt;!-- Un círculo simple con SVG --&gt;
+&lt;svg width="100" height="100"&gt;
+   &lt;circle cx="50" cy="50" r="40" 
+           stroke="black" stroke-width="3" fill="red" /&gt;
+&lt;/svg&gt;
+
+&lt;!-- Un lienzo para dibujar con JavaScript --&gt;
+&lt;canvas id="miCanvas" width="200" height="100" 
+        style="border:1px solid #000;"&gt;&lt;/canvas&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Copia el código del círculo SVG en tu página. Intenta cambiar el color de relleno a "blue" y el radio a "20".</p>
+            </div>
+        </section>
+
+        <!-- APIs de HTML5 -->
+        <section id="apis" class="tutorial-section">
+            <h2><i class="fa-solid fa-microchip"></i> APIs de HTML5</h2>
+            <p>HTML5 no es solo etiquetas, también es un conjunto de APIs de JavaScript que dan superpoderes al navegador.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <h4>Web Storage</h4>
+                    <p>Almacena datos en el navegador con localStorage y sessionStorage</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Geolocation</h4>
+                    <p>Permite al usuario compartir su ubicación</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-person-running"></i>
+                    <h4>Web Workers</h4>
+                    <p>Ejecuta scripts en segundo plano sin congelar la UI</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="apis"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="apis">// Ejemplo de uso de Local Storage
+localStorage.setItem('nombreUsuario', 'Ana');
+const usuario = localStorage.getItem('nombreUsuario');
+console.log(usuario); // "Ana"
+
+// Ejemplo de uso de Geolocation
+navigator.geolocation.getCurrentPosition(pos => {
+    console.log(`Lat: ${pos.coords.latitude}`);
+    console.log(`Lon: ${pos.coords.longitude}`);
+});</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Abre la consola de desarrollador (F12), ve a "Consola" y pega el código de localStorage. Luego verifica en "Aplicación" que el dato persiste.</p>
+            </div>
+        </section>
+
+        <!-- Accesibilidad y ARIA -->
+        <section id="accesibilidad" class="tutorial-section">
+            <h2><i class="fa-solid fa-universal-access"></i> Accesibilidad y ARIA</h2>
+            <p>Una página HTML completa debe ser usable por el mayor número posible de personas. Las etiquetas semánticas, junto con atributos ARIA, ayudan a los lectores de pantalla.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-tty"></i>
+                    <h4>Roles y landmarks</h4>
+                    <p>Define regiones como banner, navigation o main</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <h4>Navegación por teclado</h4>
+                    <p>Gestiona el foco con tabindex y aria-live</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-ear-listen"></i>
+                    <h4>Texto alternativo</h4>
+                    <p>Describe imágenes e iconos con alt o aria-label</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="accesibilidad"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="accesibilidad">&lt;header role="banner"&gt;
+    &lt;h1&gt;Portal DAM&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav aria-label="Navegación principal"&gt;
+    &lt;button aria-expanded="false" 
+            aria-controls="menu" 
+            aria-label="Abrir menú"&gt;
+        &lt;i class="fa-solid fa-bars" aria-hidden="true"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;ul id="menu" hidden&gt;
+        &lt;li&gt;&lt;a href="#html"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#css"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;main role="main"&gt;
+    &lt;section aria-labelledby="seccion-form"&gt;
+        &lt;h2 id="seccion-form"&gt;Formulario de alta&lt;/h2&gt;
+        &lt;form&gt;
+            &lt;label for="email"&gt;Correo institucional&lt;/label&gt;
+            &lt;input id="email" type="email" 
+                   required aria-required="true"&gt;
+        &lt;/form&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Revisa cualquier formulario que hayas creado y añade etiquetas label, atributos aria-describedby y comprueba con Tab que el foco recorre los campos en orden lógico.</p>
+            </div>
+        </section>
+
+        <!-- Plantillas y Componentes -->
+        <section id="componentes" class="tutorial-section">
+            <h2><i class="fa-solid fa-layer-group"></i> Plantillas y Componentes Reutilizables</h2>
+            <p>Con HTML puedes crear bloques reutilizables usando elementos como template o personalizando etiquetas con Web Components.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-clone"></i>
+                    <h4>&lt;template&gt;</h4>
+                    <p>Define fragmentos ocultos listos para clonar desde JavaScript</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-gears"></i>
+                    <h4>Slots</h4>
+                    <p>Los Web Components permiten insertar contenido dinámico</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-file-import"></i>
+                    <h4>Includes</h4>
+                    <p>Reutiliza cabeceras mediante frameworks o motores de plantillas</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="componentes"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="componentes">&lt;template id="card-template"&gt;
+    &lt;article class="curso"&gt;
+        &lt;h3 class="curso__titulo"&gt;&lt;/h3&gt;
+        &lt;p class="curso__descripcion"&gt;&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/template&gt;
+
+&lt;section id="cursos"&gt;&lt;/section&gt;
+
+&lt;script&gt;
+const cursos = [
+    { titulo: 'Interfaces Web', 
+      descripcion: 'HTML5 y componentes web.' },
+    { titulo: 'Programación', 
+      descripcion: 'Java y patrones orientados a objetos.' }
+];
+
+const tpl = document.getElementById('card-template');
+const contenedor = document.getElementById('cursos');
+
+cursos.forEach(curso => {
+    const fragmento = tpl.content.cloneNode(true);
+    fragmento.querySelector('.curso__titulo')
+        .textContent = curso.titulo;
+    fragmento.querySelector('.curso__descripcion')
+        .textContent = curso.descripcion;
+    contenedor.appendChild(fragmento);
+});
+&lt;/script&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Crea un template para mostrar fichas de asignaturas del ciclo DAM. Añade al menos tres asignaturas y genera el listado desde JavaScript.</p>
+            </div>
+        </section>
+
+        <!-- Proyecto Integrador -->
+        <section id="proyecto" class="tutorial-section">
+            <h2><i class="fa-solid fa-diagram-project"></i> Proyecto Integrador</h2>
+            <p>Consolida lo aprendido construyendo una landing para un ciclo formativo DAM que combine estructura semántica, formularios y multimedia.</p>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-list-ol"></i>
+                <div>
+                    <p><strong>Paso a paso:</strong></p>
+                    <ol>
+                        <li>Estructura general: usa header, main, section, aside y footer</li>
+                        <li>Sección de módulos: crea una tabla o cards para listar asignaturas</li>
+                        <li>Testimonios: agrega blockquote con citas de alumnado</li>
+                        <li>Formulario de inscripción: solicita nombre, email y turno preferido</li>
+                        <li>Llamada a la acción: botón que enlace a la página del centro</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡Entrega opcional!</strong> Publica tu landing en GitHub Pages o Netlify. Comparte el enlace con tus compañeros para recibir feedback.</p>
+            </div>
+        </section>
+
+        <!-- Validación y Mejores Prácticas -->
+        <section id="validacion" class="tutorial-section">
+            <h2><i class="fa-solid fa-check-double"></i> Validación y Mejores Prácticas</h2>
+            <p>Antes de dar por finalizado un documento HTML conviene pasar por un checklist que garantice calidad y mantenimiento.</p>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-list-check"></i>
+                <div>
+                    <ul>
+                        <li>Valida el marcado en <strong>validator.w3.org</strong></li>
+                        <li>Activa Lighthouse en Chrome DevTools</li>
+                        <li>Comprueba que todos los enlaces funcionan</li>
+                        <li>Asegúrate de que los formularios incluyen estados de error</li>
+                        <li>Incluye comentarios puntuales para secciones complejas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos Recomendados -->
+        <section id="recursos" class="tutorial-section">
+            <h2><i class="fa-solid fa-book-open"></i> Recursos Recomendados</h2>
+            <p>Sigue ampliando tus conocimientos de HTML con material de referencia actualizado.</p>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-link"></i>
+                <div>
+                    <ul>
+                        <li><strong>Guía HTML de MDN</strong> - Documentación completa</li>
+                        <li><strong>Learn HTML (web.dev)</strong> - Curso interactivo</li>
+                        <li><strong>A11Y Project</strong> - Checklist de accesibilidad</li>
+                        <li><strong>Can I use</strong> - Consultar soporte de etiquetas</li>
+                        <li><strong>Validador HTML5</strong> - Validar código online</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integración con CSS, JavaScript y XML -->
+        <section id="integracion" class="tutorial-section">
+            <h2><i class="fa-solid fa-layer-group"></i> Integración Web Completa</h2>
+            <p>HTML es el esqueleto. CSS define el aspecto, JavaScript inyecta interactividad y XML transporta los datos. Juntos construyen experiencias web completas.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-code"></i>
+                    <h4>Estructura HTML</h4>
+                    <p>Organiza el contenido con secciones semánticas</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-palette"></i>
+                    <h4>Estilos CSS</h4>
+                    <p>Aplica diseño responsivo y animaciones</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h4>Lógica JavaScript</h4>
+                    <p>Consume XML/JSON y actualiza la vista</p>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-database"></i>
+                    <h4>Datos XML</h4>
+                    <p>Centraliza información en formato interoperable</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="integracion-html"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="integracion-html">&lt;!-- index.html --&gt;
+&lt;section id="modulos" class="grid-modulos"&gt;
+    &lt;article class="modulo" data-tema="interfaces"&gt;
+        &lt;h3 class="modulo__titulo"&gt;Interfaces&lt;/h3&gt;
+        &lt;ul class="modulo__lista" data-lista&gt;&lt;/ul&gt;
+    &lt;/article&gt;
+&lt;/section&gt;
+
+&lt;link rel="stylesheet" href="css/modulos.css"&gt;
+&lt;script type="module" src="js/modulos.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="integracion-js"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="integracion-js">// js/modulos.js
+const parser = new DOMParser();
+const lista = document.querySelector('[data-lista]');
+
+async function cargarModulos() {
+    const respuesta = await fetch('datos/modulos.xml');
+    const texto = await respuesta.text();
+    const xml = parser.parseFromString(texto, 'application/xml');
+    const modulos = [...xml.querySelectorAll('modulo')];
+
+    lista.innerHTML = modulos.map(modulo => `
+        &lt;li&gt;
+            &lt;span&gt;${modulo.getAttribute('nombre')}&lt;/span&gt;
+            &lt;small&gt;${modulo.querySelector('horas').textContent} h&lt;/small&gt;
+        &lt;/li&gt;
+    `).join('');
+}
+
+cargarModulos();</code></pre>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy="integracion-xml"><i class="fa-solid fa-copy"></i></button>
+                <pre><code id="integracion-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;plan formacion="DAM" curso="2025"&gt;
+    &lt;modulo nombre="Programación" ciclo="DAM1"&gt;
+        &lt;horas&gt;256&lt;/horas&gt;
+        &lt;profesor&gt;Ana López&lt;/profesor&gt;
+    &lt;/modulo&gt;
+    &lt;modulo nombre="Interfaces" ciclo="DAM2"&gt;
+        &lt;horas&gt;140&lt;/horas&gt;
+        &lt;profesor&gt;Luis Romero&lt;/profesor&gt;
+    &lt;/modulo&gt;
+&lt;/plan&gt;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <p><strong>¡A Practicar!</strong> Convierte tu proyecto integrador en un tablero inteligente: guarda los datos en XML, estílalos con CSS y permite filtrado desde JavaScript.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Theme Switcher -->
+    <div class="mobile-theme-switcher">
+        <i class="fa-solid fa-sun"></i>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <!-- Desktop Link -->
+    <a href="../desktop/html.html?desktop=true" class="desktop-link">
+        <i class="fa-solid fa-desktop"></i> Versión Desktop
+    </a>
+
+    <a href="changelog.html" class="changelog-link" title="Ver historial de cambios">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+    </a>
+
+    <script src="js/mobile-script.js"></script>
+    <script src="js/tutorial-mobile.js"></script>
+</body>
+</html>

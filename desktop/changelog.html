@@ -47,12 +47,66 @@
                 <span class="meta-version" data-version></span>
                 <span class="meta-updated">
                     <i class="fa-regular fa-calendar"></i>
-                    Actualizado el 13 de octubre de 2025
+                    Actualizado el 4 de noviembre de 2025
                 </span>
             </div>
         </header>
 
         <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v1.4.0</span>
+                    <span class="release-date">4 · noviembre · 2025</span>
+                    <span class="release-focus">Rediseño de navegación colapsable y coherencia visual</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-bars-staggered"></i> Menús colapsables renovados</h3>
+                    <ul>
+                        <li>Los menús laterales (izquierda y derecha) ahora colapsan a iconos circulares perfectamente centrados, optimizando el espacio en pantalla.</li>
+                        <li>Cuando el menú izquierdo está expandido, los elementos se alinean a la izquierda para aprovechar mejor el espacio y mantener consistencia visual.</li>
+                        <li>El menú derecho colapsado muestra solo un botón circular flotante sin recuadro visible, integrándose perfectamente con el fondo.</li>
+                        <li>Todos los botones circulares ahora tienen fondos transparentes cuando están colapsados, sin gradientes que rompan la estética.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-palette"></i> Unificación de estilos y medidas</h3>
+                    <ul>
+                        <li>Convertimos todas las medidas del menú de navegación derecha a unidades em para escalabilidad consistente.</li>
+                        <li>Estandarizamos los border-radius: paneles grandes (16px), elementos medianos (12px), botones circulares (50%/999px).</li>
+                        <li>El enlace de inicio en la sidebar expandida ahora tiene border-radius de 16px (antes 14px) para mayor armonía.</li>
+                        <li>Todos los enlaces de navegación usan 12px de redondeo (antes 8px) para mejor coherencia con el resto del diseño.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-arrows-left-right"></i> Ajustes de posicionamiento</h3>
+                    <ul>
+                        <li>El menú de navegación derecha ahora tiene más ancho (16.25em-20.25em) para mejor legibilidad de los títulos de sección.</li>
+                        <li>Los elementos del menú derecho se desplazan ligeramente hacia la izquierda para evitar que se corten en el borde de la pantalla.</li>
+                        <li>El padding izquierdo de la sidebar se redujo para que los elementos estén más cerca del borde cuando está expandida.</li>
+                        <li>Los iconos colapsados se alinean arriba (justify-content: flex-start) en lugar de centrados verticalmente.</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-mobile-screen"></i> Mejoras de responsividad</h3>
+                    <ul>
+                        <li>El sidebar ahora usa clamp() para ancho flexible (15.5em-18.5em) que se adapta mejor a diferentes tamaños de pantalla.</li>
+                        <li>Todos los márgenes y paddings del sistema de navegación ahora usan unidades relativas (em) para mejor escalabilidad.</li>
+                        <li>Los botones toggle mantienen proporciones perfectas (3.1em × 3.1em) en todos los estados y dispositivos.</li>
+                    </ul>
+                </div>
+
+                <footer class="release-footer">
+                    <a class="cta" href="index.html">
+                        <i class="fa-solid fa-compass"></i>
+                        Probar la nueva navegación
+                    </a>
+                </footer>
+            </article>
+
             <article class="release-card">
                 <div class="release-meta">
                     <span class="release-badge">v1.3.1</span>

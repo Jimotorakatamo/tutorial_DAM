@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tutorial Java - Móvil</title>
+    
+    <script>
+        (function() {
+            document.documentElement.classList.add('transition-init');
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="css/mobile-style.css">
+    <link rel="stylesheet" href="css/tutorial-mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-page="java">
+    
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1 class="mobile-nav-title">
+            <i class="fa-solid fa-mug-hot"></i>
+            Java
+        </h1>
+        <button class="mobile-menu-toggle" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+    
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <aside class="mobile-side-menu" id="mobile-side-menu">
+        <div class="mobile-menu-header">
+            <h2><i class="fa-solid fa-list"></i> Contenido</h2>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="#intro"><i class="fa-solid fa-play"></i> Introducción</a></li>
+            <li><a href="#proposito"><i class="fa-solid fa-bullseye"></i> ¿Para qué sirve?</a></li>
+            <li><a href="#basico"><i class="fa-solid fa-code"></i> Sintaxis básica</a></li>
+            <li><a href="#variables"><i class="fa-solid fa-box"></i> Variables</a></li>
+            <li><a href="#control"><i class="fa-solid fa-code-branch"></i> Control de flujo</a></li>
+            <li><a href="#oop"><i class="fa-solid fa-object-group"></i> POO</a></li>
+            <li><a href="#colecciones"><i class="fa-solid fa-list"></i> Colecciones</a></li>
+            <li><a href="#excepciones"><i class="fa-solid fa-triangle-exclamation"></i> Excepciones</a></li>
+            <li><a href="#streams"><i class="fa-solid fa-stream"></i> Streams</a></li>
+            <li><a href="#lambdas"><i class="fa-solid fa-atom"></i> Lambdas</a></li>
+            <li><a href="#maven-gradle"><i class="fa-solid fa-tools"></i> Maven/Gradle</a></li>
+            <li><a href="#spring-boot"><i class="fa-solid fa-cloud"></i> Spring Boot</a></li>
+            <li><a href="#java-moderno"><i class="fa-solid fa-fire-flame-curved"></i> Java Moderno</a></li>
+            <li><a href="#funcional-reactivo"><i class="fa-solid fa-wave-square"></i> Funcional</a></li>
+            <li><a href="#persistencia"><i class="fa-solid fa-database"></i> Persistencia</a></li>
+            <li><a href="#proyecto"><i class="fa-solid fa-cubes"></i> Proyecto</a></li>
+            <li><a href="#recursos"><i class="fa-solid fa-book-open"></i> Recursos</a></li>
+        </ul>
+    </aside>
+    
+    <main class="tutorial-mobile-content">
+        
+        <section id="intro" class="tutorial-section">
+            <h2><i class="fa-solid fa-mug-hot"></i> Aprende Java Moderno</h2>
+            
+            <p>Java es un lenguaje de programación <strong>robusto, orientado a objetos</strong> y de alto rendimiento.</p>
+            
+            <div class="info-card info-card-note">
+                <i class="fa-solid fa-info-circle"></i>
+                <div>
+                    <strong>Características clave:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li>Orientado a Objetos</li>
+                        <li>Multiplataforma (WORA)</li>
+                        <li>Seguro y robusto</li>
+                        <li>Gestión de memoria automática</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>¡Hola Mundo!</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code1">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code1">public class HolaMundo {
+    public static void main(String[] args) {
+        System.out.println("¡Hola, Mundo!");
+    }
+}</code></pre>
+            </div>
+        </section>
+        
+        <section id="proposito" class="tutorial-section">
+            <h2><i class="fa-solid fa-bullseye"></i> ¿Para qué sirve Java?</h2>
+            
+            <p>Java impulsa aplicaciones empresariales, servicios backend y Android nativo.</p>
+            
+            <div class="tag-list">
+                <div class="tag-item">
+                    <span class="tag-name">Backends escalables</span>
+                    <p>APIs REST, microservicios con Spring Boot</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Android & IoT</span>
+                    <p>Apps móviles y dispositivos conectados</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Integración empresarial</span>
+                    <p>ETL, mensajería JMS, bases de datos</p>
+                </div>
+            </div>
+            
+            <h4>Ejemplo Spring Boot</h4>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code2">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code2">@RestController
+@RequestMapping("/api/cursos")
+public class CursoController {
+    
+    private final CursoService servicio;
+    
+    public CursoController(CursoService servicio) {
+        this.servicio = servicio;
+    }
+    
+    @GetMapping
+    public List&lt;Curso&gt; listar(
+        @RequestParam Optional&lt;String&gt; modalidad
+    ) {
+        return servicio.buscar(
+            modalidad.orElse("todas")
+        );
+    }
+}
+
+public record Curso(
+    String nombre, 
+    int horas, 
+    String modalidad
+) {}</code></pre>
+            </div>
+        </section>
+        
+        <section id="basico" class="tutorial-section">
+            <h2><i class="fa-solid fa-code"></i> Sintaxis Básica</h2>
+            
+            <h3>Estructura de un programa</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code3">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code3">// Importar paquetes
+import java.util.Scanner;
+
+// Clase principal
+public class MiPrograma {
+    
+    // Método main (punto de entrada)
+    public static void main(String[] args) {
+        // Tu código aquí
+        System.out.println("Programa iniciado");
+    }
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-important">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Importante:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li>El nombre del archivo debe coincidir con el nombre de la clase pública</li>
+                        <li>Java es sensible a mayúsculas/minúsculas</li>
+                        <li>Cada sentencia termina con <code>;</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="variables" class="tutorial-section">
+            <h2><i class="fa-solid fa-box"></i> Variables y Tipos de Datos</h2>
+            
+            <h3>Tipos primitivos</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code4">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code4">// Enteros
+byte edad = 25;          // 8 bits
+short año = 2025;        // 16 bits
+int poblacion = 1000000; // 32 bits
+long distancia = 9223372036854775807L; // 64 bits
+
+// Decimales
+float precio = 19.99f;   // 32 bits
+double pi = 3.14159265359; // 64 bits
+
+// Carácter y booleano
+char letra = 'A';
+boolean activo = true;</code></pre>
+            </div>
+            
+            <h3>Strings</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code5">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code5">String nombre = "Juan";
+String apellido = "García";
+
+// Concatenación
+String nombreCompleto = nombre + " " + apellido;
+
+// Métodos útiles
+nombre.length();          // 4
+nombre.toUpperCase();     // "JUAN"
+nombre.toLowerCase();     // "juan"
+nombre.charAt(0);         // 'J'
+nombre.substring(0, 2);   // "Ju"
+nombre.contains("ua");    // true
+nombre.equals("Juan");    // true</code></pre>
+            </div>
+            
+            <h3>Constantes</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code6">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code6">final double PI = 3.14159;
+final int MAX_INTENTOS = 3;
+
+// No se puede modificar
+// PI = 3.14; // ERROR</code></pre>
+            </div>
+        </section>
+        
+        <section id="control" class="tutorial-section">
+            <h2><i class="fa-solid fa-code-branch"></i> Control de Flujo</h2>
+            
+            <h3>if-else</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code7">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code7">int edad = 18;
+
+if (edad >= 18) {
+    System.out.println("Mayor de edad");
+} else if (edad >= 13) {
+    System.out.println("Adolescente");
+} else {
+    System.out.println("Menor de edad");
+}</code></pre>
+            </div>
+            
+            <h3>switch</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code8">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code8">String dia = "Lunes";
+
+switch (dia) {
+    case "Lunes":
+        System.out.println("Inicio de semana");
+        break;
+    case "Viernes":
+        System.out.println("¡Por fin viernes!");
+        break;
+    case "Sábado":
+    case "Domingo":
+        System.out.println("Fin de semana");
+        break;
+    default:
+        System.out.println("Día normal");
+}
+
+// Switch moderno (Java 14+)
+String mensaje = switch (dia) {
+    case "Lunes" -> "Inicio de semana";
+    case "Viernes" -> "¡Por fin viernes!";
+    case "Sábado", "Domingo" -> "Fin de semana";
+    default -> "Día normal";
+};</code></pre>
+            </div>
+            
+            <h3>Bucles</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code9">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code9">// for
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}
+
+// for-each
+int[] numeros = {1, 2, 3, 4, 5};
+for (int num : numeros) {
+    System.out.println(num);
+}
+
+// while
+int contador = 0;
+while (contador < 3) {
+    System.out.println(contador);
+    contador++;
+}
+
+// do-while
+int num = 0;
+do {
+    System.out.println(num);
+    num++;
+} while (num < 3);</code></pre>
+            </div>
+        </section>
+        
+        <section id="oop" class="tutorial-section">
+            <h2><i class="fa-solid fa-object-group"></i> Programación Orientada a Objetos</h2>
+            
+            <h3>Clases y Objetos</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code10">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code10">public class Persona {
+    // Atributos
+    private String nombre;
+    private int edad;
+    
+    // Constructor
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    
+    // Getters y Setters
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    // Método
+    public void saludar() {
+        System.out.println("Hola, soy " + nombre);
+    }
+}
+
+// Uso
+Persona persona = new Persona("Ana", 25);
+persona.saludar(); // "Hola, soy Ana"</code></pre>
+            </div>
+            
+            <h3>Herencia</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code11">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code11">public class Estudiante extends Persona {
+    private String curso;
+    
+    public Estudiante(String nombre, 
+                      int edad, 
+                      String curso) {
+        super(nombre, edad); // Llama al constructor padre
+        this.curso = curso;
+    }
+    
+    @Override
+    public void saludar() {
+        System.out.println("Hola, soy " + getNombre() 
+                         + " y estudio " + curso);
+    }
+}
+
+// Uso
+Estudiante est = new Estudiante("Luis", 20, "DAM");
+est.saludar(); 
+// "Hola, soy Luis y estudio DAM"</code></pre>
+            </div>
+            
+            <h3>Interfaces</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code12">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code12">public interface Volador {
+    void volar();
+    void aterrizar();
+}
+
+public class Avion implements Volador {
+    @Override
+    public void volar() {
+        System.out.println("El avión vuela");
+    }
+    
+    @Override
+    public void aterrizar() {
+        System.out.println("El avión aterriza");
+    }
+}</code></pre>
+            </div>
+            
+            <h3>Records (Java 16+)</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code13">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code13">// Forma tradicional
+public class Punto {
+    private final int x;
+    private final int y;
+    
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    public int getX() { return x; }
+    public int getY() { return y; }
+    // + equals, hashCode, toString...
+}
+
+// Con Records (más simple)
+public record Punto(int x, int y) {}
+
+// Uso
+Punto p = new Punto(10, 20);
+System.out.println(p.x()); // 10
+System.out.println(p);     // Punto[x=10, y=20]</code></pre>
+            </div>
+        </section>
+        
+        <section id="colecciones" class="tutorial-section">
+            <h2><i class="fa-solid fa-list"></i> Colecciones</h2>
+            
+            <h3>ArrayList</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code14">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code14">import java.util.ArrayList;
+import java.util.List;
+
+List&lt;String&gt; frutas = new ArrayList&lt;&gt;();
+
+// Añadir
+frutas.add("Manzana");
+frutas.add("Banana");
+frutas.add("Naranja");
+
+// Obtener
+String primera = frutas.get(0); // "Manzana"
+
+// Tamaño
+int cantidad = frutas.size(); // 3
+
+// Eliminar
+frutas.remove(1); // Elimina "Banana"
+frutas.remove("Naranja"); // Elimina "Naranja"
+
+// Recorrer
+for (String fruta : frutas) {
+    System.out.println(fruta);
+}</code></pre>
+            </div>
+            
+            <h3>HashMap</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code15">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code15">import java.util.HashMap;
+import java.util.Map;
+
+Map&lt;String, Integer&gt; edades = new HashMap&lt;&gt;();
+
+// Añadir
+edades.put("Ana", 25);
+edades.put("Luis", 30);
+edades.put("María", 28);
+
+// Obtener
+int edadAna = edades.get("Ana"); // 25
+
+// Verificar existencia
+boolean existe = edades.containsKey("Luis"); // true
+
+// Recorrer
+for (Map.Entry&lt;String, Integer&gt; entry : edades.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}</code></pre>
+            </div>
+            
+            <h3>Streams (Java 8+)</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code16">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code16">import java.util.List;
+import java.util.stream.Collectors;
+
+List&lt;Integer&gt; numeros = List.of(1, 2, 3, 4, 5, 6);
+
+// Filtrar pares
+List&lt;Integer&gt; pares = numeros.stream()
+    .filter(n -> n % 2 == 0)
+    .collect(Collectors.toList());
+// [2, 4, 6]
+
+// Mapear (duplicar cada número)
+List&lt;Integer&gt; dobles = numeros.stream()
+    .map(n -> n * 2)
+    .collect(Collectors.toList());
+// [2, 4, 6, 8, 10, 12]
+
+// Sumar todos
+int suma = numeros.stream()
+    .reduce(0, Integer::sum);
+// 21</code></pre>
+            </div>
+        </section>
+        
+        <section id="excepciones" class="tutorial-section">
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> Manejo de Excepciones</h2>
+            
+            <h3>try-catch</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code17">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code17">try {
+    int resultado = 10 / 0; // Error: división por cero
+} catch (ArithmeticException e) {
+    System.out.println("Error: " + e.getMessage());
+} finally {
+    System.out.println("Esto siempre se ejecuta");
+}</code></pre>
+            </div>
+            
+            <h3>Múltiples excepciones</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code18">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code18">try {
+    String texto = null;
+    int longitud = texto.length();
+} catch (NullPointerException e) {
+    System.out.println("Variable es null");
+} catch (Exception e) {
+    System.out.println("Otro error: " + e);
+}
+
+// Java 7+ (Multi-catch)
+try {
+    // código que puede fallar
+} catch (IOException | SQLException e) {
+    System.out.println("Error: " + e);
+}</code></pre>
+            </div>
+            
+            <h3>Lanzar excepciones</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code19">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code19">public void validarEdad(int edad) {
+    if (edad < 0) {
+        throw new IllegalArgumentException(
+            "La edad no puede ser negativa"
+        );
+    }
+    if (edad < 18) {
+        throw new IllegalArgumentException(
+            "Debe ser mayor de edad"
+        );
+    }
+}
+
+// Uso
+try {
+    validarEdad(-5);
+} catch (IllegalArgumentException e) {
+    System.out.println(e.getMessage());
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Buena práctica:</strong> Captura excepciones específicas, no solo <code>Exception</code> genérico. Usa <code>finally</code> para limpiar recursos.
+                </div>
+            </div>
+        </section>
+
+        <section id="streams" class="tutorial-section">
+            <h2><i class="fa-solid fa-stream"></i> Streams API</h2>
+            <p>Los <strong>streams</strong> en Java son secuencias de datos que permiten procesar colecciones de manera funcional. Se introdujeron en Java 8 y son parte del paquete <code>java.util.stream</code>.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-filter"></i>
+                    <div>
+                        <h4>filter()</h4>
+                        <p>Filtra elementos según una condición</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <div>
+                        <h4>map()</h4>
+                        <p>Transforma cada elemento</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-compress"></i>
+                    <div>
+                        <h4>reduce()</h4>
+                        <p>Combina elementos en un resultado</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <div>
+                        <h4>collect()</h4>
+                        <p>Recolecta en una colección</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy='import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+List<String> nombres = Arrays.asList("Ana", "Luis", "Alberto", "María");
+
+// Filtrar nombres que empiecen con "A"
+nombres.stream()
+       .filter(nombre -> nombre.startsWith("A"))
+       .forEach(System.out::println); // Ana, Alberto
+
+// Transformar a mayúsculas
+List<String> mayusculas = nombres.stream()
+       .map(String::toUpperCase)
+       .collect(Collectors.toList());
+
+// Contar elementos
+long count = nombres.stream()
+       .filter(n -> n.length() > 4)
+       .count(); // 3'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+List&lt;String&gt; nombres = Arrays.asList("Ana", "Luis", "Alberto", "María");
+
+// Filtrar nombres que empiecen con "A"
+nombres.stream()
+       .filter(nombre -&gt; nombre.startsWith("A"))
+       .forEach(System.out::println); // Ana, Alberto
+
+// Transformar a mayúsculas
+List&lt;String&gt; mayusculas = nombres.stream()
+       .map(String::toUpperCase)
+       .collect(Collectors.toList());
+
+// Contar elementos
+long count = nombres.stream()
+       .filter(n -&gt; n.length() > 4)
+       .count(); // 3</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Crea una lista de números enteros. Usa un Stream para filtrar solo los números pares, multiplicarlos por 2 y recolectarlos en una nueva lista.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lambdas" class="tutorial-section">
+            <h2><i class="fa-solid fa-atom"></i> Expresiones Lambda</h2>
+            <p>Las <strong>expresiones lambda</strong> son una forma concisa de representar funciones anónimas en Java. Se utilizan principalmente para implementar interfaces funcionales.</p>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-info-circle"></i>
+                <div>
+                    <h4>Sintaxis básica</h4>
+                    <p><code>(parámetros) -> expresión</code></p>
+                    <p><code>(parámetros) -> { código; }</code></p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy='// Interfaz funcional
+interface Operacion {
+    int calcular(int a, int b);
+}
+
+// Usando una expresión lambda
+Operacion suma = (a, b) -> a + b;
+Operacion resta = (a, b) -> a - b;
+
+int resultado1 = suma.calcular(5, 3); // 8
+int resultado2 = resta.calcular(10, 4); // 6
+
+// Lambdas con Runnable
+Runnable tarea = () -> {
+    System.out.println("Ejecutando tarea");
+};
+new Thread(tarea).start();
+
+// Lambdas con Comparator
+List<String> nombres = Arrays.asList("Carlos", "Ana", "Beatriz");
+nombres.sort((a, b) -> a.compareTo(b));'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>// Interfaz funcional
+interface Operacion {
+    int calcular(int a, int b);
+}
+
+// Usando una expresión lambda
+Operacion suma = (a, b) -&gt; a + b;
+Operacion resta = (a, b) -&gt; a - b;
+
+int resultado1 = suma.calcular(5, 3); // 8
+int resultado2 = resta.calcular(10, 4); // 6
+
+// Lambdas con Runnable
+Runnable tarea = () -&gt; {
+    System.out.println("Ejecutando tarea");
+};
+new Thread(tarea).start();
+
+// Lambdas con Comparator
+List&lt;String&gt; nombres = Arrays.asList("Carlos", "Ana", "Beatriz");
+nombres.sort((a, b) -&gt; a.compareTo(b));</code></pre>
+            </div>
+
+            <h3>Referencias a métodos</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='// Equivalente a: nombre -> System.out.println(nombre)
+nombres.forEach(System.out::println);
+
+// Equivalente a: s -> s.toUpperCase()
+nombres.stream().map(String::toUpperCase);
+
+// Equivalente a: () -> new ArrayList<>()
+Supplier<List<String>> listSupplier = ArrayList::new;'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>// Equivalente a: nombre -&gt; System.out.println(nombre)
+nombres.forEach(System.out::println);
+
+// Equivalente a: s -&gt; s.toUpperCase()
+nombres.stream().map(String::toUpperCase);
+
+// Equivalente a: () -&gt; new ArrayList&lt;&gt;()
+Supplier&lt;List&lt;String&gt;&gt; listSupplier = ArrayList::new;</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Crea una expresión lambda que tome un <code>String</code> y devuelva su longitud. Puedes usar la interfaz funcional <code>Function&lt;String, Integer&gt;</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="maven-gradle" class="tutorial-section">
+            <h2><i class="fa-solid fa-tools"></i> Maven y Gradle</h2>
+            <p><strong>Maven</strong> y <strong>Gradle</strong> son herramientas de automatización de compilación y gestión de dependencias en proyectos Java.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-brands fa-java"></i>
+                    <div>
+                        <h4>Maven</h4>
+                        <p>Usa pom.xml y convención sobre configuración</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <div>
+                        <h4>Gradle</h4>
+                        <p>Más flexible, con DSL en Groovy o Kotlin</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ejemplo Maven (pom.xml)</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.8.2</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt;
+    &lt;version&gt;5.8.2&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+    &lt;artifactId&gt;gson&lt;/artifactId&gt;
+    &lt;version&gt;2.10.1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+            </div>
+
+            <h3>Ejemplo Gradle (build.gradle)</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='plugins {
+    id "java"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    implementation "com.google.code.gson:gson:2.10.1"
+}'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Crea un nuevo proyecto Maven o Gradle. Busca en Maven Central la dependencia de "Apache Commons Lang" y añádela a tu archivo de configuración.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="spring-boot" class="tutorial-section">
+            <h2><i class="fa-solid fa-cloud"></i> Spring Boot</h2>
+            <p><strong>Spring Boot</strong> es un framework para crear aplicaciones Java basadas en Spring de manera rápida y sencilla. Proporciona configuraciones predeterminadas y herramientas para aplicaciones listas para producción.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-rocket"></i>
+                    <div>
+                        <h4>Inicio rápido</h4>
+                        <p>Configuración automática y servidor embebido</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-plug"></i>
+                    <div>
+                        <h4>REST APIs</h4>
+                        <p>Controladores y servicios web fáciles</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-database"></i>
+                    <div>
+                        <h4>Spring Data</h4>
+                        <p>Acceso a datos simplificado con JPA</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Controlador REST básico</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/cursos")
+public class CursoController {
+
+    @GetMapping
+    public List<Curso> listarTodos() {
+        return List.of(
+            new Curso("Programación", 256),
+            new Curso("Interfaces", 140)
+        );
+    }
+
+    @GetMapping("/{id}")
+    public Curso obtenerPorId(@PathVariable Long id) {
+        return new Curso("Programación", 256);
+    }
+
+    @PostMapping
+    public Curso crear(@RequestBody Curso curso) {
+        // Guardar en base de datos
+        return curso;
+    }
+}
+
+record Curso(String nombre, int horas) {}'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/cursos")
+public class CursoController {
+
+    @GetMapping
+    public List&lt;Curso&gt; listarTodos() {
+        return List.of(
+            new Curso("Programación", 256),
+            new Curso("Interfaces", 140)
+        );
+    }
+
+    @GetMapping("/{id}")
+    public Curso obtenerPorId(@PathVariable Long id) {
+        return new Curso("Programación", 256);
+    }
+
+    @PostMapping
+    public Curso crear(@RequestBody Curso curso) {
+        // Guardar en base de datos
+        return curso;
+    }
+}
+
+record Curso(String nombre, int horas) {}</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Visita <code>start.spring.io</code>, genera un proyecto con la dependencia "Spring Web" y crea un controlador que responda en <code>/saludo</code> con tu nombre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="java-moderno" class="tutorial-section">
+            <h2><i class="fa-solid fa-fire-flame-curved"></i> Java Moderno (17+)</h2>
+            <p>Las versiones LTS recientes aportan mejoras de productividad y rendimiento como <strong>records</strong>, <strong>pattern matching</strong>, <strong>sealed classes</strong> y el nuevo <strong>HttpClient</strong>.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div>
+                        <h4>Records</h4>
+                        <p>Clases de datos inmutables automáticas</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-code-branch"></i>
+                    <div>
+                        <h4>Pattern Matching</h4>
+                        <p>Switch expressions mejorados</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-lock"></i>
+                    <div>
+                        <h4>Sealed Classes</h4>
+                        <p>Control de jerarquías de clases</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Records y Sealed Classes</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='// Record: clase de datos inmutable
+public record Alumno(String nombre, String curso, double nota) {}
+
+Alumno alumno = new Alumno("Ana", "DAM2", 8.5);
+System.out.println(alumno.nombre()); // Ana
+
+// Sealed classes: jerarquías controladas
+public sealed interface Pedido 
+    permits PedidoOnline, PedidoPresencial {}
+
+public record PedidoOnline(String id, double total) 
+    implements Pedido {}
+
+public final class PedidoPresencial implements Pedido {
+    private final String id;
+    private final double total;
+    
+    public PedidoPresencial(String id, double total) {
+        this.id = id;
+        this.total = total;
+    }
+}'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>// Record: clase de datos inmutable
+public record Alumno(String nombre, String curso, double nota) {}
+
+Alumno alumno = new Alumno("Ana", "DAM2", 8.5);
+System.out.println(alumno.nombre()); // Ana
+
+// Sealed classes: jerarquías controladas
+public sealed interface Pedido 
+    permits PedidoOnline, PedidoPresencial {}
+
+public record PedidoOnline(String id, double total) 
+    implements Pedido {}
+
+public final class PedidoPresencial implements Pedido {
+    private final String id;
+    private final double total;
+    
+    public PedidoPresencial(String id, double total) {
+        this.id = id;
+        this.total = total;
+    }
+}</code></pre>
+            </div>
+
+            <h3>Pattern Matching</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='static String describir(Pedido pedido) {
+    return switch (pedido) {
+        case PedidoOnline online -> 
+            "Pedido web #" + online.id() + " - " + online.total() + "€";
+        case PedidoPresencial presencial -> 
+            "Pedido tienda #" + presencial.id();
+    };
+}
+
+// Pattern matching con instanceof
+if (obj instanceof String s && s.length() > 5) {
+    System.out.println(s.toUpperCase());
+}'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>static String describir(Pedido pedido) {
+    return switch (pedido) {
+        case PedidoOnline online -&gt; 
+            "Pedido web #" + online.id() + " - " + online.total() + "€";
+        case PedidoPresencial presencial -&gt; 
+            "Pedido tienda #" + presencial.id();
+    };
+}
+
+// Pattern matching con instanceof
+if (obj instanceof String s && s.length() > 5) {
+    System.out.println(s.toUpperCase());
+}</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Crea un <strong>record</strong> para representar módulos DAM con nombre, horas y profesor. Usa <code>switch</code> con pattern matching para clasificar módulos según sus horas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="funcional-reactivo" class="tutorial-section">
+            <h2><i class="fa-solid fa-wave-square"></i> Programación Funcional</h2>
+            <p>Java incorpora conceptos funcionales mediante <strong>Streams</strong>, <strong>Optional</strong>, <strong>CompletableFuture</strong> y librerías como <strong>Project Reactor</strong>.</p>
+
+            <div class="info-card-note">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <h4>Interfaces funcionales principales</h4>
+                    <ul>
+                        <li><code>Predicate&lt;T&gt;</code> - Condición que devuelve boolean</li>
+                        <li><code>Function&lt;T,R&gt;</code> - Transforma T en R</li>
+                        <li><code>Consumer&lt;T&gt;</code> - Consume T sin devolver nada</li>
+                        <li><code>Supplier&lt;T&gt;</code> - Produce un T</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy-btn" data-copy='List<String> modulos = List.of("Programación", "Marcas", "Entornos");
+
+// Pipeline funcional
+String resumen = modulos.stream()
+    .map(String::toUpperCase)
+    .filter(n -> n.contains("O"))
+    .sorted()
+    .collect(Collectors.joining(", "));
+
+// Optional para evitar nulls
+Optional<String> primero = modulos.stream()
+    .filter(m -> m.startsWith("P"))
+    .findFirst();
+
+primero.ifPresent(System.out::println);
+
+// CompletableFuture para asincronía
+CompletableFuture<String> saludo = 
+    CompletableFuture.supplyAsync(() -> "Hola DAM")
+        .thenApply(String::toUpperCase);
+
+saludo.thenAccept(System.out::println);'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>List&lt;String&gt; modulos = List.of("Programación", "Marcas", "Entornos");
+
+// Pipeline funcional
+String resumen = modulos.stream()
+    .map(String::toUpperCase)
+    .filter(n -&gt; n.contains("O"))
+    .sorted()
+    .collect(Collectors.joining(", "));
+
+// Optional para evitar nulls
+Optional&lt;String&gt; primero = modulos.stream()
+    .filter(m -&gt; m.startsWith("P"))
+    .findFirst();
+
+primero.ifPresent(System.out::println);
+
+// CompletableFuture para asincronía
+CompletableFuture&lt;String&gt; saludo = 
+    CompletableFuture.supplyAsync(() -&gt; "Hola DAM")
+        .thenApply(String::toUpperCase);
+
+saludo.thenAccept(System.out::println);</code></pre>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-pencil-alt"></i>
+                <div>
+                    <h4>¡A Practicar!</h4>
+                    <p>Crea una lista de módulos DAM con sus horas. Usa Streams para calcular el total de horas y encuentra el módulo con más horas usando <code>max()</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="persistencia" class="tutorial-section">
+            <h2><i class="fa-solid fa-database"></i> Persistencia y JPA</h2>
+            <p>Para interactuar con bases de datos puedes usar <strong>JDBC</strong>, <strong>JPA/Hibernate</strong> o frameworks como <strong>Spring Data</strong>.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-plug"></i>
+                    <div>
+                        <h4>JDBC</h4>
+                        <p>API básica para conectar a bases de datos</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <div>
+                        <h4>JPA</h4>
+                        <p>Mapeo objeto-relacional estándar</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-leaf"></i>
+                    <div>
+                        <h4>Spring Data</h4>
+                        <p>Repositorios automáticos y queries derivadas</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Entidad JPA y Repository</h3>
+            <div class="code-block">
+                <button class="copy-btn" data-copy='import javax.persistence.*;
+
+@Entity
+@Table(name = "alumnos")
+public class Alumno {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String nombre;
+    private String ciclo;
+    private double notaMedia;
+    
+    // Constructores, getters y setters
+}
+
+// Spring Data Repository
+public interface AlumnoRepository 
+    extends JpaRepository<Alumno, Long> {
+    
+    List<Alumno> findByCiclo(String ciclo);
+    List<Alumno> findByNotaMediaGreaterThan(double nota);
+}
+
+// Servicio
+@Service
+public class AlumnoService {
+    private final AlumnoRepository repository;
+    
+    public AlumnoService(AlumnoRepository repository) {
+        this.repository = repository;
+    }
+    
+    public List<Alumno> obtenerAprobados() {
+        return repository.findByNotaMediaGreaterThan(5.0);
+    }
+}'>
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+                <pre><code>import javax.persistence.*;
+
+@Entity
+@Table(name = "alumnos")
+public class Alumno {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String nombre;
+    private String ciclo;
+    private double notaMedia;
+    
+    // Constructores, getters y setters
+}
+
+// Spring Data Repository
+public interface AlumnoRepository 
+    extends JpaRepository&lt;Alumno, Long&gt; {
+    
+    List&lt;Alumno&gt; findByCiclo(String ciclo);
+    List&lt;Alumno&gt; findByNotaMediaGreaterThan(double nota);
+}
+
+// Servicio
+@Service
+public class AlumnoService {
+    private final AlumnoRepository repository;
+    
+    public AlumnoService(AlumnoRepository repository) {
+        this.repository = repository;
+    }
+    
+    public List&lt;Alumno&gt; obtenerAprobados() {
+        return repository.findByNotaMediaGreaterThan(5.0);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="proyecto" class="tutorial-section">
+            <h2><i class="fa-solid fa-cubes"></i> Proyecto Integrador</h2>
+            <p>Combina todo lo aprendido creando un backend Java que complemente tus páginas HTML, CSS, JavaScript y XML.</p>
+
+            <div class="tag-list">
+                <div class="tag-item">
+                    <i class="fa-solid fa-server"></i>
+                    <div>
+                        <h4>API REST</h4>
+                        <p>Spring Boot + JPA para exponer módulos y horarios</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-code"></i>
+                    <div>
+                        <h4>Frontend Dinámico</h4>
+                        <p>Consume la API desde JavaScript con fetch</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-file-code"></i>
+                    <div>
+                        <h4>Intercambio XML</h4>
+                        <p>Exporta horarios a XML y transforma con XSLT</p>
+                    </div>
+                </div>
+                <div class="tag-item">
+                    <i class="fa-solid fa-shield"></i>
+                    <div>
+                        <h4>Calidad</h4>
+                        <p>Tests automatizados y CI/CD</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card-tip">
+                <i class="fa-solid fa-trophy"></i>
+                <div>
+                    <h4>Reto Final</h4>
+                    <p>Desarrolla un portal completo para gestión de módulos DAM: genera datos desde Java, expónlos por REST, preséntalos en HTML/CSS, añade interacción con JavaScript y sincroniza copias XML para reporting.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recursos" class="tutorial-section">
+            <h2><i class="fa-solid fa-book-open"></i> Recursos Recomendados</h2>
+            
+            <div class="info-card-note">
+                <i class="fa-solid fa-link"></i>
+                <div>
+                    <h4>Enlaces útiles</h4>
+                    <ul>
+                        <li><strong>Documentación oficial:</strong> <a href="https://docs.oracle.com/javase/" target="_blank" rel="noopener">docs.oracle.com</a></li>
+                        <li><strong>Guía de Migración:</strong> <a href="https://docs.oracle.com/en/java/javase/17/migrate/" target="_blank" rel="noopener">Java 17 Migration Guide</a></li>
+                        <li><strong>Spring:</strong> <a href="https://spring.io/guides" target="_blank" rel="noopener">Spring Guides</a></li>
+                        <li><strong>Testing:</strong> <a href="https://junit.org/junit5/docs/current/user-guide/" target="_blank" rel="noopener">JUnit 5 User Guide</a></li>
+                        <li><strong>Comunidad:</strong> <a href="https://dev.java/" target="_blank" rel="noopener">dev.java</a> y <a href="https://stackoverflow.com/questions/tagged/java" target="_blank" rel="noopener">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="mobile-footer">
+        <div class="mobile-theme-switcher">
+            <i class="fa-solid fa-sun theme-icon-light"></i>
+            <label class="mobile-switch">
+                <input type="checkbox" id="mobile-theme-toggle">
+                <span class="mobile-slider"></span>
+            </label>
+            <i class="fa-solid fa-moon theme-icon-dark"></i>
+        </div>
+        
+        <a href="../desktop/java.html?desktop=true" class="desktop-link">
+            <i class="fa-solid fa-desktop"></i> Ver versión escritorio
+        </a>
+    </footer>
+
+    <a href="changelog.html" class="changelog-link" title="Ver historial de cambios">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+    </a>
+    
+    <script src="js/mobile-script.js"></script>
+    <script src="js/tutorial-mobile.js"></script>
+</body>
+</html>

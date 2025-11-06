@@ -56,23 +56,160 @@
     <main class="content">
             <section id="intro-css">
                 <div class="tutorial-card">
-                    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Introducción a CSS</h2>
-                    <p>CSS (Cascading Style Sheets) es el lenguaje que utilizamos para describir la presentación de un documento HTML. Con CSS, puedes controlar el color, la fuente, el espaciado, el tamaño, la decoración y la disposición de los elementos de tu página web.</p>
+                    <h2><i class="fa-solid fa-wand-magic-sparkles icon-header"></i> Introducción a CSS</h2>
+                    <p>El lenguaje CSS permite cambiar el aspecto de las páginas web. CSS son las siglas de <strong>Cascading Style Sheets</strong> (Hojas de estilo en cascada).</p>
+                    <p>El W3C mantiene su estandarización (primera versión en 1996, actual CSS3).</p>
+
+                    <h3>Funcionamiento de CSS</h3>
+                    <p>CSS define reglas de presentación aplicadas a elementos HTML. Una regla se compone de:</p>
+                    <ul>
+                        <li><strong>Selector:</strong> indica a qué elementos se aplica.</li>
+                        <li><strong>Declaraciones:</strong> pares propiedad-valor (por ejemplo: color, fuente, espaciado).</li>
+                    </ul>
+
+                    <h4>Ejemplo de regla CSS</h4>
                     <div class="code-container">
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
-                        <pre><code class="language-css">/* Un simple ejemplo de CSS */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+                        <pre><code class="language-css">body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  color: white;
 }
+/* Este texto es un comentario */</code></pre>
+                    </div>
 
-h1 {
-    color: navy;
+                    <h3>Conectando HTML con CSS</h3>
+                    <p>Tres formas de aplicar CSS:</p>
+                    <ul>
+                        <li><strong>Interno:</strong> dentro de <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code>.</li>
+                        <li><strong>Externo:</strong> enlazando un archivo <code>.css</code> mediante <code>&lt;link&gt;</code>.</li>
+                        <li><strong>En línea:</strong> usando el atributo <code>style=</code> en una etiqueta.</li>
+                    </ul>
+
+                    <p><strong>Ejemplo inline:</strong></p>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-html">&lt;h1 style="color:blue; font-size:20px;"&gt;Hola!&lt;/h1&gt;</code></pre>
+                    </div>
+
+                    <p><strong>Orden de prioridad:</strong></p>
+                    <ol>
+                        <li>CSS inline → más fuerte</li>
+                        <li>CSS en <code>&lt;style&gt;</code></li>
+                        <li>CSS externo → recomendado</li>
+                    </ol>
+
+                    <h3>Reglas CSS: conceptos básicos</h3>
+                    <ul>
+                        <li><strong>Selectores:</strong> indican qué elementos se afectan.</li>
+                        <li><strong>Propiedades:</strong> definen qué aspecto cambiar.</li>
+                        <li><strong>Valores:</strong> definen el nuevo valor de esa propiedad.</li>
+                    </ul>
+
+                    <h3>Tipos de selectores</h3>
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">/* Elemento */
+p { color: red; }
+
+/* Universal */
+* { margin: 0; }
+
+/* Clase */
+.nombreClase { color: blue; }
+
+/* ID */
+#miParrafo { text-align: center; }
+
+/* Descendiente */
+h1 em { color: red; }
+
+/* Hijo */
+div > p { ... }
+
+/* Adyacente */
+div + p { ... }</code></pre>
+                    </div>
+
+                    <h3>Unidades de medida</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-ruler"></i>
+                            <h4>Absolutas</h4>
+                            <p><code>cm</code>, <code>mm</code>, <code>px</code>, <code>in</code> (no varían)</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-arrows-left-right-to-line"></i>
+                            <h4>Relativas</h4>
+                            <p><code>em</code>, <code>rem</code>, <code>%</code>, <code>vw</code>, <code>vh</code> (se adaptan al dispositivo)</p>
+                        </div>
+                    </div>
+                    <p>W3C recomienda <code>em</code> para tamaño de texto.</p>
+
+                    <h3>Colores y fondo</h3>
+                    <p>Formatos: nombre (<code>red</code>), hexadecimal (<code>#FF0000</code>), <code>rgb()</code>, <code>rgba()</code>, <code>hsl()</code>, <code>hsla()</code>.</p>
+                    <p>Propiedades: <code>background-color</code>, <code>background-image</code>, <code>background-position</code>, <code>background-repeat</code>.</p>
+
+                    <div class="code-container">
+                        <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code class="language-css">body {
+  background-image: url("fondo.png");
+  background-position: 50% 50%;
 }</code></pre>
                     </div>
+
+                    <h3>Propiedades del texto</h3>
+                    <ul>
+                        <li><code>font-size</code>: tamaño</li>
+                        <li><code>font-style</code>: normal | italic | oblique</li>
+                        <li><code>font-weight</code>: normal | bold | 100–900</li>
+                        <li><code>font-family</code>: tipo de letra</li>
+                    </ul>
+                    <p>Alineación, interlineado, espaciado: controlados con propiedades de bloque.</p>
+
+                    <h3>Pseudo-clases y pseudo-elementos</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                            <h4>Pseudo-clases</h4>
+                            <p><code>:hover</code>, <code>:first-child</code>, <code>:nth-child()</code>, <code>:focus</code>, <code>:visited</code></p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-sparkles"></i>
+                            <h4>Pseudo-elementos</h4>
+                            <p><code>::before</code>, <code>::after</code>, <code>::first-line</code></p>
+                        </div>
+                    </div>
+
+                    <h3>Listas y tablas</h3>
+                    <h4>Listas:</h4>
+                    <ul>
+                        <li><code>list-style-type</code>: circle | square | none</li>
+                        <li><code>list-style-position</code>: inside | outside</li>
+                        <li><code>list-style-image</code>: url('icon.png')</li>
+                    </ul>
+
+                    <h4>Tablas:</h4>
+                    <ul>
+                        <li><code>caption-side</code>: top | bottom</li>
+                        <li><code>border-collapse</code>: collapse</li>
+                        <li><code>border-spacing</code>: 5px</li>
+                        <li><code>empty-cells</code>: show | hide</li>
+                    </ul>
+
+                    <h3>Prioridad y cascada</h3>
+                    <ol>
+                        <li>CSS inline</li>
+                        <li><code>&lt;style&gt;</code> interno</li>
+                        <li>Archivo externo</li>
+                    </ol>
+                    <p>Selectores más específicos tienen prioridad. En igualdad, gana el último leído.</p>
+
                     <div class="practice-exercise">
-                        <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
-                        <p>Crea un archivo <code>estilo.css</code> y enlázalo a tu página HTML. Intenta cambiar el color de fondo (<code>background-color</code>) del <code>body</code> a "lightblue".</p>
+                        <h4><i class="fa-solid fa-pencil-alt"></i> Recursos para practicar</h4>
+                        <p><a href="https://www.w3schools.com/css/exercise.asp" target="_blank" rel="noopener">W3Schools - Ejercicios de CSS</a></p>
+                        <p>Ejercicios de selectores, fondo, texto, fuente, enlaces, listas, tablas, pseudo-clases y elementos.</p>
                     </div>
                 </div>
             </section>
@@ -857,14 +994,16 @@ cargarPlan('datos/modulos.xml').then(plan =&gt; {
         </main>
 
         <aside class="page-nav">
-            <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
-                <i class="fa-solid fa-angles-right"></i>
-                <span>Índice</span>
-            </button>
-        <h4>EN ESTA PÁGINA</h4>
-        <ul>
-            <li><a href="#proposito-css">¿Para qué sirve CSS?</a></li>
+            <div class="page-nav-header">
+                <h4>EN ESTA PÁGINA</h4>
+                <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
+                    <i class="fa-solid fa-angles-right"></i>
+                    <span>Índice</span>
+                </button>
+            </div>
+            <ul>
             <li><a href="#intro-css">Introducción</a></li>
+            <li><a href="#proposito-css">¿Para qué sirve CSS?</a></li>
             <li><a href="#selectores">Selectores CSS</a></li>
             <li><a href="#propiedades-comunes">Modelo de Caja</a></li>
             <li><a href="#flexbox">Flexbox</a></li>

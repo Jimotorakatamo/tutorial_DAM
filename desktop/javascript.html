@@ -717,12 +717,14 @@ leerPlanFormativo('datos/modulos.xml').then(plan =&gt; {
         </main>
 
         <aside class="page-nav">
-            <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
-                <i class="fa-solid fa-angles-right"></i>
-                <span>Índice</span>
-            </button>
-        <h4>EN ESTA PÁGINA</h4>
-        <ul>
+            <div class="page-nav-header">
+                <h4>EN ESTA PÁGINA</h4>
+                <button class="toggle-btn page-nav-toggle" type="button" aria-expanded="true">
+                    <i class="fa-solid fa-angles-right"></i>
+                    <span>Índice</span>
+                </button>
+            </div>
+            <ul>
             <li><a href="#proposito-js">¿Para qué sirve JavaScript?</a></li>
             <li><a href="#intro-js">Introducción a JS</a></li>
             <li><a href="#variables-tipos">Variables y Tipos</a></li>

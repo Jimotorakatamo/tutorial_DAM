@@ -274,15 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.toggle('active', match);
             if (match) {
                 link.setAttribute('aria-current', 'location');
+                hasMatch = true;
             } else {
                 link.removeAttribute('aria-current');
             }
-            if (match) {
-                hasMatch = true;
-            }
         });
 
-        if (!hasMatch && pageNavLinks.length) {
+        if (!hasMatch && pageNavLinks.length && sections.length) {
             pageNavLinks[0].classList.add('active');
             pageNavLinks[0].setAttribute('aria-current', 'location');
         }
@@ -291,7 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionVisibility = new Map();
 
     const getDominantSection = () => {
-        if (sectionVisibility.size) {
+        // Primero intentar obtener la sección más visible
+        if (sectionVisibility.size > 0) {
             let dominantId = null;
             let dominantRatio = -1;
             sectionVisibility.forEach((ratio, sectionId) => {
@@ -300,23 +299,39 @@ document.addEventListener('DOMContentLoaded', () => {
                     dominantId = sectionId;
                 }
             });
-            if (dominantId) {
+            if (dominantId && dominantRatio > 0.1) {
                 return dominantId;
             }
         }
 
+        // Si no hay sección claramente visible, buscar la más cercana al viewport superior
         let closestId = null;
         let smallestDistance = Number.POSITIVE_INFINITY;
-        const referenceLine = window.innerHeight * 0.25;
+        const referenceLine = window.innerHeight * 0.15;
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            const distance = Math.abs(rect.top - referenceLine);
-            if (distance < smallestDistance) {
-                smallestDistance = distance;
-                closestId = section.id;
+            // Considerar solo secciones que están al menos parcialmente visibles
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                const distance = Math.abs(rect.top - referenceLine);
+                if (distance < smallestDistance) {
+                    smallestDistance = distance;
+                    closestId = section.id;
+                }
             }
         });
-        return closestId;
+        
+        // Si no encontramos ninguna sección visible, buscar la última que pasamos
+        if (!closestId) {
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const rect = sections[i].getBoundingClientRect();
+                if (rect.top < referenceLine) {
+                    closestId = sections[i].id;
+                    break;
+                }
+            }
+        }
+        
+        return closestId || sections[0]?.id;
     };
 
     // Solo ejecutar el observador si estamos en una página de contenido (con secciones y enlaces de navegación)
@@ -335,34 +350,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 activatePageNavLink(dominantSection);
             }
         }, {
-            rootMargin: '-20% 0px -45% 0px',
-            threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.75, 1]
+            rootMargin: '-10% 0px -50% 0px',
+            threshold: [0, 0.05, 0.1, 0.15, 0.25, 0.35, 0.5, 0.65, 0.75, 0.85, 1]
         });
         sections.forEach(section => observer.observe(section));
 
+        // Activar sección inicial
         const initialSection = window.location.hash ? window.location.hash.substring(1) : sections[0]?.id;
-        activatePageNavLink(initialSection);
+        if (initialSection) {
+            activatePageNavLink(initialSection);
+        }
+        
+        // Manejar clics en enlaces del menú lateral
         pageNavLinks.forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
                 const id = link.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(id);
                 if (targetSection) {
+                    // Desactivar temporalmente el observer durante el scroll suave
+                    sections.forEach(section => observer.unobserve(section));
+                    
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start',
                         inline: 'nearest'
                     });
-                    setTimeout(() => activatePageNavLink(id), 150);
+                    
+                    // Activar inmediatamente el enlace clicado
+                    activatePageNavLink(id);
                     history.replaceState(null, '', `#${id}`);
+                    
+                    // Reactivar el observer después del scroll
+                    setTimeout(() => {
+                        sections.forEach(section => observer.observe(section));
+                    }, 800);
                 }
             });
         });
 
+        // Sincronizar cuando cambie el hash manualmente
         window.addEventListener('hashchange', () => {
             const targetId = window.location.hash.replace('#', '');
-            activatePageNavLink(targetId);
+            if (targetId) {
+                activatePageNavLink(targetId);
+            }
         });
+        
+        // Sincronizar al hacer scroll (backup por si el IntersectionObserver falla)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const currentSection = getDominantSection();
+                if (currentSection) {
+                    activatePageNavLink(currentSection);
+                }
+            }, 100);
+        }, { passive: true });
     }
 
     // --- LÓGICA DE COLAPSADO DE BARRAS LATERALES ---
@@ -424,43 +469,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const mobileNavMedia = window.matchMedia('(max-width: 768px)');
+    // Aplicar estado guardado al cargar
+    if (sidebar) {
+        const collapseSidebar = getPersistedCollapse('sidebarCollapsed');
+        sidebar.classList.toggle('collapsed', collapseSidebar);
+        syncToggleState(sidebarToggle, !collapseSidebar);
+    }
 
-    const applyResponsiveNavState = () => {
-        const isMobile = mobileNavMedia.matches;
+    if (pageNav) {
+        const collapsePageNav = getPersistedCollapse('pageNavCollapsed');
+        pageNav.classList.toggle('collapsed', collapsePageNav);
+        syncToggleState(pageNavToggle, !collapsePageNav);
+    }
 
-        if (sidebar) {
-            if (sidebarToggle) {
-                sidebarToggle.disabled = isMobile;
-                sidebarToggle.setAttribute('aria-disabled', String(isMobile));
-            }
-            const collapseSidebar = isMobile ? true : getPersistedCollapse('sidebarCollapsed');
-            sidebar.classList.toggle('collapsed', collapseSidebar);
-            syncToggleState(sidebarToggle, !collapseSidebar);
-        }
-
-        if (pageNav) {
-            if (pageNavToggle) {
-                pageNavToggle.disabled = isMobile;
-                pageNavToggle.setAttribute('aria-disabled', String(isMobile));
-            }
-            const collapsePageNav = isMobile ? true : getPersistedCollapse('pageNavCollapsed');
-            pageNav.classList.toggle('collapsed', collapsePageNav);
-            syncToggleState(pageNavToggle, !collapsePageNav);
-        }
-
-        updateLayoutFlags();
-    };
-
-    applyResponsiveNavState();
-    mobileNavMedia.addEventListener('change', applyResponsiveNavState);
+    updateLayoutFlags();
 
     if (sidebar && sidebarToggle) {
         sidebarToggle.addEventListener('click', () => {
-            if (mobileNavMedia.matches || sidebarToggle.disabled) {
-                syncToggleState(sidebarToggle, false);
-                return;
-            }
             const collapsed = sidebar.classList.toggle('collapsed');
             layoutState.sidebarCollapsed = collapsed;
             persistLayoutState();
@@ -471,10 +496,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (pageNav && pageNavToggle) {
         pageNavToggle.addEventListener('click', () => {
-            if (mobileNavMedia.matches || pageNavToggle.disabled) {
-                syncToggleState(pageNavToggle, false);
-                return;
-            }
             const collapsed = pageNav.classList.toggle('collapsed');
             layoutState.pageNavCollapsed = collapsed;
             persistLayoutState();
@@ -482,6 +503,4 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLayoutFlags();
         });
     }
-
-    updateLayoutFlags();
 });

@@ -23,15 +23,33 @@ Este proyecto recopila tutoriales modernos e interactivos sobre las principales 
 ## Estructura del proyecto
 ```
 html-tutorial-page/
-├── index.html                # Landing page con tarjetas de acceso a cada tutorial
-├── css/
-│   └── style.css             # Hoja de estilos global con temas y gradientes animados
-├── js/
-│   └── script.js             # Interactividad (tema oscuro, copiado, scrollspy, toggles)
-├── *.html                    # Tutoriales individuales por tecnología
+├── desktop/                  # Versión de escritorio
+│   ├── index.html           # Landing page con tarjetas de acceso a cada tutorial
+│   ├── css/
+│   │   └── style.css        # Hoja de estilos global con temas y gradientes animados
+│   ├── js/
+│   │   └── script.js        # Interactividad (tema oscuro, copiado, scrollspy, toggles)
+│   ├── assets/              # Recursos (imágenes, iconos, etc.)
+│   └── *.html              # Tutoriales individuales por tecnología
+├── mobile/                   # Versión móvil
+│   ├── index.html           # Página principal móvil
+│   ├── css/
+│   │   ├── mobile-style.css         # Estilos base para móvil
+│   │   └── tutorial-mobile.css      # Estilos de tutoriales con tematización
+│   ├── js/
+│   │   ├── mobile-script.js         # Funcionalidad básica
+│   │   └── tutorial-mobile.js       # Resaltado de sintaxis y navegación
+│   └── *.html              # Tutoriales móviles optimizados
 ├── README.md                 # Este documento
-├── changelog.html            # Historial de cambios con diseño web
+├── CHANGELOG.md              # Historial de cambios en Markdown
 └── VERSION                   # Versión global del sitio
+```
+
+### Características de la versión móvil
+- **Botones flotantes**: Acceso rápido a versión desktop y changelog
+- **Resaltado de sintaxis**: 18 clases de colores para código (keywords, strings, comments, etc.)
+- **Tematización por página**: Cada tutorial tiene colores y gradientes únicos
+- **Info-cards**: Notas, tips e información importante con estilos distintivos
 ```
 
 ## Uso
