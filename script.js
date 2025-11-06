@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const versionTargets = document.querySelectorAll('[data-version]');
     if (versionTargets.length) {
-        const tryPaths = ['VERSION-DESKTOP', 'VERSION', '../VERSION-DESKTOP', '../../VERSION-DESKTOP'];
+        const tryPaths = ['VERSION-DESKTOP', '../VERSION-DESKTOP', '../../VERSION-DESKTOP'];
         const loadVersion = (paths) => {
             if (!paths.length) {
                 versionTargets.forEach(node => node.textContent = 'v2.0.0');
