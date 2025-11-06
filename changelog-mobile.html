@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Changelog - Móvil</title>
+    <!-- Build: 2025-11-06 Fixed -->
     
     <script>
         (function() {
@@ -498,12 +499,22 @@
     <script src="mobile-script.js"></script>
     <script>
         // Cargar versión actual
-        fetch('../VERSION')
-            .then(res => res.text())
-            .then(version => {
-                const badge = document.querySelector('[data-version]');
-                if (badge) badge.textContent = 'v' + version.trim();
-            });
+        const badge = document.querySelector('[data-version]');
+        if (badge) {
+            badge.textContent = 'v2.0.0';
+            // Intentar cargar desde archivo (opcional)
+            fetch('VERSION')
+                .then(res => {
+                    if (res.ok) return res.text();
+                    throw new Error('VERSION not found');
+                })
+                .then(version => {
+                    badge.textContent = 'v' + version.trim();
+                })
+                .catch(() => {
+                    // Mantener valor por defecto
+                });
+        }
     </script>
 </body>
 </html>
