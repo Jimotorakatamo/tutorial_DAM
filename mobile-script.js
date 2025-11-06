@@ -26,7 +26,7 @@
     });
 })();
 
-// Cargar versión desde VERSION file
+// Cargar versión desde VERSION-MOBILE file
 (function() {
     const versionElements = document.querySelectorAll('[data-version]');
     
@@ -38,10 +38,10 @@
     });
     
     // Intentar cargar desde archivo (opcional)
-    fetch('VERSION')
+    fetch('VERSION-MOBILE')
         .then(response => {
             if (response.ok) return response.text();
-            throw new Error('VERSION file not found');
+            throw new Error('VERSION-MOBILE file not found');
         })
         .then(version => {
             versionElements.forEach(el => {

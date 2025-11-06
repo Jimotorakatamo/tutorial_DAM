@@ -125,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const versionTargets = document.querySelectorAll('[data-version]');
     if (versionTargets.length) {
-        const tryPaths = ['VERSION', '../VERSION', '../../VERSION'];
+        const tryPaths = ['VERSION-DESKTOP', 'VERSION', '../VERSION-DESKTOP', '../../VERSION-DESKTOP'];
         const loadVersion = (paths) => {
             if (!paths.length) {
-                versionTargets.forEach(node => node.textContent = 'v?.?.?');
+                versionTargets.forEach(node => node.textContent = 'v2.0.0');
                 return;
             }
             const [current, ...rest] = paths;
@@ -140,9 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch((error) => {
                     if (!rest.length) {
-                        versionTargets.forEach(node => node.textContent = 'v?.?.?');
-                        const detail = error?.message ? `Motivo: ${error.message}` : 'No pudimos sincronizar la versión del sitio.';
-                        showMaintenanceNotice(detail);
+                        versionTargets.forEach(node => node.textContent = 'v2.0.0');
                         return;
                     }
                     loadVersion(rest);

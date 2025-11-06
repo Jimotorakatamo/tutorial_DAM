@@ -503,10 +503,10 @@
         if (badge) {
             badge.textContent = 'v2.0.0';
             // Intentar cargar desde archivo (opcional)
-            fetch('VERSION')
+            fetch('VERSION-MOBILE')
                 .then(res => {
                     if (res.ok) return res.text();
-                    throw new Error('VERSION not found');
+                    throw new Error('VERSION-MOBILE not found');
                 })
                 .then(version => {
                     badge.textContent = 'v' + version.trim();
