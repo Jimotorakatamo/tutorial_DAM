@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Changelog - Móvil</title>
+    
+    <script>
+        (function() {
+            document.documentElement.classList.add('transition-init');
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="css/mobile-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .changelog-mobile {
+            padding: 1rem;
+            padding-top: 80px;
+            padding-bottom: 100px;
+            min-height: 100vh;
+        }
+        
+        .changelog-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .changelog-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-color, #6366f1), var(--accent-hover, #8b5cf6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .changelog-header p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        .release-item {
+            background: var(--sidebar-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+        
+        .release-header {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        
+        .release-version {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .release-date {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .release-focus {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .change-section {
+            margin-bottom: 1rem;
+        }
+        
+        .change-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .change-section h3 i {
+            font-size: 0.875rem;
+        }
+        
+        .change-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .change-section li {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .change-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        html[data-theme="dark"] .release-item {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1 class="mobile-nav-title">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Changelog
+        </h1>
+        <div style="width: 44px;"></div>
+    </nav>
+    
+    <main class="changelog-mobile">
+        <header class="changelog-header">
+            <span class="version-badge" data-version>v1.4.0</span>
+            <h1>Historial de cambios</h1>
+            <p>Transparencia total sobre la evolución del proyecto</p>
+        </header>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.4.0</div>
+                <span class="release-date">4 · noviembre · 2025</span>
+                <div class="release-focus">Rediseño de navegación colapsable y coherencia visual</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-bars-staggered"></i> Menús colapsables renovados</h3>
+                <ul>
+                    <li>Los menús laterales colapsan a iconos circulares perfectamente centrados</li>
+                    <li>Menú expandido con elementos alineados a la izquierda</li>
+                    <li>Botones circulares con fondos transparentes</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-palette"></i> Unificación de estilos</h3>
+                <ul>
+                    <li>Medidas convertidas a unidades em para escalabilidad</li>
+                    <li>Border-radius estandarizados: paneles (16px), elementos (12px)</li>
+                    <li>Coherencia visual mejorada en toda la interfaz</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-mobile-screen"></i> Versión móvil completa</h3>
+                <ul>
+                    <li>Detección automática de dispositivos móviles</li>
+                    <li>Interfaz táctil optimizada para pantallas pequeñas</li>
+                    <li>Menú lateral deslizante con navegación fluida</li>
+                    <li>Botones y áreas táctiles de 44x44px mínimo</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.3.1</div>
+                <span class="release-date">16 · octubre · 2025</span>
+                <div class="release-focus">UI afinada y rendimiento adaptativo</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-layer-group"></i> Navegación contextual</h3>
+                <ul>
+                    <li>Índice derecho con desplazamiento completo</li>
+                    <li>Posición mejorada del interruptor flotante</li>
+                    <li>Paleta roja consistente en XML</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-gauge-high"></i> Rendimiento adaptativo</h3>
+                <ul>
+                    <li>Detección de dispositivos de baja potencia</li>
+                    <li>Animaciones optimizadas automáticamente</li>
+                    <li>Transiciones aceleradas entre páginas</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.3.0</div>
+                <span class="release-date">15 · octubre · 2025</span>
+                <div class="release-focus">Consolidación temática y nueva identidad</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Enfoque DAM</h3>
+                <ul>
+                    <li>Título actualizado: "Desarrollo de Aplicaciones Multiplataforma"</li>
+                    <li>Descripción clara del público objetivo</li>
+                    <li>Badge de "Técnico Superior en DAM"</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-moon"></i> Tema oscuro mejorado</h3>
+                <ul>
+                    <li>Contraste optimizado para mejor legibilidad</li>
+                    <li>Colores ajustados para reducir fatiga visual</li>
+                    <li>Transiciones suaves entre temas</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.2.0</div>
+                <span class="release-date">10 · octubre · 2025</span>
+                <div class="release-focus">Contenido completo y ejemplos prácticos</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-book"></i> Tutoriales expandidos</h3>
+                <ul>
+                    <li>CSS: 13 subsecciones con ejemplos completos</li>
+                    <li>JavaScript: Async/await, fetch, DOM manipulation</li>
+                    <li>Java: POO, colecciones, streams</li>
+                    <li>Python: Comprehensions, decoradores, archivos</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-code"></i> Ejemplos prácticos</h3>
+                <ul>
+                    <li>Spring Boot REST API en Java</li>
+                    <li>FastAPI endpoints en Python</li>
+                    <li>Proyectos reales con XML</li>
+                    <li>Ejercicios interactivos en cada sección</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.3.0</div>
+                <span class="release-date">13 · octubre · 2025</span>
+                <div class="release-focus">Overlay vivo y UX compacta</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i> Modo mantenimiento</h3>
+                <ul>
+                    <li>El overlay de mantenimiento recorre en bucle los degradados de todas las secciones</li>
+                    <li>El icono y el botón de reintento heredan el mismo flujo cromático</li>
+                    <li>Mantiene contraste legible en modo claro y oscuro</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-compass"></i> Navegación estable</h3>
+                <ul>
+                    <li>Botón del índice derecho fijado para evitar saltos al colapsar la barra</li>
+                    <li>En móviles se ocultan los botones de colapso de barras laterales</li>
+                    <li>Paneles recogidos por defecto para ganar espacio de lectura</li>
+                    <li>Ancho máximo del contenido principal con clamp para evitar márgenes vacíos</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-brands fa-python"></i> Feedback visual</h3>
+                <ul>
+                    <li>El icono de Python cambia a sólido claro/oscuro al pasar el cursor</li>
+                    <li>Feedback inmediato al seleccionar la sección</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.2.6</div>
+                <span class="release-date">13 · octubre · 2025</span>
+                <div class="release-focus">Navegación móvil pulida</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-mobile-screen"></i> Flujo responsive</h3>
+                <ul>
+                    <li>Reordenada la barra global y el índice contextual para móviles</li>
+                    <li>Comportamiento sticky y carrusel horizontal</li>
+                    <li>Los toggles aparecen siempre visibles</li>
+                    <li>Colapsan automáticamente en pantallas estrechas</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-shoe-prints"></i> Detalles finales</h3>
+                <ul>
+                    <li>Las insignias de versión y el pie de página sin recortes en móviles</li>
+                    <li>Estilos de colapso ajustados para paneles plegables táctiles</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.2.5</div>
+                <span class="release-date">13 · octubre · 2025</span>
+                <div class="release-focus">Responsive total y Python vitaminado</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-tablet-screen-button"></i> Adaptabilidad</h3>
+                <ul>
+                    <li>Maquetación restructurada para tablets y móviles</li>
+                    <li>Sidebar, contenido y navegación secundaria sin romper jerarquías</li>
+                    <li>Menú de secciones en formato carrusel en pantallas pequeñas</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-brands fa-python"></i> Contraste Python</h3>
+                <ul>
+                    <li>Bloques destacados del tutorial con halos translúcidos y relieve</li>
+                    <li>Sombras y degradados animados sobre pasos, ejemplos y tarjetas</li>
+                    <li>Mejora de legibilidad en ambos temas</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.2.0</div>
+                <span class="release-date">12 · octubre · 2025</span>
+                <div class="release-focus">Flujo de gradientes y metadatos visibles</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                <ul>
+                    <li>Gradientes animados en todo el sitio: barras laterales, tarjetas, botones y badges</li>
+                    <li>Los botones "Copiar" detienen la animación momentáneamente para feedback inmediato</li>
+                    <li>Intensidad elevada de los gradientes en modo claro</li>
+                    <li>Changelog con layout dedicado con tarjetas, badges y CTA</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-eye"></i> Accesibilidad y legibilidad</h3>
+                <ul>
+                    <li>Sombras estratégicas en textos gradientes y navegación</li>
+                    <li>Contraste mantenido incluso con fondos animados</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-code-branch"></i> Versionado transparente</h3>
+                <ul>
+                    <li>Historial de versiones en changelog.html enlazado desde todos los pies de página</li>
+                    <li>README.md y guía de contribución actualizados</li>
+                    <li>CHANGELOG.md como aviso ligero para el repositorio</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.1.0</div>
+                <span class="release-date">12 · octubre · 2025</span>
+                <div class="release-focus">Animaciones y metadatos</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-palette"></i> Experiencia visual</h3>
+                <ul>
+                    <li>Animated every gradient background: barras laterales, tarjetas, botones y badges</li>
+                    <li>Los estados de los botones "Copiar" detienen la animación para feedback</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-eye"></i> Accesibilidad</h3>
+                <ul>
+                    <li>Sombras estratégicas en textos gradientes</li>
+                    <li>Contraste incluso con fondos animados</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-code-branch"></i> Versionado</h3>
+                <ul>
+                    <li>Creación del archivo VERSION y este changelog</li>
+                    <li>Inyección dinámica de la versión actual en cada pie de página</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.0.5</div>
+                <span class="release-date">5 · octubre · 2025</span>
+                <div class="release-focus">Navegación y accesibilidad</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-universal-access"></i> Accesibilidad</h3>
+                <ul>
+                    <li>Etiquetas ARIA en todos los elementos interactivos</li>
+                    <li>Navegación completa por teclado</li>
+                    <li>Indicadores de foco visibles</li>
+                    <li>Contraste WCAG AAA</li>
+                </ul>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-copy"></i> Botones de copiar código</h3>
+                <ul>
+                    <li>Un click para copiar cualquier ejemplo</li>
+                    <li>Feedback visual al copiar</li>
+                    <li>Compatible con todos los navegadores</li>
+                </ul>
+            </div>
+        </article>
+        
+        <article class="release-item">
+            <div class="release-header">
+                <div class="release-version">v1.0.0</div>
+                <span class="release-date">1 · octubre · 2025</span>
+                <div class="release-focus">Lanzamiento inicial</div>
+            </div>
+            
+            <div class="change-section">
+                <h3><i class="fa-solid fa-rocket"></i> Primera versión</h3>
+                <ul>
+                    <li>6 tutoriales completos: HTML, CSS, JavaScript, XML, Java, Python</li>
+                    <li>Sistema de navegación lateral y contextual</li>
+                    <li>Tema claro/oscuro con persistencia</li>
+                    <li>Diseño responsive y moderno</li>
+                    <li>Sintaxis highlighting en código</li>
+                </ul>
+            </div>
+        </article>
+    </main>
+    
+    <footer class="mobile-footer">
+        <div class="mobile-theme-switcher">
+            <i class="fa-solid fa-sun theme-icon-light"></i>
+            <label class="mobile-switch">
+                <input type="checkbox" id="mobile-theme-toggle">
+                <span class="mobile-slider"></span>
+            </label>
+            <i class="fa-solid fa-moon theme-icon-dark"></i>
+        </div>
+        
+        <a href="../desktop/changelog.html?desktop=true" class="desktop-link">
+            <i class="fa-solid fa-desktop"></i> Ver versión escritorio
+        </a>
+    </footer>
+    
+    <script src="js/mobile-script.js"></script>
+    <script>
+        // Cargar versión actual
+        fetch('../VERSION')
+            .then(res => res.text())
+            .then(version => {
+                const badge = document.querySelector('[data-version]');
+                if (badge) badge.textContent = 'v' + version.trim();
+            });
+    </script>
+</body>
+</html>

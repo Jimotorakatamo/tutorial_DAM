@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tutorial CSS - Móvil</title>
+    
+    <!-- SCRIPT ANTI-PARPADEO -->
+    <script>
+        (function() {
+            document.documentElement.classList.add('transition-init');
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="css/mobile-style.css">
+    <link rel="stylesheet" href="css/tutorial-mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-page="css">
+    
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1 class="mobile-nav-title">
+            <i class="fa-brands fa-css3-alt"></i>
+            CSS
+        </h1>
+        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+    
+    <!-- MENÚ LATERAL DESPLEGABLE -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <aside class="mobile-side-menu" id="mobile-side-menu">
+        <div class="mobile-menu-header">
+            <h2><i class="fa-solid fa-list"></i> Contenido</h2>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="#intro-css"><i class="fa-solid fa-play"></i> Introducción a CSS</a></li>
+            <li><a href="#selectores"><i class="fa-solid fa-crosshairs"></i> Selectores</a></li>
+            <li><a href="#cajas"><i class="fa-solid fa-box"></i> Modelo de Cajas</a></li>
+            <li><a href="#texto"><i class="fa-solid fa-font"></i> Texto y Fuentes</a></li>
+            <li><a href="#colores"><i class="fa-solid fa-palette"></i> Colores y Fondos</a></li>
+            <li><a href="#flexbox"><i class="fa-solid fa-table-cells"></i> Flexbox</a></li>
+            <li><a href="#grid"><i class="fa-solid fa-grip"></i> CSS Grid</a></li>
+            <li><a href="#responsive"><i class="fa-solid fa-mobile-screen"></i> Diseño Responsive</a></li>
+            <li><a href="#animaciones"><i class="fa-solid fa-play-circle"></i> Animaciones</a></li>
+            <li><a href="#avanzado"><i class="fa-solid fa-star"></i> Técnicas Avanzadas</a></li>
+        </ul>
+    </aside>
+    
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="tutorial-mobile-content">
+        
+        <!-- SECCIÓN 1: INTRODUCCIÓN -->
+        <section id="intro-css" class="tutorial-section">
+            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Introducción a CSS</h2>
+            
+            <p>CSS (Cascading Style Sheets) es el lenguaje que define el aspecto visual de las páginas web.</p>
+            
+            <div class="info-card info-card-note">
+                <i class="fa-solid fa-info-circle"></i>
+                <div>
+                    <strong>Primera versión:</strong> 1996<br>
+                    <strong>Versión actual:</strong> CSS3<br>
+                    <strong>Mantenido por:</strong> W3C
+                </div>
+            </div>
+            
+            <h3>¿Qué hace CSS?</h3>
+            <p>CSS define <strong>reglas de presentación</strong> que se aplican a elementos HTML:</p>
+            
+            <ul>
+                <li><strong>Selector:</strong> indica qué elementos afectar</li>
+                <li><strong>Declaraciones:</strong> pares propiedad-valor</li>
+            </ul>
+            
+            <h4>Ejemplo básico</h4>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code1">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code1">body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  color: white;
+}
+/* Esto es un comentario */</code></pre>
+            </div>
+            
+            <h3>Formas de aplicar CSS</h3>
+            <div class="tag-list">
+                <div class="tag-item">
+                    <span class="tag-name">Interno</span>
+                    <p>Dentro de <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code></p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Externo</span>
+                    <p>Archivo .css enlazado con <code>&lt;link&gt;</code></p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">En línea</span>
+                    <p>Atributo <code>style=""</code> en la etiqueta</p>
+                </div>
+            </div>
+            
+            <h4>Ejemplo inline</h4>
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code2">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code2">&lt;h1 style="color:blue; font-size:20px;"&gt;
+  Hola Mundo
+&lt;/h1&gt;</code></pre>
+            </div>
+            
+            <div class="info-card info-card-important">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Orden de prioridad:</strong>
+                    <ol style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                        <li>CSS inline (más fuerte)</li>
+                        <li>CSS en &lt;style&gt;</li>
+                        <li>CSS externo (recomendado)</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 2: SELECTORES -->
+        <section id="selectores" class="tutorial-section">
+            <h2><i class="fa-solid fa-crosshairs"></i> Selectores CSS</h2>
+            
+            <p>Los selectores indican <strong>qué elementos HTML</strong> serán afectados por las reglas CSS.</p>
+            
+            <h3>Tipos de selectores</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code3">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code3">/* Selector de elemento */
+p { color: red; }
+
+/* Selector universal */
+* { margin: 0; padding: 0; }
+
+/* Selector de clase */
+.miClase { color: blue; }
+
+/* Selector de ID */
+#miID { text-align: center; }
+
+/* Selector descendiente */
+div p { color: green; }
+
+/* Selector hijo directo */
+div > p { font-weight: bold; }
+
+/* Selector adyacente */
+h1 + p { margin-top: 0; }
+
+/* Selector de atributo */
+input[type="text"] { ... }</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Buena práctica:</strong> Usa clases para estilos reutilizables e IDs solo para elementos únicos.
+                </div>
+            </div>
+            
+            <h3>Pseudoclases</h3>
+            <p>Definen estados especiales de elementos:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code4">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code4">/* Al pasar el ratón */
+a:hover { color: red; }
+
+/* Primer hijo */
+li:first-child { font-weight: bold; }
+
+/* Último hijo */
+li:last-child { color: blue; }
+
+/* Elemento n-ésimo */
+tr:nth-child(even) { background: #f0f0f0; }
+
+/* Al hacer focus */
+input:focus { border-color: blue; }</code></pre>
+            </div>
+            
+            <h3>Pseudoelementos</h3>
+            <p>Estilizan partes específicas de un elemento:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code5">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code5">/* Primera letra */
+p::first-letter {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Primera línea */
+p::first-line { color: blue; }
+
+/* Antes del contenido */
+.icono::before {
+  content: "→ ";
+  color: red;
+}
+
+/* Después del contenido */
+.icono::after {
+  content: " ✓";
+}</code></pre>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 3: MODELO DE CAJAS -->
+        <section id="cajas" class="tutorial-section">
+            <h2><i class="fa-solid fa-box"></i> Modelo de Cajas</h2>
+            
+            <p>Cada elemento HTML es una <strong>caja rectangular</strong> compuesta por:</p>
+            
+            <div class="tag-list">
+                <div class="tag-item">
+                    <span class="tag-name">Content</span>
+                    <p>Contenido del elemento (texto, imágenes, etc.)</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Padding</span>
+                    <p>Espacio entre contenido y borde (transparente)</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Border</span>
+                    <p>Borde alrededor del padding (puede tener color/grosor)</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Margin</span>
+                    <p>Espacio exterior entre elementos (transparente)</p>
+                </div>
+            </div>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code6">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code6">.caja {
+  /* Contenido */
+  width: 300px;
+  height: 200px;
+  
+  /* Padding */
+  padding: 20px;
+  /* También: padding-top, padding-right, etc. */
+  
+  /* Border */
+  border: 2px solid black;
+  border-radius: 10px;
+  
+  /* Margin */
+  margin: 15px;
+  /* También: margin-top, margin-bottom, etc. */
+}</code></pre>
+            </div>
+            
+            <h3>Box-sizing</h3>
+            <p>Controla cómo se calculan ancho y alto:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code7">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code7">/* content-box (por defecto) */
+/* width/height solo afectan al contenido */
+.caja1 { box-sizing: content-box; }
+
+/* border-box (recomendado) */
+/* width/height incluyen padding y border */
+.caja2 { box-sizing: border-box; }
+
+/* Aplicar a todo el sitio */
+* {
+  box-sizing: border-box;
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Tip profesional:</strong> Usa <code>box-sizing: border-box</code> en todos tus proyectos para facilitar el diseño responsive.
+                </div>
+            </div>
+            
+            <h3>Display</h3>
+            <p>Define cómo se comporta un elemento en el flujo:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code8">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code8">/* Bloque: ocupa todo el ancho */
+div { display: block; }
+
+/* En línea: fluye con el texto */
+span { display: inline; }
+
+/* En línea-bloque: híbrido */
+img { display: inline-block; }
+
+/* Ocultar elemento */
+.oculto { display: none; }
+
+/* Flexbox */
+.contenedor { display: flex; }
+
+/* Grid */
+.grid { display: grid; }</code></pre>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 4: TEXTO Y FUENTES -->
+        <section id="texto" class="tutorial-section">
+            <h2><i class="fa-solid fa-font"></i> Texto y Fuentes</h2>
+            
+            <h3>Propiedades de texto</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code9">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code9">p {
+  /* Color */
+  color: #333333;
+  
+  /* Alineación */
+  text-align: center; /* left, right, justify */
+  
+  /* Decoración */
+  text-decoration: underline;
+  
+  /* Transformación */
+  text-transform: uppercase; /* lowercase, capitalize */
+  
+  /* Espaciado entre letras */
+  letter-spacing: 2px;
+  
+  /* Espaciado entre palabras */
+  word-spacing: 5px;
+  
+  /* Altura de línea */
+  line-height: 1.6;
+  
+  /* Sombra de texto */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}</code></pre>
+            </div>
+            
+            <h3>Fuentes</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code10">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code10">body {
+  /* Familia de fuentes */
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  
+  /* Tamaño */
+  font-size: 16px; /* También: em, rem, % */
+  
+  /* Peso (grosor) */
+  font-weight: 700; /* 100-900 o bold, normal */
+  
+  /* Estilo */
+  font-style: italic; /* normal, oblique */
+  
+  /* Variante */
+  font-variant: small-caps;
+}</code></pre>
+            </div>
+            
+            <h3>Google Fonts</h3>
+            <p>Importar fuentes personalizadas:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code11">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code11">/* En el HTML */
+&lt;link rel="preconnect" 
+      href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2
+      ?family=Poppins:wght@300;400;600&display=swap" 
+      rel="stylesheet"&gt;
+
+/* En el CSS */
+body {
+  font-family: 'Poppins', sans-serif;
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-important">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Unidades recomendadas:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li><code>rem</code>: relativo al tamaño raíz</li>
+                        <li><code>em</code>: relativo al padre</li>
+                        <li>Evita <code>px</code> para mejor accesibilidad</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 5: COLORES Y FONDOS -->
+        <section id="colores" class="tutorial-section">
+            <h2><i class="fa-solid fa-palette"></i> Colores y Fondos</h2>
+            
+            <h3>Formatos de color</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code12">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code12">/* Nombre de color */
+color: red;
+
+/* Hexadecimal */
+color: #ff0000;
+color: #f00; /* forma corta */
+
+/* RGB */
+color: rgb(255, 0, 0);
+
+/* RGBA (con transparencia) */
+color: rgba(255, 0, 0, 0.5);
+
+/* HSL (tono, saturación, luminosidad) */
+color: hsl(0, 100%, 50%);
+
+/* HSLA (con transparencia) */
+color: hsla(0, 100%, 50%, 0.8);</code></pre>
+            </div>
+            
+            <h3>Fondos</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code13">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code13">.elemento {
+  /* Color sólido */
+  background-color: #f0f0f0;
+  
+  /* Imagen */
+  background-image: url('imagen.jpg');
+  
+  /* Repetición */
+  background-repeat: no-repeat; /* repeat, repeat-x, repeat-y */
+  
+  /* Posición */
+  background-position: center center;
+  
+  /* Tamaño */
+  background-size: cover; /* contain, 100px, 50% */
+  
+  /* Fijación */
+  background-attachment: fixed; /* scroll, local */
+  
+  /* Shorthand */
+  background: url('img.jpg') no-repeat center / cover;
+}</code></pre>
+            </div>
+            
+            <h3>Gradientes</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code14">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code14">/* Gradiente lineal */
+background: linear-gradient(
+  to right,
+  #ff0000,
+  #00ff00
+);
+
+/* Con múltiples colores y paradas */
+background: linear-gradient(
+  45deg,
+  red 0%,
+  yellow 50%,
+  green 100%
+);
+
+/* Gradiente radial */
+background: radial-gradient(
+  circle,
+  #ff0000,
+  #0000ff
+);
+
+/* Gradiente cónico */
+background: conic-gradient(
+  red,
+  yellow,
+  green,
+  blue,
+  red
+);</code></pre>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 6: FLEXBOX -->
+        <section id="flexbox" class="tutorial-section">
+            <h2><i class="fa-solid fa-table-cells"></i> Flexbox</h2>
+            
+            <p>Sistema de diseño <strong>unidimensional</strong> (fila o columna) para organizar elementos.</p>
+            
+            <div class="info-card info-card-note">
+                <i class="fa-solid fa-info-circle"></i>
+                <div>
+                    <strong>Ventajas:</strong> Alineación perfecta, distribución del espacio, orden flexible, ideal para componentes.
+                </div>
+            </div>
+            
+            <h3>Contenedor Flex</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code15">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code15">.contenedor {
+  display: flex;
+  
+  /* Dirección */
+  flex-direction: row; /* row-reverse, column, column-reverse */
+  
+  /* Ajuste de línea */
+  flex-wrap: wrap; /* nowrap, wrap-reverse */
+  
+  /* Justificación (eje principal) */
+  justify-content: center;
+  /* flex-start, flex-end, space-between, space-around, space-evenly */
+  
+  /* Alineación (eje cruzado) */
+  align-items: center;
+  /* flex-start, flex-end, stretch, baseline */
+  
+  /* Alineación de múltiples líneas */
+  align-content: space-between;
+  
+  /* Espacio entre elementos */
+  gap: 20px;
+}</code></pre>
+            </div>
+            
+            <h3>Elementos Flex</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code16">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code16">.item {
+  /* Crecimiento */
+  flex-grow: 1; /* proporción de crecimiento */
+  
+  /* Encogimiento */
+  flex-shrink: 1;
+  
+  /* Tamaño base */
+  flex-basis: 200px; /* auto, 0, 50% */
+  
+  /* Shorthand */
+  flex: 1 1 200px; /* grow shrink basis */
+  
+  /* Auto-alineación */
+  align-self: flex-end;
+  
+  /* Orden visual */
+  order: 2; /* -1, 0, 1, 2... */
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Tip:</strong> <code>flex: 1</code> es equivalente a <code>flex: 1 1 0</code> y hace que los elementos ocupen el mismo espacio.
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 7: CSS GRID -->
+        <section id="grid" class="tutorial-section">
+            <h2><i class="fa-solid fa-grip"></i> CSS Grid</h2>
+            
+            <p>Sistema de diseño <strong>bidimensional</strong> (filas y columnas) más potente que Flexbox.</p>
+            
+            <h3>Contenedor Grid</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code17">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code17">.grid-container {
+  display: grid;
+  
+  /* Definir columnas */
+  grid-template-columns: 200px 1fr 2fr;
+  /* También: repeat(3, 1fr), auto, minmax(100px, 1fr) */
+  
+  /* Definir filas */
+  grid-template-rows: 100px auto 50px;
+  
+  /* Espaciado */
+  gap: 20px; /* row-gap, column-gap */
+  
+  /* Áreas nombradas */
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+  
+  /* Alineación horizontal */
+  justify-items: center; /* start, end, stretch */
+  
+  /* Alineación vertical */
+  align-items: center;
+  
+  /* Alineación del grid completo */
+  justify-content: center;
+  align-content: center;
+}</code></pre>
+            </div>
+            
+            <h3>Elementos Grid</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code18">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code18">.grid-item {
+  /* Posición por líneas */
+  grid-column: 1 / 3; /* de línea 1 a 3 */
+  grid-row: 2 / 4;
+  
+  /* Span (expandir) */
+  grid-column: span 2; /* ocupar 2 columnas */
+  grid-row: span 3;
+  
+  /* Shorthand */
+  grid-area: 2 / 1 / 4 / 3; /* row-start / col-start / row-end / col-end */
+  
+  /* Por área nombrada */
+  grid-area: header;
+  
+  /* Auto-alineación */
+  justify-self: end;
+  align-self: start;
+}</code></pre>
+            </div>
+            
+            <h3>Grid Responsive</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code19">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code19">/* Grid auto-responsive */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  );
+  gap: 2rem;
+}
+
+/* auto-fill: crea tantas columnas como quepan */
+/* auto-fit: similar pero colapsa columnas vacías */
+/* minmax: tamaño mínimo y máximo */</code></pre>
+            </div>
+            
+            <div class="info-card info-card-important">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Grid vs Flexbox:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li>Grid: layouts completos en 2D</li>
+                        <li>Flexbox: componentes en 1D</li>
+                        <li>¡Ambos se complementan!</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 8: DISEÑO RESPONSIVE -->
+        <section id="responsive" class="tutorial-section">
+            <h2><i class="fa-solid fa-mobile-screen"></i> Diseño Responsive</h2>
+            
+            <p>Crear sitios que se adapten a diferentes dispositivos y tamaños de pantalla.</p>
+            
+            <h3>Media Queries</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code20">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code20">/* Móvil primero (mobile-first) */
+.container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    width: 1000px;
+  }
+}
+
+/* Desktop grande */
+@media (min-width: 1280px) {
+  .container {
+    width: 1200px;
+  }
+}</code></pre>
+            </div>
+            
+            <h3>Viewport Meta Tag</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code21">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code21">&lt;!-- En el head del HTML --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+            </div>
+            
+            <h3>Unidades Responsive</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code22">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code22">/* Viewport Width/Height */
+.hero {
+  width: 100vw; /* 100% del ancho del viewport */
+  height: 100vh; /* 100% del alto del viewport */
+}
+
+/* Porcentajes */
+.sidebar {
+  width: 25%; /* relativo al padre */
+}
+
+/* Clamp: valor fluido con límites */
+.text {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  /* mínimo, preferido, máximo */
+}</code></pre>
+            </div>
+            
+            <h3>Imágenes Responsive</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code23">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code23">/* CSS */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* HTML con srcset */
+&lt;img src="small.jpg"
+     srcset="medium.jpg 768w,
+             large.jpg 1024w"
+     alt="Descripción"&gt;</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Breakpoints comunes:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li>320px - 480px: Móvil</li>
+                        <li>481px - 768px: Tablet</li>
+                        <li>769px - 1024px: Laptop</li>
+                        <li>1025px+: Desktop</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 9: ANIMACIONES -->
+        <section id="animaciones" class="tutorial-section">
+            <h2><i class="fa-solid fa-play-circle"></i> Animaciones y Transiciones</h2>
+            
+            <h3>Transiciones</h3>
+            <p>Cambios suaves entre estados:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code24">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code24">.button {
+  background: blue;
+  transform: scale(1);
+  
+  /* Transición */
+  transition: all 0.3s ease;
+  /* propiedad duración timing-function delay */
+}
+
+.button:hover {
+  background: darkblue;
+  transform: scale(1.1);
+}
+
+/* Propiedades específicas */
+.box {
+  transition-property: background-color, transform;
+  transition-duration: 0.3s, 0.5s;
+  transition-timing-function: ease, ease-in-out;
+  transition-delay: 0s, 0.1s;
+}</code></pre>
+            </div>
+            
+            <h3>Keyframes</h3>
+            <p>Animaciones más complejas:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code25">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code25">/* Definir animación */
+@keyframes deslizar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100px);
+  }
+}
+
+/* Con porcentajes */
+@keyframes rebote {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
+}
+
+/* Aplicar animación */
+.elemento {
+  animation: deslizar 2s ease-in-out infinite;
+  /* nombre duración timing-function iteraciones */
+}
+
+/* Propiedades detalladas */
+.animado {
+  animation-name: rebote;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0.5s;
+  animation-iteration-count: infinite; /* o número */
+  animation-direction: alternate; /* normal, reverse, alternate-reverse */
+  animation-fill-mode: forwards; /* none, backwards, both */
+  animation-play-state: running; /* paused */
+}</code></pre>
+            </div>
+            
+            <h3>Transforms</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code26">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code26">/* Traslación */
+transform: translate(50px, 100px);
+transform: translateX(50px);
+transform: translateY(100px);
+
+/* Rotación */
+transform: rotate(45deg);
+transform: rotateX(45deg);
+transform: rotateY(45deg);
+
+/* Escala */
+transform: scale(1.5);
+transform: scaleX(2);
+transform: scaleY(0.5);
+
+/* Sesgo */
+transform: skew(10deg, 20deg);
+
+/* Múltiples transformaciones */
+transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
+            </div>
+            
+            <div class="info-card info-card-tip">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                    <strong>Timing functions:</strong>
+                    <ul style="margin: 0.5rem 0 0 1rem;">
+                        <li><code>ease</code>: lento-rápido-lento</li>
+                        <li><code>linear</code>: velocidad constante</li>
+                        <li><code>ease-in</code>: acelera al inicio</li>
+                        <li><code>ease-out</code>: desacelera al final</li>
+                        <li><code>cubic-bezier()</code>: personalizado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 10: TÉCNICAS AVANZADAS -->
+        <section id="avanzado" class="tutorial-section">
+            <h2><i class="fa-solid fa-star"></i> Técnicas Avanzadas</h2>
+            
+            <h3>Variables CSS</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code27">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code27">/* Definir variables globales */
+:root {
+  --color-primario: #3498db;
+  --color-secundario: #2ecc71;
+  --espaciado: 1rem;
+  --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* Usar variables */
+.button {
+  background: var(--color-primario);
+  padding: var(--espaciado);
+  font-family: var(--fuente-principal);
+}
+
+/* Con fallback */
+.elemento {
+  color: var(--color-personalizado, #000);
+}
+
+/* Variables locales */
+.card {
+  --card-padding: 2rem;
+  padding: var(--card-padding);
+}</code></pre>
+            </div>
+            
+            <h3>Calc()</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code28">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code28">/* Cálculos dinámicos */
+.sidebar {
+  width: calc(100% - 300px);
+}
+
+.elemento {
+  height: calc(100vh - 80px);
+  margin: calc(2rem + 10px);
+  font-size: calc(1rem + 1vw);
+}
+
+/* Con variables */
+:root {
+  --navbar-height: 60px;
+}
+
+.content {
+  height: calc(100vh - var(--navbar-height));
+}</code></pre>
+            </div>
+            
+            <h3>Filtros</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code29">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code29">img {
+  /* Desenfoque */
+  filter: blur(5px);
+  
+  /* Brillo */
+  filter: brightness(150%);
+  
+  /* Contraste */
+  filter: contrast(200%);
+  
+  /* Escala de grises */
+  filter: grayscale(100%);
+  
+  /* Tono */
+  filter: hue-rotate(90deg);
+  
+  /* Invertir */
+  filter: invert(100%);
+  
+  /* Opacidad */
+  filter: opacity(50%);
+  
+  /* Saturación */
+  filter: saturate(200%);
+  
+  /* Sepia */
+  filter: sepia(100%);
+  
+  /* Combinar filtros */
+  filter: brightness(110%) contrast(120%) blur(2px);
+}</code></pre>
+            </div>
+            
+            <h3>Clip-path</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code30">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code30">/* Círculo */
+.circulo {
+  clip-path: circle(50%);
+}
+
+/* Elipse */
+.elipse {
+  clip-path: ellipse(50% 30%);
+}
+
+/* Polígono */
+.triangulo {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Hexágono */
+.hexagono {
+  clip-path: polygon(
+    50% 0%, 100% 25%, 100% 75%, 
+    50% 100%, 0% 75%, 0% 25%
+  );
+}</code></pre>
+            </div>
+            
+            <h3>Backdrop-filter</h3>
+            
+            <div class="code-block">
+                <button class="copy-btn" data-copy="code31">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+                <pre><code id="code31">/* Efecto vidrio esmerilado */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Modal con fondo difuminado */
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px) brightness(80%);
+}</code></pre>
+            </div>
+            
+            <div class="info-card info-card-important">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Compatibilidad:</strong> Algunas propiedades avanzadas pueden no funcionar en navegadores antiguos. Usa <a href="https://caniuse.com" style="color: var(--accent-color);">caniuse.com</a> para verificar.
+                </div>
+            </div>
+            
+            <h3>Recursos adicionales</h3>
+            <div class="tag-list">
+                <div class="tag-item">
+                    <span class="tag-name">MDN</span>
+                    <p>Documentación completa de CSS</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">CSS-Tricks</span>
+                    <p>Tutoriales y guías avanzadas</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Flexbox Froggy</span>
+                    <p>Juego para aprender Flexbox</p>
+                </div>
+                <div class="tag-item">
+                    <span class="tag-name">Grid Garden</span>
+                    <p>Juego para aprender Grid</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- FOOTER CON OPCIONES -->
+    <footer class="mobile-footer">
+        <div class="mobile-theme-switcher">
+            <i class="fa-solid fa-sun theme-icon-light"></i>
+            <label class="mobile-switch">
+                <input type="checkbox" id="mobile-theme-toggle">
+                <span class="mobile-slider"></span>
+            </label>
+            <i class="fa-solid fa-moon theme-icon-dark"></i>
+        </div>
+        
+        <a href="../desktop/css.html?desktop=true" class="desktop-link">
+            <i class="fa-solid fa-desktop"></i> Ver versión escritorio
+        </a>
+    </footer>
+
+    <a href="changelog.html" class="changelog-link" title="Ver historial de cambios">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+    </a>
+    
+    <script src="js/mobile-script.js"></script>
+    <script src="js/tutorial-mobile.js"></script>
+</body>
+</html>
