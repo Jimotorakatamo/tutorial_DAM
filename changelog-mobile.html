@@ -22,98 +22,305 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Barra de navegación móvil */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .mobile-back-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sidebar-color);
+            border-radius: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-back-btn:hover,
+        .mobile-back-btn:active {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(0.95);
+        }
+        
+        .mobile-nav-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            margin: 0;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .mobile-nav-title i {
+            color: var(--accent-color);
+        }
+        
+        .mobile-nav-theme-switcher {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sidebar-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 0.4rem;
+        }
+        
+        .mobile-nav-theme-switcher .switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+        }
+        
+        .mobile-nav-theme-switcher .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .mobile-nav-theme-switcher .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: 0.3s;
+            border-radius: 34px;
+        }
+        
+        .mobile-nav-theme-switcher .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        
+        .mobile-nav-theme-switcher input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        
+        .mobile-nav-theme-switcher input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+        
         .changelog-mobile {
             padding: 1rem;
             padding-top: 80px;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
             min-height: 100vh;
+            background: linear-gradient(180deg, 
+                var(--body-color) 0%, 
+                var(--sidebar-color) 100%);
         }
         
         .changelog-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, 
+                var(--sidebar-color) 0%, 
+                var(--body-color) 100%);
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .changelog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
         .changelog-header h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--accent-color, #6366f1), var(--accent-hover, #8b5cf6));
+            font-size: 2.25rem;
+            font-weight: 900;
+            margin-bottom: 0.875rem;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
         
         .changelog-header p {
-            font-size: 0.875rem;
-            opacity: 0.8;
-            line-height: 1.5;
+            font-size: 1rem;
+            opacity: 0.85;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 500;
+            color: var(--text-color);
         }
         
         .version-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
             border-radius: 999px;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5);
+            animation: pulse-badge 2.5s ease-in-out infinite;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .version-badge::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+            border-radius: 999px;
+            opacity: 0;
+            z-index: -1;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+        
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 28px rgba(99, 102, 241, 0.7); }
         }
         
         .release-item {
             background: var(--sidebar-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .release-header {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
-        }
-        
-        .release-version {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 0.25rem;
-        }
-        
-        .release-date {
-            font-size: 0.875rem;
-            opacity: 0.7;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .release-focus {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-color);
+        .release-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
             opacity: 0.8;
         }
         
+        .release-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+        
+        .release-header {
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.25rem;
+        }
+        
+        .release-version {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .release-date {
+            font-size: 0.9rem;
+            opacity: 0.75;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .release-focus {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-color);
+            opacity: 0.9;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
         .change-section {
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            background: var(--body-color);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
         }
         
         .change-section h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.625rem;
             color: var(--accent-color);
         }
         
         .change-section h3 i {
-            font-size: 0.875rem;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .change-section ul {
@@ -123,24 +330,79 @@
         }
         
         .change-section li {
-            font-size: 0.875rem;
-            line-height: 1.6;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            margin-bottom: 0.625rem;
             position: relative;
+            opacity: 0.9;
         }
         
         .change-section li::before {
-            content: "•";
+            content: "▸";
             position: absolute;
             left: 0;
             color: var(--accent-color);
-            font-weight: 700;
+            font-weight: 900;
+            font-size: 1.1rem;
         }
         
         html[data-theme="dark"] .release-item {
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        html[data-theme="dark"] .changelog-header {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.04) 100%);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        html[data-theme="dark"] .changelog-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        html[data-theme="dark"] .change-section {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer móvil */
+        .mobile-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .desktop-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .desktop-link:hover,
+        .desktop-link:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
     </style>
 </head>
@@ -154,14 +416,19 @@
             <i class="fa-solid fa-clock-rotate-left"></i>
             Changelog
         </h1>
-        <div style="width: 44px;"></div>
+        <div class="mobile-nav-theme-switcher">
+            <label class="switch">
+                <input type="checkbox" id="mobile-theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
     </nav>
     
     <main class="changelog-mobile">
         <header class="changelog-header">
-            <span class="version-badge" data-version>v1.5.0</span>
-            <h1>Historial de cambios</h1>
-            <p>Transparencia total sobre la evolución del proyecto</p>
+            <span class="version-badge" data-version>v2.0.0</span>
+            <h1>Historial de Cambios</h1>
+            <p>Cada actualización, mejora y corrección documentada con detalle</p>
         </header>
         
         <article class="release-item">
@@ -550,15 +817,6 @@
     </main>
     
     <footer class="mobile-footer">
-        <div class="mobile-theme-switcher">
-            <i class="fa-solid fa-sun theme-icon-light"></i>
-            <label class="mobile-switch">
-                <input type="checkbox" id="mobile-theme-toggle">
-                <span class="mobile-slider"></span>
-            </label>
-            <i class="fa-solid fa-moon theme-icon-dark"></i>
-        </div>
-        
         <a href="changelog.html?desktop=true" class="desktop-link">
             <i class="fa-solid fa-desktop"></i> Ver versión escritorio
         </a>

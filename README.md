@@ -24,18 +24,26 @@ Este proyecto recopila tutoriales modernos e interactivos sobre las principales 
 ```
 html-tutorial-page/
 ├── index.html                # Landing page con tarjetas de acceso a cada tutorial
-├── css/
-│   └── style.css             # Hoja de estilos global con temas y gradientes animados
-├── js/
-│   └── script.js             # Interactividad (tema oscuro, copiado, scrollspy, toggles)
-├── assets/                   # Recursos (imágenes, iconos, etc.)
+├── index-mobile.html         # Versión móvil optimizada de la página principal
+├── *-mobile.html             # Versiones móviles de cada tutorial
+├── style.css                 # Hoja de estilos global con temas y gradientes animados
+├── mobile-style.css          # Estilos específicos para versión móvil
+├── script.js                 # Interactividad (tema oscuro, copiado, scrollspy, toggles)
+├── mobile-script.js          # Scripts específicos para versión móvil
+├── mobile-detect.js          # Detección automática de dispositivos móviles
 ├── *.html                    # Tutoriales individuales por tecnología
 ├── README.md                 # Este documento
-├── changelog.html            # Historial de cambios con diseño web
-└── VERSION                   # Versión global del sitio
+├── changelog.html            # Historial de cambios versión escritorio
+├── changelog-mobile.html     # Historial de cambios versión móvil
+├── VERSION-DESKTOP           # Versión de la versión de escritorio
+└── VERSION-MOBILE            # Versión de la versión móvil
 ```
 
-## Uso
+## Acceso
+- **Versión escritorio:** `https://jimotorakatamo.github.io/tutorial_DAM/index.html`
+- **Versión móvil:** `https://jimotorakatamo.github.io/tutorial_DAM/index-mobile.html`
+
+Nota: La detección automática redirigirá a usuarios móviles a la versión optimizada.
 1. Abre `index.html` en tu navegador preferido.
 2. Navega usando la barra lateral o las tarjetas del índice para acceder a cada tutorial.
 3. Prueba los ejemplos, copia fragmentos de código con los botones integrados y alterna entre modo claro/oscuro.

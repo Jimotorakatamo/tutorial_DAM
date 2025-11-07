@@ -284,4 +284,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 })();
 
+// Theme toggle functionality
+(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+        if (themeToggle) {
+            themeToggle.checked = savedTheme === 'dark';
+        }
+    }
+    
+    // Cambiar tema
+    if (themeToggle) {
+        themeToggle.addEventListener('change', function() {
+            const newTheme = this.checked ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+})();
+
 console.log('📚 Tutorial móvil cargado correctamente');
