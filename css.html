@@ -90,7 +90,7 @@
                     <p><strong>Ejemplo inline:</strong></p>
                     <div class="code-container">
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
-                        <pre><code class="language-html">&lt;h1 style="color:blue; font-size:20px;"&gt;Hola!&lt;/h1&gt;</code></pre>
+                        <pre><code class="language-html">&lt;h1 style="color:blue; font-size:1.25em;"&gt;Hola!&lt;/h1&gt;</code></pre>
                     </div>
 
                     <p><strong>Orden de prioridad:</strong></p>
@@ -194,7 +194,7 @@ div + p { ... }</code></pre>
                     <ul>
                         <li><code>caption-side</code>: top | bottom</li>
                         <li><code>border-collapse</code>: collapse</li>
-                        <li><code>border-spacing</code>: 5px</li>
+                        <li><code>border-spacing</code>: 0.3125em</li>
                         <li><code>empty-cells</code>: show | hide</li>
                     </ul>
 
@@ -254,7 +254,7 @@ div + p { ... }</code></pre>
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16.25em, 1fr));
     gap: 1.5rem;
     padding: 2rem;
     background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.18), transparent 55%),
@@ -263,15 +263,15 @@ div + p { ... }</code></pre>
 
 .widget {
     background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    border: 0.0625em solid rgba(56, 189, 248, 0.35);
     border-radius: 1rem;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .widget:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 22px 40px rgba(56, 189, 248, 0.28);
+    transform: translateY(-0.375em);
+    box-shadow: 0 1.375em 2.5em rgba(56, 189, 248, 0.28);
 }</code></pre>
                     </div>
                 </div>
@@ -309,7 +309,7 @@ p { color: grey; }
 .destacado { font-weight: bold; }
 
 /* Selector de ID */
-#titulo-principal { font-size: 32px; }</code></pre>
+#titulo-principal { font-size: 2em; }</code></pre>
                     </div>
                     <div class="practice-exercise">
                         <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
@@ -349,17 +349,17 @@ p { color: grey; }
                     <div class="code-container">
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
                         <pre><code class="language-css">.caja {
-    width: 200px;
-    height: 100px;
-    padding: 15px;
-    border: 1px solid black;
-    margin: 20px;
+    width: 12.5em;
+    height: 6.25em;
+    padding: 1em;
+    border: 0.0625em solid black;
+    margin: 1.25em;
     background-color: white;
 }</code></pre>
                     </div>
                     <div class="practice-exercise">
                         <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
-                        <p>Crea una clase <code>.tarjeta-producto</code>. Asígnale un ancho (<code>width</code>) de 300px, un borde (<code>border</code>) de "2px dashed grey" y un relleno (<code>padding</code>) de 10px.</p>
+                        <p>Crea una clase <code>.tarjeta-producto</code>. Asígnale un ancho (<code>width</code>) de 18.75em, un borde (<code>border</code>) de "0.125em dashed grey" y un relleno (<code>padding</code>) de 0.625em.</p>
                     </div>
                 </div>
             </section>
@@ -393,7 +393,7 @@ p { color: grey; }
     display: flex;
     justify-content: space-around; /* Distribuye los ítems */
     align-items: center; /* Centra verticalmente */
-    height: 200px;
+    height: 12.5em;
 }</code></pre>
                     </div>
                     <div class="practice-exercise">
@@ -431,7 +431,7 @@ p { color: grey; }
                         <pre><code class="language-css">.contenedor-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* Tres columnas de igual tamaño */
-    gap: 10px; /* Espacio entre ítems */
+    gap: 0.625em; /* Espacio entre ítems */
 }</code></pre>
                     </div>
                     <div class="practice-exercise">
@@ -476,7 +476,7 @@ p { color: grey; }
 
 @keyframes rebote {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-0.625em); }
     100% { transform: translateY(0); }
 }</code></pre>
                     </div>
@@ -495,7 +495,7 @@ p { color: grey; }
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
                         <pre><code class="language-css">:root {
     --color-principal: #3498db;
-    --fuente-base: 16px;
+    --fuente-base: 1em;
 }
 
 a {
@@ -539,7 +539,7 @@ p::before {
                     <div class="code-container">
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
                         <pre><code class="language-css">.sombra {
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0.3125em 0.3125em 0.9375em rgba(0,0,0,0.2);
 }
 
 .gradiente {
@@ -548,7 +548,7 @@ p::before {
                     </div>
                     <div class="practice-exercise">
                         <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
-                        <p>Aplica una sombra de texto (<code>text-shadow</code>) a tu <code>h1</code> para darle un poco de profundidad. Por ejemplo: <code>2px 2px 4px #888888;</code>.</p>
+                        <p>Aplica una sombra de texto (<code>text-shadow</code>) a tu <code>h1</code> para darle un poco de profundidad. Por ejemplo: <code>0.125em 0.125em 0.25em #888888;</code>.</p>
                     </div>
                 </div>
             </section>
@@ -618,7 +618,7 @@ p::before {
                     <div class="code-container">
                         <button class="copy-btn" title="Copiar código"><i class="fa-regular fa-copy"></i></button>
                         <pre><code class="language-css">:root {
-    --max-width: clamp(320px, 90vw, 1100px);
+    --max-width: clamp(20em, 90vw, 68.75em);
 }
 
 .layout {
@@ -631,14 +631,14 @@ h1 {
     font-size: clamp(2rem, 5vw, 3.6rem);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
     .sidebar {
         position: static;
         inset: auto;
     }
 }
 
-@container (min-width: 520px) {
+@container (min-width: 32.5em) {
     .tarjeta-curso {
         grid-template-columns: 1fr auto;
     }
@@ -647,7 +647,7 @@ h1 {
 
                     <div class="practice-exercise">
                         <h4><i class="fa-solid fa-pencil-alt"></i> ¡A Practicar!</h4>
-                        <p>Convierte una sección rígida de tu proyecto en un layout fluido: establece un ancho máximo con <code>min()</code> o <code>clamp()</code>, añade padding proporcional y define al menos dos breakpoints (<code>768px</code> y <code>1024px</code>).</p>
+                        <p>Convierte una sección rígida de tu proyecto en un layout fluido: establece un ancho máximo con <code>min()</code> o <code>clamp()</code>, añade padding proporcional y define al menos dos breakpoints (<code>48em</code> y <code>64em</code>).</p>
                     </div>
                 </div>
             </section>
@@ -747,7 +747,7 @@ $color-primario: #ec4899;
     background: $bg;
     color: $color;
     padding: .75rem 1.5rem;
-    border-radius: 999px;
+    border-radius: 62.5em;
 }
 
 .boton {
@@ -760,7 +760,7 @@ $color-primario: #ec4899;
     background: #ec4899;
     color: #fff;
     padding: 0.75rem 1.5rem;
-    border-radius: 999px;
+    border-radius: 62.5em;
 }
 .boton:hover {
     filter: brightness(1.05);
@@ -813,7 +813,7 @@ toggle.addEventListener('click', () =&gt; {
 &lt;/script&gt;
 
 &lt;style&gt;
-.panel--grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.panel--grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.75em, 1fr)); gap: 1.5rem; }
 .panel--lista { display: flex; flex-direction: column; gap: 1rem; }
 &lt;/style&gt;</code></pre>
                     </div>
@@ -908,24 +908,24 @@ toggle.addEventListener('click', () =&gt; {
 .modulos-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
 }
 
 .modulo-card {
     padding: 1.75rem;
     border-radius: 1.25rem;
     background: var(--surface);
-    border: 1px solid var(--bordes);
+    border: 0.0625em solid var(--bordes);
     box-shadow: var(--shadow-md);
     transition: transform .25s ease-out, box-shadow .25s ease-out;
 }
 
 .modulo-card[data-estado="destacado"] {
-    outline: 2px solid var(--color-interfaces);
+    outline: 0.125em solid var(--color-interfaces);
 }
 
 .modulo-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-0.5em);
     box-shadow: var(--shadow-lg);
 }
 

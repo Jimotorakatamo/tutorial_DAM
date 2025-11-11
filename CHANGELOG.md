@@ -1,5 +1,59 @@
 # Changelog
 
+## [2.1.0] - 2025-11-11
+
+### 🎨 Mejoras de Diseño y UX
+
+#### Versión Desktop
+- **Optimización del layout del index**: Contenido ahora visible sin necesidad de scroll
+  - Reducidos márgenes y padding para mejor aprovechamiento del viewport
+  - Centrado vertical del contenido con `justify-content: center`
+  - Ajustado gap entre tarjetas a 1.5rem
+  - Optimizado aspect-ratio de tarjetas tecnológicas (1/1, min-height: 180px)
+- **Mejoras de rendimiento**:
+  - Simplificados gradientes de fondo (de 10 a 6 capas radiales)
+  - Añadida propiedad `will-change` para optimizar transiciones
+  - Optimizadas animaciones con `cubic-bezier` más eficientes
+  - Reducida duración de animaciones de fondo
+  - Agregados preconnect links para fonts.googleapis.com y cdnjs.cloudflare.com
+
+#### Versión Móvil
+- **Botón de cambio de tema en changelog**: Implementado para mantener consistencia con otras páginas
+  - Diseño con iconos sol/luna (Font Awesome)
+  - Switch redondeado con transiciones suaves
+  - Funcionalidad de persistencia con localStorage
+  - Estilos coherentes con index-mobile y otras páginas
+
+### 📚 Mejoras Educativas
+
+#### Tutoriales CSS (Desktop y Móvil)
+- **Estandarización de unidades de medida**:
+  - Convertidos todos los ejemplos de código de `px` a `em` (unidades relativas)
+  - Aplicada fórmula estándar: 1em = 16px
+  - Ejemplos actualizados:
+    - Dimensiones: 200px → 12.5em, 300px → 18.75em
+    - Espaciados: 10px → 0.625em, 15px → 1em, 20px → 1.25em
+    - Bordes: 1px → 0.0625em, 2px → 0.125em
+    - Media queries: 768px → 48em, 1024px → 64em, 1280px → 80em
+  - **Preservada sección educativa "Unidades en CSS"** con ejemplos originales en px para propósitos didácticos
+  - Convertidos ~20 ejemplos en css.html
+  - Convertidos ~25 ejemplos en css-mobile.html
+  - Mejora de accesibilidad y escalabilidad siguiendo mejores prácticas CSS
+
+### 🔧 Detalles Técnicos
+- Conversiones precisas aplicadas a:
+  - Box model (width, height, padding, margin, border)
+  - Tipografía (font-size, letter-spacing, word-spacing)
+  - Efectos visuales (box-shadow, text-shadow, border-radius)
+  - Layouts (Flexbox gap, Grid template columns/rows, minmax)
+  - Transformaciones (translate, translateX, translateY)
+  - Filtros (blur en píxeles)
+  - Funciones calc() y variables CSS
+- Mantenida compatibilidad total con navegadores modernos
+- Sin cambios en la funcionalidad, solo mejoras en estándares de código
+
+---
+
 ## [2.0.0] - 2025-11-06
 
 ### 🎉 Cambios Mayores

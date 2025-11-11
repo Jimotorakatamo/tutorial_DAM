@@ -47,12 +47,83 @@
                 <span class="meta-version" data-version></span>
                 <span class="meta-updated">
                     <i class="fa-regular fa-calendar"></i>
-                    Actualizado el 6 de noviembre de 2025
+                    Actualizado el 11 de noviembre de 2025
                 </span>
             </div>
         </header>
 
         <main class="changelog-timeline">
+            <article class="release-card">
+                <div class="release-meta">
+                    <span class="release-badge">v2.1.0</span>
+                    <span class="release-date">11 · noviembre · 2025</span>
+                    <span class="release-focus">🎨 Optimizaciones de diseño, rendimiento y mejores prácticas CSS</span>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-desktop"></i> Optimización Desktop Index</h3>
+                    <ul>
+                        <li>El contenido del index ahora es completamente visible sin necesidad de hacer scroll</li>
+                        <li>Reducidos márgenes y padding para mejor aprovechamiento del viewport</li>
+                        <li>Centrado vertical del contenido con <code>justify-content: center</code></li>
+                        <li>Ajustado gap entre tarjetas tecnológicas a 1.5rem</li>
+                        <li>Optimizado aspect-ratio de tarjetas (1/1) con min-height de 180px</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-gauge-high"></i> Mejoras de Rendimiento Desktop</h3>
+                    <ul>
+                        <li>Simplificados gradientes de fondo de 10 a 6 capas radiales</li>
+                        <li>Añadida propiedad <code>will-change: transform</code> para optimizar transiciones</li>
+                        <li>Optimizadas animaciones con funciones <code>cubic-bezier</code> más eficientes</li>
+                        <li>Reducida duración de animaciones de fondo para mejor fluidez</li>
+                        <li>Agregados preconnect links para fonts.googleapis.com y cdnjs.cloudflare.com</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-mobile-screen-button"></i> Mejoras UX Móvil</h3>
+                    <ul>
+                        <li>Implementado botón de cambio de tema en changelog móvil para consistencia con otras páginas</li>
+                        <li>Diseño con iconos sol/luna usando Font Awesome</li>
+                        <li>Switch redondeado con transiciones suaves</li>
+                        <li>Funcionalidad de persistencia con localStorage</li>
+                        <li>Estilos coherentes con index-mobile y resto de páginas móviles</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-ruler"></i> Estandarización de Unidades CSS</h3>
+                    <ul>
+                        <li>Convertidos todos los ejemplos de código de <code>px</code> a <code>em</code> (unidades relativas)</li>
+                        <li>Aplicada fórmula estándar: 1em = 16px para conversiones precisas</li>
+                        <li>Tutoriales CSS desktop: ~20 ejemplos actualizados
+                            <ul>
+                                <li>Dimensiones: 200px → 12.5em, 300px → 18.75em</li>
+                                <li>Espaciados: 10px → 0.625em, 15px → 1em, 20px → 1.25em</li>
+                                <li>Bordes: 1px → 0.0625em, 2px → 0.125em</li>
+                                <li>Media queries: 768px → 48em, 1024px → 64em</li>
+                            </ul>
+                        </li>
+                        <li>Tutoriales CSS móvil: ~25 ejemplos actualizados con mismas conversiones</li>
+                        <li>Preservada sección educativa "Unidades en CSS" con ejemplos originales en px</li>
+                    </ul>
+                </div>
+
+                <div class="change-group">
+                    <h3><i class="fa-solid fa-book-open"></i> Mejoras Educativas</h3>
+                    <ul>
+                        <li>Convertidos ejemplos de box model, tipografía, efectos visuales y layouts</li>
+                        <li>Actualizadas transformaciones (translate, translateX, translateY)</li>
+                        <li>Convertidos filtros blur de píxeles a em</li>
+                        <li>Actualizadas funciones calc() con unidades relativas</li>
+                        <li>Mejorada accesibilidad y escalabilidad siguiendo mejores prácticas CSS modernas</li>
+                        <li>Grid/Flexbox con minmax en em para layouts completamente fluidos</li>
+                    </ul>
+                </div>
+            </article>
+
             <article class="release-card">
                 <div class="release-meta">
                     <span class="release-badge">v2.0.0</span>

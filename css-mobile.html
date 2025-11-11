@@ -134,7 +134,7 @@
                 <button class="copy-btn" data-copy="code2">
                     <i class="fa-regular fa-copy"></i> Copiar
                 </button>
-                <pre><code id="code2">&lt;h1 style="color:blue; font-size:20px;"&gt;
+                <pre><code id="code2">&lt;h1 style="color:blue; font-size:1.25em;"&gt;
   Hola Mundo
 &lt;/h1&gt;</code></pre>
             </div>
@@ -279,19 +279,19 @@ p::first-line { color: blue; }
                 </button>
                 <pre><code id="code6">.caja {
   /* Contenido */
-  width: 300px;
-  height: 200px;
+  width: 18.75em;
+  height: 12.5em;
   
   /* Padding */
-  padding: 20px;
+  padding: 1.25em;
   /* También: padding-top, padding-right, etc. */
   
   /* Border */
-  border: 2px solid black;
-  border-radius: 10px;
+  border: 0.125em solid black;
+  border-radius: 0.625em;
   
   /* Margin */
-  margin: 15px;
+  margin: 1em;
   /* También: margin-top, margin-bottom, etc. */
 }</code></pre>
             </div>
@@ -375,16 +375,16 @@ img { display: inline-block; }
   text-transform: uppercase; /* lowercase, capitalize */
   
   /* Espaciado entre letras */
-  letter-spacing: 2px;
+  letter-spacing: 0.125em;
   
   /* Espaciado entre palabras */
-  word-spacing: 5px;
+  word-spacing: 0.3125em;
   
   /* Altura de línea */
   line-height: 1.6;
   
   /* Sombra de texto */
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0.125em 0.125em 0.25em rgba(0,0,0,0.3);
 }</code></pre>
             </div>
             
@@ -399,7 +399,7 @@ img { display: inline-block; }
   font-family: 'Arial', 'Helvetica', sans-serif;
   
   /* Tamaño */
-  font-size: 16px; /* También: em, rem, % */
+  font-size: 1em; /* También: em, rem, % */
   
   /* Peso (grosor) */
   font-weight: 700; /* 100-900 o bold, normal */
@@ -495,7 +495,7 @@ color: hsla(0, 100%, 50%, 0.8);</code></pre>
   background-position: center center;
   
   /* Tamaño */
-  background-size: cover; /* contain, 100px, 50% */
+  background-size: cover; /* contain, 6.25em, 50% */
   
   /* Fijación */
   background-attachment: fixed; /* scroll, local */
@@ -584,7 +584,7 @@ background: conic-gradient(
   align-content: space-between;
   
   /* Espacio entre elementos */
-  gap: 20px;
+  gap: 1.25em;
 }</code></pre>
             </div>
             
@@ -602,10 +602,10 @@ background: conic-gradient(
   flex-shrink: 1;
   
   /* Tamaño base */
-  flex-basis: 200px; /* auto, 0, 50% */
+  flex-basis: 12.5em; /* auto, 0, 50% */
   
   /* Shorthand */
-  flex: 1 1 200px; /* grow shrink basis */
+  flex: 1 1 12.5em; /* grow shrink basis */
   
   /* Auto-alineación */
   align-self: flex-end;
@@ -639,14 +639,14 @@ background: conic-gradient(
   display: grid;
   
   /* Definir columnas */
-  grid-template-columns: 200px 1fr 2fr;
-  /* También: repeat(3, 1fr), auto, minmax(100px, 1fr) */
+  grid-template-columns: 12.5em 1fr 2fr;
+  /* También: repeat(3, 1fr), auto, minmax(6.25em, 1fr) */
   
   /* Definir filas */
-  grid-template-rows: 100px auto 50px;
+  grid-template-rows: 6.25em auto 3.125em;
   
   /* Espaciado */
-  gap: 20px; /* row-gap, column-gap */
+  gap: 1.25em; /* row-gap, column-gap */
   
   /* Áreas nombradas */
   grid-template-areas:
@@ -704,7 +704,7 @@ background: conic-gradient(
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(250px, 1fr)
+    minmax(15.625em, 1fr)
   );
   gap: 2rem;
 }
@@ -746,24 +746,24 @@ background: conic-gradient(
 }
 
 /* Tablet */
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .container {
-    width: 750px;
+    width: 46.875em;
     margin: 0 auto;
   }
 }
 
 /* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 64em) {
   .container {
-    width: 1000px;
+    width: 62.5em;
   }
 }
 
 /* Desktop grande */
-@media (min-width: 1280px) {
+@media (min-width: 80em) {
   .container {
-    width: 1200px;
+    width: 75em;
   }
 }</code></pre>
             </div>
@@ -884,14 +884,14 @@ img {
     transform: translateX(0);
   }
   to {
-    transform: translateX(100px);
+    transform: translateX(6.25em);
   }
 }
 
 /* Con porcentajes */
 @keyframes rebote {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-50px); }
+  50% { transform: translateY(-3.125em); }
   100% { transform: translateY(0); }
 }
 
@@ -921,9 +921,9 @@ img {
                     <i class="fa-regular fa-copy"></i> Copiar
                 </button>
                 <pre><code id="code26">/* Traslación */
-transform: translate(50px, 100px);
-transform: translateX(50px);
-transform: translateY(100px);
+transform: translate(3.125em, 6.25em);
+transform: translateX(3.125em);
+transform: translateY(6.25em);
 
 /* Rotación */
 transform: rotate(45deg);
@@ -939,7 +939,7 @@ transform: scaleY(0.5);
 transform: skew(10deg, 20deg);
 
 /* Múltiples transformaciones */
-transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
+transform: translate(3.125em, 3.125em) rotate(45deg) scale(1.5);</code></pre>
             </div>
             
             <div class="info-card info-card-tip">
@@ -1002,18 +1002,18 @@ transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
                 </button>
                 <pre><code id="code28">/* Cálculos dinámicos */
 .sidebar {
-  width: calc(100% - 300px);
+  width: calc(100% - 18.75em);
 }
 
 .elemento {
-  height: calc(100vh - 80px);
-  margin: calc(2rem + 10px);
+  height: calc(100vh - 5em);
+  margin: calc(2rem + 0.625em);
   font-size: calc(1rem + 1vw);
 }
 
 /* Con variables */
 :root {
-  --navbar-height: 60px;
+  --navbar-height: 3.75em;
 }
 
 .content {
@@ -1029,7 +1029,7 @@ transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
                 </button>
                 <pre><code id="code29">img {
   /* Desenfoque */
-  filter: blur(5px);
+  filter: blur(0.3125em);
   
   /* Brillo */
   filter: brightness(150%);
@@ -1056,7 +1056,7 @@ transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
   filter: sepia(100%);
   
   /* Combinar filtros */
-  filter: brightness(110%) contrast(120%) blur(2px);
+  filter: brightness(110%) contrast(120%) blur(0.125em);
 }</code></pre>
             </div>
             
@@ -1099,14 +1099,14 @@ transform: translate(50px, 50px) rotate(45deg) scale(1.5);</code></pre>
                 <pre><code id="code31">/* Efecto vidrio esmerilado */
 .glassmorphism {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(0.625em);
+  border: 0.0625em solid rgba(255, 255, 255, 0.2);
 }
 
 /* Modal con fondo difuminado */
 .modal {
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px) brightness(80%);
+  backdrop-filter: blur(0.3125em) brightness(80%);
 }</code></pre>
             </div>
             
